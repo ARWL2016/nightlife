@@ -1,0 +1,81 @@
+{
+   "html_attributions" : [],
+   "results" : [
+      {
+         "formatted_address" : "Union Station, 123 Main St, Winnipeg, MB R3C, Canada",
+         "geometry" : {
+            "location" : {
+               "lat" : 49.88921089999999,
+               "lng" : -97.1344941
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 49.8902949802915,
+                  "lng" : -97.13293771970849
+               },
+               "southwest" : {
+                  "lat" : 49.8875970197085,
+                  "lng" : -97.1356356802915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+         "id" : "9f476b0a0c73f4cefc3d76640e4081d2a4cc5582",
+         "name" : "Union Station",
+         "photos" : [
+            {
+               "height" : 2592,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/104659139259886250678/photos\"\u003eRicardo F\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAcBF1r--DaFQVoOrqTBMllUhAwrmQx5kuCGArmAHwe3SIXYIASbcAkiIm70gueh65uu3Zlwc1Ow4YpUpvNUnszFh2bVKCEU5bS9pDRstkEAk
+y5it8iJ_e6PP132xK-9bOEhBnK1gCPTtJJbkFCzDhET7DGhSjVggFLBsyFChB4n9R1YR5MXnA1Q",
+               "width" : 4608
+            }
+         ],
+         "place_id" : "ChIJl2Ei1lFx6lIRKnnP1xso1VE",
+         "reference" : "CmRbAAAA8oZbx85iaD7MPPAZ4fhuOCeVE3WkJYWEdbCayiWgIQPpXrKXBai9gWF4XO7yeOpzroPoRnaSP3P_MLVSERSW6F_qh937l16x6S0n8dlR9tar2ry1-o0sJS0
+y7pIH9D3uEhDpmc0IprQiUqdxTZl8pBPeGhT1XfUz4IaHW73r78PMwxWtgbQeIA",
+         "types" : [ "premise" ]
+      },
+      {
+         "formatted_address" : "123 Main St, Freeport, ME 04032, USA",
+         "geometry" : {
+            "location" : {
+               "lat" : 43.8584868,
+               "lng" : -70.10259769999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 43.8597778802915,
+                  "lng" : -70.10105706970849
+               },
+               "southwest" : {
+                  "lat" : 43.8570799197085,
+                  "lng" : -70.10375503029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+         "id" : "9428546d10a61234fba244b45238588f9ddcb1fc",
+         "name" : "123 Main St",
+         "place_id" : "ChIJoywv0kB-skwRdDY4U24fkQk",
+         "reference" : "CmRbAAAAAxhfXYcb9D30ZRAgJ-ZrGKq8EGNsZ2zRnSzjrEhFf3qCfRQNveGcRu7asZh3YRbsRd2fpXxrI2UdXuYO0PJL_V01g25n_uoGttNV8tSOFB3bShfOLNm_SB7
+zigRv4dwqEhBjJ5duxcDKztcjQcpu4CphGhTQKFcWhjMl1dWJcEk6oFTG8q7RsA",
+         "types" : [ "premise" ]
+      }
+   ],
+   "status" : "OK"
+}
+
+{
+   "html_attributions" : [],
+   "next_page_token" : "CoQC-wAAAM2o0Ai5qU3sSNUFi7CZxUtPBAYsxfvrnuTDWmv2ZcDhHCHlb_Kyfgkd8Ql6A_TSObqvFhCwWOF72xarWiKXjsriS6au6acN78_cqh3GbRhGhqEWmPfntQ0VIYmjEcIH8kf7atSK0_dfOyUFCIK0oC
+Y9nVS4TkQAnM4OPIxXZsWWb_D3LuEF4sJdyulT9OFbpwuzcRgfxERec64NHZ6x7Mys3ng-lBI1WXToSZBnlDUya34cL1Sc-bSsy36y68VVDOdtpjSCLKEWRiL0vS-xObzD11uiN8uwjVTyFSxK4IXwWRqRL7IjV-6Ot8GrmbxcsbIuM4dHOY4E
+yPKMibwWaIgSECo51NGSwBkaf1UJeq3W16YaFHUJjdQVWbff88W1aKmkAqyyS3jZ",
+   "results" : [
+      {
+        }
+   ],
+   "status" : "OK"
+}
