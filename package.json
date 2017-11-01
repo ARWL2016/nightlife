@@ -20,8 +20,8 @@
     "postinstall": "bower install",
     "update-deps": "npm update",
     "postupdate-deps": "bower update",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run"

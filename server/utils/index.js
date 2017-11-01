@@ -1,5 +1,5 @@
-function buildUrl(app, path, params) {
-  return app.get('baseUrl') + path + Object
+function buildUrl(baseUrl, path, params) {
+  return baseUrl + path + Object
     .keys(params)
     .map(param => {
       return `${param}=${params[param]}`;
