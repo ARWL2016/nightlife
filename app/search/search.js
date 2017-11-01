@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('NL.search', ['ngRoute'])
+angular.module('app.search', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/search', {
@@ -9,6 +9,9 @@ angular.module('NL.search', ['ngRoute'])
   });
 }])
 
-.controller('SearchCtrl', [function() {
-
+.controller('SearchCtrl', ['$scope', function($scope) {
+  $scope.title = "Search Places"; 
+  $scope.search = {
+    query: ''
+  }
 }]);
