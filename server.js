@@ -4,9 +4,7 @@ const express =   require('express');
 const path =      require('path');
 const winston =   require('winston');
 
-const { getInfo } = require('./server/api/get-info');
-const { getPhoto } = require('./server/api/get-photo');
-const { getDetails } = require('./server/api/get-details');
+const api = require('./server/api');
 
 const app = express();
 const port = process.env.PORT || 3000; 
@@ -14,14 +12,19 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'app')));
 
 // text search route
-searchByQuery();
+app.get('/api/data/info?', api.getInfo);
 
 // photorequestroute
-getPhoto();
+app.get('/api/data/photo?', (req, res) => {
+  getPhoto();
+})
 
 // details route
-getPlaceDetails();
+app.get('/api/data/details?', (req, res) => {
+  getDetails();
+});
 
 app.listen(port, () => {
   winston.log('info', `Listening on PORT: ${port}`);
+  
 });
