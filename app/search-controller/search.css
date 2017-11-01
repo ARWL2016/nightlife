@@ -1,0 +1,9 @@
+/* imported into app.css */
+
+.search-page-wrapper{
+  border: 1px dotted blue;
+} 
+
+.search-heading {
+  color: green;
+}

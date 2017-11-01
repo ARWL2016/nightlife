@@ -16,13 +16,13 @@ function getInfo(req, res) {
   const url = buildUrl(baseUrl, path, params);
   console.log(url);
 
-  // rp(url)   
-  //   .then(result => {  
-  //     res.send(result);
-  //   })   
-  //   .catch(err => {
-  //     res.send({err});  
-  // });
+  rp(url)   
+    .then(result => {  
+      res.send(result);
+    })   
+    .catch(err => {
+      res.send({err});  
+  });
 
 }
 
