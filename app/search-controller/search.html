@@ -1,17 +1,18 @@
-<div class="search-page-wrapper">
-  <h1 class="search-heading"> {{ title }}</h1>
+<div ng-controller="searchCtrl as svm" class="search-page-wrapper">
+  <h1 class="search-heading"> {{ svm.title }}</h1>
   <form novalidate>
     <label for="search">Search places</label>
-    <input type="text" name="search" ng-model="search.query" >
-    <input type="submit" value="Search" ng-click="submitQuery()" >
+    <input type="text" name="search" ng-model="svm.search.query" >
+    <input type="submit" value="Search" ng-click="svm.submitQuery()" >
   </form>
-  <input type="button" value="Sort By Rating" ng-click="sortByRating()"> 
-  <input type="button" value="Prev" ng-click="previousPage()"> 
-  <input type="button" value="Next" ng-click="nextPage()"> 
+  <input type="button" value="Sort By Rating" ng-click="svm.sortByRating()"> 
+  <input type="button" value="Prev" ng-click="svm.previousPage()"> 
+  <input type="button" value="Next" ng-click="svm.nextPage()"> 
 
   <pre>search = {{ search | json }}</pre>
   <div 
-    ng-repeat="result in results | limitTo:limit" 
+    ng-repeat="result in svm.results | limitTo:svm.limit" 
+    ng-click="svm.getDetails(result.place_id)"
     class="search-result-wrapper">
     <h2>{{ result.name }}</h2>
     <p>{{ result.formatted_address }}</p>

@@ -14,9 +14,9 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body ng-controller="mainCtrl">
+<body ng-controller="mainCtrl as main">
   <ul class="menu">
-    <li>{{ title }}</li>
+    <li>{{ main.title }}</li>
     <li><a href="#!/search">Search</a></li>
     <li><a href="#!/login">Login</a></li>
   </ul>

@@ -8,10 +8,12 @@ var pathFinderApp = angular.module('pathFinderApp', ['ngRoute']);
       .when('/login', {
         templateUrl: 'login-controller/login.html',
         controller: 'loginCtrl'
+
       })
       .when('/search', {
         templateUrl: 'search-controller/search.html',   
-        controller: 'searchCtrl'
+        controller: 'searchCtrl', 
+        
       })
       .otherwise({redirectTo: '/search'});
   }]);

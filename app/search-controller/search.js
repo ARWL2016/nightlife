@@ -1,37 +1,52 @@
 'use strict';
 
-// angular.module('app')
+const SearchCtrl = function(googleApiService) {
+  var vm = this;
 
-pathFinderApp.controller('searchCtrl', ['$scope', 'googleApiService', function($scope, googleApiService) {
-  $scope.title = "Search Places"; 
-  $scope.search = {
-    query: ''
-  };
-  $scope.error;
-  $scope.results;
-  $scope.limit = 10;
-  $scope.previousPage = () => {
-    $scope.limit = 10;
+  vm.title = "Search Places";
+  vm.search = {query: ''};
+  vm.error;
+  vm.results;
+  vm.limit = 10;
+  vm.previousPage = previousPage;
+  vm.nextPage = nextPage;
+  vm.sortByRating = sortByRating;
+  vm.submitQuery = submitQuery; 
+  vm.getDetails = getDetails;
+
+  function previousPage() {
+    vm.limit = 10;
   }
-  $scope.nextPage = () => {
-    $scope.limit = -10;
+  function nextPage() {
+    vm.limit = -10;
   }
-  $scope.sortByRating = () => {
-    $scope.limit = 10;
+
+  function sortByRating()  {
+    vm.limit = 10;
     console.log('sort');
-    $scope.results = $scope.results.sort((a, b) => {
+    vm.results = vm.results.sort((a, b) => {
       return b.rating - a.rating;
     })
   };
 
-  $scope.submitQuery = () => {
+  function submitQuery() {
     googleApiService
       .getInfo()
       .then(results => {
-        console.log({results});
-        $scope.results = results;
+        vm.results = results;
       })
-      .catch(err => $scope.error = 'No results');
-
+      .catch(err => vm.error = 'No results');
   };
-}]);
+
+  function getDetails(id) {
+    console.log({ id });
+    googleApiService
+      .getDetails(id)
+      .then(results => {
+        console.log(results);
+      })
+      .catch(err => console.log({ err }));
+  }
+}
+
+pathFinderApp.controller('searchCtrl', [ 'googleApiService', SearchCtrl]);

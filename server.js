@@ -20,15 +20,16 @@ app.get('/api/data/info?', (req, res) => {
 // text search route
 // app.get('/api/data/info?', api.getInfo);
 
+
+// details route
+app.get('/api/data/details?', api.getDetails);
+
 // photorequestroute
 app.get('/api/data/photo?', (req, res) => {
   getPhoto();
 });
 
-// details route
-app.get('/api/data/details?', (req, res) => {
-  getDetails();
-});
+
 
 app.listen(port, () => {
   winston.log('info', `Listening on PORT: ${port}`);

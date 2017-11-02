@@ -2,7 +2,7 @@
 
 // angular.module('app')
 
-pathFinderApp.controller('mainCtrl', ['$scope', function($scope) {
-  $scope.title = "Main Ctrl"; 
+pathFinderApp.controller('mainCtrl', [function() {
+  this.title = "Dynamic Title"; 
 
 }]);
