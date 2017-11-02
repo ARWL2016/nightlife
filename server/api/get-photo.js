@@ -1,27 +1,30 @@
+
 const request = require('request');
 const rp = require('request-promise');
 
 const {buildUrl} = require('../utils');
 
 const baseUrl = process.env.BASE_URL;
-const path = '/place/photo?';
+const path = '/photo?';
 const params = {
   key: process.env.API_KEY,
+  maxwidth: 400
 };
 
-function getPhoto(ref, maxwidth = 400) {
-  params.maxwidth = maxwidth; 
-  params.photoreference = ref;
+function getPhoto(req, res) {
+  params.photoreference = req.query.photoref;
 
   const url = buildUrl(baseUrl, path, params);
+  console.log({url});
 
-  // rp(url).then(result => {
-  //   console.log(result);
-  // }).catch(err => {
-  //   console.log(err);
-  // });
+  rp(url).then(result => {
+    console.log(result, typeof result);
+    res.send(result);
+  }).catch(err => {
+    console.log(err);
+  });
 
-  console.log(url);
+  
 }
 
 module.exports = { getPhoto };

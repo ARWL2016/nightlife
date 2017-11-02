@@ -7,12 +7,14 @@ const SearchCtrl = function(googleApiService) {
   vm.search = {query: ''};
   vm.error;
   vm.results;
+  vm.imagedata;
   vm.limit = 10;
   vm.previousPage = previousPage;
   vm.nextPage = nextPage;
   vm.sortByRating = sortByRating;
   vm.submitQuery = submitQuery; 
   vm.getDetails = getDetails;
+  vm.getPhoto = getPhoto;
 
   function previousPage() {
     vm.limit = 10;
@@ -23,7 +25,6 @@ const SearchCtrl = function(googleApiService) {
 
   function sortByRating()  {
     vm.limit = 10;
-    console.log('sort');
     vm.results = vm.results.sort((a, b) => {
       return b.rating - a.rating;
     })
@@ -33,17 +34,29 @@ const SearchCtrl = function(googleApiService) {
     googleApiService
       .getInfo()
       .then(results => {
+        console.log({results});
         vm.results = results;
       })
       .catch(err => vm.error = 'No results');
   };
 
-  function getDetails(id) {
-    console.log({ id });
+  function getDetails(placeid, photoref) {
+    console.log({ placeid, photoref });
     googleApiService
-      .getDetails(id)
-      .then(results => {
-        console.log(results);
+      .getDetails(placeid, photoref)
+      .then(result => {
+        console.log({result});
+      })
+      .catch(err => console.log({ err }));
+  }
+
+  function getPhoto(photoref) {
+    console.log({photoref });
+    googleApiService
+      .getPhoto(photoref)
+      .then(result => {
+        vm.imagedata = result.data;
+        console.log({ result });
       })
       .catch(err => console.log({ err }));
   }

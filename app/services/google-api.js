@@ -15,17 +15,30 @@ pathFinderApp
         
     }
 
-    function getDetails(placeid) {
-      return $http.get(`/api/data/details?placeid=${placeid}`)
-        .then(res => {
-          if (res.status === 200) {
-            return res.data.results;
+    function getDetails(placeid, photoref) {
+      return $http.get(`/api/data/details?placeid=${placeid}&photoref=${photoref}`)
+        .then(resp => {
+          if (resp.status === 200) {
+            console.log(resp);
+            return resp;
           } else {
             return Promise.reject();
           }
         });
     }
 
-    return { getInfo, getDetails };
+    function getPhoto(photoref) {
+      return $http.get(`/api/data/photo?photoref=${photoref}`)
+        .then(resp => {
+          if (resp.status === 200) {
+            console.log(resp);
+            return resp;
+          } else {
+            return Promise.reject();
+          }
+        });
+    }
+
+    return { getInfo, getDetails, getPhoto };
 
   });
