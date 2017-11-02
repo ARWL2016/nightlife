@@ -33,6 +33,6 @@
     "json.format.enable": false,
     "emmet.syntaxProfiles": {},
     "git.enableSmartCommit": true,
-    "editor.formatOnPaste": true,
+    "editor.formatOnPaste": false,
     "workbench.startupEditor": "newUntitledFile"
   }

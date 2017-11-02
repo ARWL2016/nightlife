@@ -14,7 +14,7 @@ const SearchCtrl = function(googleApiService) {
   vm.sortByRating = sortByRating;
   vm.submitQuery = submitQuery; 
   vm.getDetails = getDetails;
-  vm.getPhoto = getPhoto;
+  // vm.getPhoto = getPhoto;
 
   function previousPage() {
     vm.limit = 10;
@@ -48,18 +48,19 @@ const SearchCtrl = function(googleApiService) {
         console.log({result});
       })
       .catch(err => console.log({ err }));
+      
   }
 
-  function getPhoto(photoref) {
-    console.log({photoref });
-    googleApiService
-      .getPhoto(photoref)
-      .then(result => {
-        vm.imagedata = result.data;
-        console.log({ result });
-      })
-      .catch(err => console.log({ err }));
-  }
+  // function getPhoto(photoref) {
+  //   console.log({photoref });
+  //   googleApiService
+  //     .getPhoto(photoref)
+  //     .then(result => {
+  //       vm.imagedata = result.data;
+  //       console.log({ result });
+  //     })
+  //     .catch(err => console.log({ err }));
+  // }
 }
 
 pathFinderApp.controller('searchCtrl', [ 'googleApiService', SearchCtrl]);

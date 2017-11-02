@@ -19,10 +19,9 @@ pathFinderApp
       return $http.get(`/api/data/details?placeid=${placeid}&photoref=${photoref}`)
         .then(resp => {
           if (resp.status === 200) {
-            console.log(resp);
-            return resp;
+            return resp.data.result;
           } else {
-            return Promise.reject();
+            return Promise.reject('no data');
           }
         });
     }
@@ -32,11 +31,11 @@ pathFinderApp
         .then(resp => {
           if (resp.status === 200) {
             console.log(resp);
-            return resp;
+            return Promise.resolve(resp.data.result);
           } else {
             return Promise.reject();
           }
-        });
+        }).catch(err => console.log({ err }));
     }
 
     return { getInfo, getDetails, getPhoto };

@@ -9,33 +9,35 @@ const photoPath = '/photo?';
 const detailParams = { key: process.env.API_KEY };
 const photoParams = { key: process.env.API_KEY, maxwidth: 400 };
 
-// ChIJN1t_tDeuEmsRUsoyG83frY4 - example placeid
-
 function getDetails(req, res) {
   detailParams.placeid = req.query.placeid;
   photoParams.photoreference = req.query.photoref;
 
   const detailUrl = buildUrl(baseUrl, detailPath, detailParams);
-  const photoUrl = buildUrl(baseUrl, photoPath, photoParams)
+  const photoUrl = buildUrl(baseUrl, photoPath, photoParams);
+  const photoOptions = {
+    uri: photoUrl,
+    resolveWithFullResponse: true
+  };
 
   console.log({ detailUrl, photoUrl });
 
-  // Promise.all([rp(detailUrl), rp(photoUrl)])
-  //   .then(result => {
-  //     console.log(result);
-  //     res.send(result);
-  //   })
-  //   .catch(e => {
-  //     console.log(e); 
-  //     res.send({err});
-  //   });
+  Promise.all([rp(detailUrl), rp(photoOptions)])
+    .then(resp => {
+      const {href} = resp[1].request;
+      console.log({href});
+      const responseObj = JSON.parse(resp[0]);
 
-  // rp(url).then(result => {
-  //   console.log(result);
-  //   res.send(result);
-  // }).catch(err => {
-  //   res.send({err});
-  // });
+      responseObj.result.photohref = href;
+      console.log(responseObj);
+      res.json(responseObj);
+    })
+    .catch(e => {
+      console.log(e); 
+      res.send({err});
+    });
+
+
 }
 
 module.exports = { getDetails };
