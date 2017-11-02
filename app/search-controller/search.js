@@ -7,6 +7,7 @@ const SearchCtrl = function(googleApiService) {
   vm.search = {query: ''};
   vm.error;
   vm.results;
+  vm.result;
   vm.imagedata;
   vm.limit = 10;
   vm.previousPage = previousPage;
@@ -45,6 +46,7 @@ const SearchCtrl = function(googleApiService) {
     googleApiService
       .getDetails(placeid, photoref)
       .then(result => {
+        vm.result = result;
         console.log({result});
       })
       .catch(err => console.log({ err }));

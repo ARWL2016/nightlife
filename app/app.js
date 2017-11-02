@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var pathFinderApp = angular.module('pathFinderApp', ['ngRoute']);
+var pathFinderApp = angular.module('pathFinderApp', ['ngRoute', 'ui.bootstrap']);
   pathFinderApp.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
     $routeProvider
