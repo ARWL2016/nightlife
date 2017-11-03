@@ -1,6 +1,6 @@
 'use strict';
 
-const SearchCtrl = function(googleApiService) {
+const SearchCtrl = function(googleApiService, helperService) {
   var vm = this;
 
   vm.title = "Search Places";
@@ -9,7 +9,7 @@ const SearchCtrl = function(googleApiService) {
   vm.results;
   vm.result;
   vm.imagedata;
-  vm.limit = 10;
+  vm.limit = 20;
   vm.previousPage = previousPage;
   vm.nextPage = nextPage;
   vm.sortByRating = sortByRating;
@@ -36,7 +36,8 @@ const SearchCtrl = function(googleApiService) {
       .getInfo()
       .then(results => {
         console.log({results});
-        vm.results = results;
+
+        vm.results = helperService.formatTags(results);
       })
       .catch(err => vm.error = 'No results');
   };
@@ -65,4 +66,4 @@ const SearchCtrl = function(googleApiService) {
   // }
 }
 
-pathFinderApp.controller('searchCtrl', [ 'googleApiService', SearchCtrl]);
+pathFinderApp.controller('searchCtrl', [ 'googleApiService', 'helperService', SearchCtrl]);

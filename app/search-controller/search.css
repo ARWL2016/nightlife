@@ -9,6 +9,7 @@
 .search-section-wrapper {
   width: 100%;
   background-color: #2e2e2e;
+  
 }
 
 .search-section-content {
@@ -19,12 +20,15 @@
   min-height: 300px;
 }
 
-.result-section-wrapper {
-
+.results-section-wrapper {
+  margin-top: 50px;
 }
 
-.result-section-content {
-
+.results-section-content {
+  
+  max-width: 900px; 
+  border: 1px dotted green;
+  margin: 0 auto;
 }
 
 /* LAYOUT::END */
@@ -130,7 +134,43 @@ input:focus {
 
 /* RESULTS:: START */
 
-.result-wrapper {
-  background-color: black; 
+.result-card {
+  width: 280px; 
+  position: relative;
+  height: 300px; 
+  overflow: hidden;
+  border: 1px solid black;
+  /* float: left;  */
+  display: inline-block;
+  /* padding: 10px; */
+  margin: 8px; 
+  border-radius: 5px;
+}
+
+.card-heading-wrapper {
+  background-color: #2e2e2e;
+  margin: 0; 
+  padding: 15px 5px 15px 5px;
+}
+
+.card-heading-wrapper > h2 {
   color: white;
+  text-align: center;
+  margin: 0;
+}
+
+.card-content-wrapper {
+  padding: 15px;
+}
+
+.card-address {
+
+}
+.card-tags {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.card-rating {
+
 }

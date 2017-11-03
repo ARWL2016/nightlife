@@ -23,21 +23,25 @@
       <input type="button" value="Prev" ng-click="svm.previousPage()"> 
       <input type="button" value="Next" ng-click="svm.nextPage()">  -->
     </section>
+  </div>
 
   <div class="results-section-wrapper">
     <section class="results-section-content">
       <div 
+        class="result-card"
         ng-repeat="result in svm.results | limitTo:svm.limit" 
-        ng-click="svm.getDetails(result.place_id, result.photos[0].photo_reference)" 
-      
-        class="result-wrapper">
-        <h2>{{ result.name }}</h2>
-        <p>{{ result.formatted_address }}</p>
-        <p>{{ result.rating }}</p>
-        <p><span ng-repeat="type in result.types">{{ type }} </span></p>
+        ng-click="svm.getDetails(result.place_id, result.photos[0].photo_reference)" >
+        <div class="card-heading-wrapper">
+          <h2>{{ result.name }}</h2>
+        </div>
+        <div class="card-content-wrapper">
+          <p class="card-address">{{ result.formatted_address }}</p>
+          <p class="card-tags">{{result.types}}</span></p>
+          <p class="card rating">Customer Rating: <b>{{ result.rating }}</b></p>
+      </div>
       </div>
     </section>  
   </div>
   
-  </div>
+ 
 </div>
