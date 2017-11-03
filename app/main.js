@@ -3,6 +3,6 @@
 // angular.module('app')
 
 pathFinderApp.controller('mainCtrl', [function() {
-  this.title = "Dynamic Title"; 
+  this.title = "Pathfinder"; 
 
 }]);

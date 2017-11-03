@@ -1,15 +1,46 @@
 /* app css stylesheet */
 @import './search-controller/search.css';
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+* {
+  font-family: 'Raleway', sans-serif;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
-.menu > li {
+/* LAYOUT::START */
+
+.nav-wrapper {
+  width: 100%; 
+  background-color: #222222;
+  color: white;
+}
+
+.nav-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.nav-menu {
+  list-style: none;
+  padding: 10px 0 10px 0;
+  margin: 0
+}
+
+.nav-brand {
+  font-weight: bold;
+}
+
+.nav-menu > li {
   display: inline;
+  margin: 0 15px 0 15px;
+  font-size: 0.9em;
+  
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: white;
 }
 
 

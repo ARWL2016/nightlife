@@ -1,14 +1,136 @@
 /* imported into app.css */
 
+/* LAYOUT::START */
+
 .search-page-wrapper{
-  border: 1px dotted blue;
+  /* border: 1px dotted blue; */
 } 
 
-.search-heading {
-  color: green;
+.search-section-wrapper {
+  width: 100%;
+  background-color: #2e2e2e;
 }
 
-.search-result-wrapper {
+.search-section-content {
+  /* border: 1px dotted white; */
+  overflow: auto;
+  max-width: 800px; 
+  margin: 0 auto;
+  min-height: 300px;
+}
+
+.result-section-wrapper {
+
+}
+
+.result-section-content {
+
+}
+
+/* LAYOUT::END */
+/* SEARCH SECTION::START */
+
+.search-heading {
+  margin-top: 80px;
+  color: rgb(93, 212, 248);
+  text-align: center;
+}
+
+.input-wrapper {
+  /* border: 1px dotted greenyellow; */
+  max-width: 600px;
+  position: relative;
+  margin: 0 auto;
+}
+
+input {
+  height: 35px;
+  width: 300px;
+  border: none;
+  margin-right: -4px;
+  position: absolute; 
+  top: 0;
+  
+}
+
+input:focus {
+  outline: none;
+}
+
+.query-input {
+  border-radius:  3px 0 0 3px;
+  padding-left: 60px;
+}
+
+.location-input {
+  left: 300px;
+  padding-left: 70px;
+}
+
+.search-button {
+  border-radius: 0 3px 3px 0;
+  height: 35px;
+  width: 40px;
+  background-color: rgb(93, 212, 248);
+  border: none;
+  position: absolute;
+  left: 600px;
+}
+
+.input-wrapper span {
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  z-index: 1;
+  font-weight: bold;
+  color: #888;
+}
+
+.input-wrapper span:nth-child(1) {
+  left: 10px;
+}
+
+.input-wrapper span:nth-child(2) {
+  left: 310px;
+}
+
+.input-wrapper span:nth-child(2):before {
+  content: '|';
+  margin-right: 10px;
+  font-weight: normal;
+}
+
+/* OPTIONS ROW */
+
+.options-row {
+  font-size: 0.8em;
+  color: white;
+  list-style: none;
+  position: absolute; 
+  top: 50px;
+  text-align: center;
+  /* border: 1px solid yellow; */
+  left: 110px;
+  margin: 0;
+  padding: 0;
+}
+
+.options-row > li {
+  display: inline;
+  padding: 10px;
+}
+
+.options-row > li > i {
+  margin-right: 5px; 
+  /* color: blue; */
+}
+
+
+
+
+/* RESULTS:: START */
+
+.result-wrapper {
   background-color: black; 
   color: white;
 }

@@ -1,25 +1,43 @@
 <div ng-controller="searchCtrl as svm" class="search-page-wrapper">
-  <h1 class="search-heading"> {{ svm.title }}</h1>
-  <form novalidate>
-    <label for="search">Search places</label>
-    <input type="text" name="search" ng-model="svm.search.query" >
-    <input type="submit" value="Search" ng-click="svm.submitQuery()" >
-  </form>
-  <input type="button" value="Sort By Rating" ng-click="svm.sortByRating()"> 
-  <input type="button" value="Prev" ng-click="svm.previousPage()"> 
-  <input type="button" value="Next" ng-click="svm.nextPage()"> 
-
-  <pre>search = {{ search | json }}</pre>
-
-  <!-- <img data-ng-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYAQAAAACWHaVxAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAJYAAACWAATdiWIAAAAAmJLR0QAAd2KE6QAAASLSURBVHja7d1BcpwwEAXQT7FgyRE4yhzNPhpH0RHYhQU1ziJJ2ZmRmO7mI4P5HODVWPrqSWzUjQ/eA1myZMmSJUuWLFmyZMmSJUuWLFmyZMmSJUuWLFmyZMmSRbZ+0ax3AOBY+PO8Eazxr9Vst2b8e/rNFj6ft43W9MXqNlqA/YPB/rFefjAYovX5bLGW/ykMG6z0YLUbLDw+b2FrebKGsJWerDZsvT9ZiFrPP+L6DwlzUF/HFYZq8/VpYtYduecWsuas1YeslLXakPWetRCx8su1tmBwpWs9YXClaz1hcKVrPWGw15uXdQfe5VpZMPiSuppW+JK6mlZ4l35l8eFe+vLiw7305cWHe+nLiw/30pcXH+6lLy8+fAVntezAV3BWyw7821jcSPgKzmrZgX8bixsJ/zYWNxKBbSxtJALbWNpIBLaxtJFwn8byiUQgEqVQIBCJUigQ2cbCRsJbVFdKKyKRKIQCkUgUQoFIJAqhQCQShVAgEolCKOCvEsVKgVC88gFDKF75gCEUr3zAEIpXPmAIxSsfMITilQ8YQvHKBwyheOUDhli8sgFDLF7ZgCEWr2zAEItXNmCIxSsbsJ2tyWR1JiuZrNZkjSarMVmmqObCimBUc2Hd17obrZvBWozWYLBmo9UbrMlodZWtZLRagzUaraayZTxCmUOEaOwzwUc09png72otZmt4ac1mq69qTWarq2ols9W+tEaz1VS1zMfx+UAifByfD+Se1t1h3Spai8MaKlqzw+orWpPD6l5YyWG1Fa3RYTUVLUeZeCoUe1oe6rFQ7GjdXdbtlNbisoZq1uyy+mrW5LK6U1rJZbXVrNFlNae0XGX1sbDuaPmoh8J6DuvutG4ntBanNZzQmp1Wf0Jrclrdxa3ktNqLW6PTai5uOb9qH75sZW2xvNT//wiQtcG6u62brANai9saZMn6Fmt2W70sWbJkyapkTW6r09rLkiVL1gkt/R9G1lks/W7oZ1j6Xe03WvobxfdZo5O6+t/mktO6+t9+9W6Bz7rC+yZXeG/oCu9/XeE9vsO+Q+n7Ujvn+6tpw9fQntYV3ts+6jvzR71jcIX7HUe9W3PYu0hjvBTuaqV4KdzVYt7nO+qdxaPe8Tzqndij3iGm3pMew0d7XyuFj/Z57vQftQcCs8/DUXtZMPt1UPuIjNEjtLOVosfxRD1vmH19mP2GmH2QjtrridrPagzGfu/+X8y+ZEftvcbsL8fse8fsx0ftEzjGorp7X0Vmv0dmH0pmf0xm305mP1Fqn9MxFK/9+8Iy+9Uy++gy+/sy+w4z+yFT+zSnSCQq9LVm9ttm9gFn9idn9k2n9nNPgUjU6H/P7MvPnBfAnGNAna+Q/NtYZR4Fc04Gc34Hda5Ici99nTkszPkwzLk11Hk6zDk/zPlDzLlIzHlN1DlSzPlWzLlbzHlg1DllzPlpzLlu1HlzzDl4zPl81LmBzHmGzDmL1PmPzLmU1HmZzDme1PmizLmn1Hms1DmxH8z5tdZHlixZsmTJkiVLlixZsmTJkiVLlixZsmTJkiVLlixZsn669Rtmu/kk5wlhaAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMS0xMC0xNFQxMToyNjo0NiswNjowMIy7EuQAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTEtMTAtMTRUMTE6MjY6NDYrMDY6MDD95qpYAAAAAElFTkSuQmCC" /> -->
-  <div 
-    ng-repeat="result in svm.results | limitTo:svm.limit" 
-    ng-click="svm.getDetails(result.place_id, result.photos[0].photo_reference)" 
+  <div class="search-section-wrapper">
+    <section class="search-section-content">
+      <h1 class="search-heading">Pathfinder</h1>
+      <form novalidate>
+        <!-- <label for="search">Search places</label> -->
+        <div class="input-wrapper">
+          <span>Find</span>
+          <span>Near</span>
+          <input type="text" name="searchQuery" ng-model="svm.search.query" class="query-input" >
+          <input type="text" name="searchLocation" ng-model="svm.search.location" class="location-input" >
+          <button type="submit" value="Search" ng-click="svm.submitQuery()" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+          <ul class="options-row">
+              <li><i class="fa fa-cutlery" aria-hidden="true"></i>Restaurants</li>
+              <li><i class="fa fa-glass" aria-hidden="true"></i>Nightlife</li>
+              <li><i class="fa fa-shopping-basket" aria-hidden="true"></i>Shopping</li>
+              <li><i class="fa fa-medkit" aria-hidden="true"></i>Health</li>
+            </ul>
+      </div>
    
-    class="search-result-wrapper">
-    <h2>{{ result.name }}</h2>
-    <p>{{ result.formatted_address }}</p>
-    <p>{{ result.rating }}</p>
-    <p><span ng-repeat="type in result.types">{{ type }} </span></p>
+      </form>
+      <!-- <input type="button" value="Sort By Rating" ng-click="svm.sortByRating()"> 
+      <input type="button" value="Prev" ng-click="svm.previousPage()"> 
+      <input type="button" value="Next" ng-click="svm.nextPage()">  -->
+    </section>
+
+  <div class="results-section-wrapper">
+    <section class="results-section-content">
+      <div 
+        ng-repeat="result in svm.results | limitTo:svm.limit" 
+        ng-click="svm.getDetails(result.place_id, result.photos[0].photo_reference)" 
+      
+        class="result-wrapper">
+        <h2>{{ result.name }}</h2>
+        <p>{{ result.formatted_address }}</p>
+        <p>{{ result.rating }}</p>
+        <p><span ng-repeat="type in result.types">{{ type }} </span></p>
+      </div>
+    </section>  
+  </div>
+  
   </div>
 </div>

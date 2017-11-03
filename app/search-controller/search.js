@@ -4,7 +4,7 @@ const SearchCtrl = function(googleApiService) {
   var vm = this;
 
   vm.title = "Search Places";
-  vm.search = {query: ''};
+  vm.search = {query: '', location: ''};
   vm.error;
   vm.results;
   vm.result;
