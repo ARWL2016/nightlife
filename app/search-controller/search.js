@@ -1,6 +1,6 @@
 'use strict';
 
-const SearchCtrl = function(googleApiService, helperService) {
+const SearchCtrl = function($location, googleApiService, helperService) {
   var vm = this;
 
   vm.title = "Search Places";
@@ -44,13 +44,14 @@ const SearchCtrl = function(googleApiService, helperService) {
 
   function getDetails(placeid, photoref) {
     console.log({ placeid, photoref });
-    googleApiService
-      .getDetails(placeid, photoref)
-      .then(result => {
-        vm.result = result;
-        console.log({result});
-      })
-      .catch(err => console.log({ err }));
+    $location.path(`/detail/${placeid}/${photoref}`);
+    // googleApiService
+    //   .getDetails(placeid, photoref)
+    //   .then(result => {
+    //     vm.result = result;
+    //     console.log({result});
+    //   })
+    //   .catch(err => console.log({ err }));
       
   }
 
@@ -66,4 +67,4 @@ const SearchCtrl = function(googleApiService, helperService) {
   // }
 }
 
-pathFinderApp.controller('searchCtrl', [ 'googleApiService', 'helperService', SearchCtrl]);
+pathFinderApp.controller('searchCtrl', ['$location', 'googleApiService', 'helperService', SearchCtrl]);

@@ -15,5 +15,10 @@ var pathFinderApp = angular.module('pathFinderApp', ['ngRoute']);
         controller: 'searchCtrl', 
         
       })
+      .when('/detail/:placeid/:photoref', {
+        templateUrl: 'detail-controller/detail.html',   
+        controller: 'detailCtrl', 
+        
+      })
       .otherwise({redirectTo: '/search'});
   }]);

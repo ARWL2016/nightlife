@@ -147,6 +147,11 @@ input:focus {
   border-radius: 5px;
 }
 
+.result-card:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
 .card-heading-wrapper {
   background-color: #2e2e2e;
   margin: 0; 
