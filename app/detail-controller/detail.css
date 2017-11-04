@@ -1,0 +1,28 @@
+.detail-page-wrapper{}
+
+.detail-page-content {
+  margin: 0 auto;
+  max-width: 800px;
+  padding-top: 60px;
+  border: 1px solid blue;
+}
+
+i {
+  margin-right: 5px;
+}
+
+/* .detail-image {}
+
+.detail-name{}
+
+.detail-vicinity{}
+
+.detail-phone-number{}
+
+.detail-website-link{}
+
+.detail-map-link{}
+
+.detail-rating {
+
+} */

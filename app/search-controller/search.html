@@ -1,14 +1,14 @@
 <div ng-controller="searchCtrl as svm" class="search-page-wrapper">
+
   <div class="search-section-wrapper">
     <section class="search-section-content">
       <h1 class="search-heading">Pathfinder</h1>
       <form novalidate>
-        <!-- <label for="search">Search places</label> -->
         <div class="input-wrapper">
           <span>Find</span>
           <span>Near</span>
-          <input type="text" name="searchQuery" ng-model="svm.search.query" class="query-input" >
-          <input type="text" name="searchLocation" ng-model="svm.search.location" class="location-input" >
+          <input type="text" name="searchQuery" ng-model="svm.search.query" class="search-input query-input" >
+          <input type="text" name="searchLocation" ng-model="svm.search.location" class="search-input location-input" >
           <button type="submit" value="Search" ng-click="svm.submitQuery()" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
           <ul class="options-row">
               <li><i class="fa fa-cutlery" aria-hidden="true"></i>Restaurants</li>
@@ -16,21 +16,23 @@
               <li><i class="fa fa-shopping-basket" aria-hidden="true"></i>Shopping</li>
               <li><i class="fa fa-medkit" aria-hidden="true"></i>Health</li>
             </ul>
-      </div>
-   
+        </div>
       </form>
-      <!-- <input type="button" value="Sort By Rating" ng-click="svm.sortByRating()"> 
-      <input type="button" value="Prev" ng-click="svm.previousPage()"> 
-      <input type="button" value="Next" ng-click="svm.nextPage()">  -->
     </section>
-  </div>
+  </div> 
+
+  <!-- end of search section -->
 
   <div class="results-section-wrapper">
+    <div class="results-filter-panel">
+      <button type="button" ng-click="svm.sortByRating()" class="sortby-input">Sort By Rating</button>
+    </div>  
     <section class="results-section-content">
+      
       <div 
         class="result-card"
         ng-repeat="result in svm.results | limitTo:svm.limit" 
-        ng-click="svm.getDetails(result.place_id, result.photos[0].photo_reference)" >
+        ng-click="svm.openDetailPage(result.place_id, result.photos[0].photo_reference)" >
         <div class="card-heading-wrapper">
           <h2>{{ result.name }}</h2>
         </div>
@@ -42,6 +44,8 @@
       </div>
     </section>  
   </div>
+
+  <!-- end of results section -->
   
  
 </div>

@@ -2,22 +2,43 @@
  * The detailCtrl controls the template which displays 
  * information about individual search results.
  * This page is linked to dynamically from the search 
- * results.
+ * results and makes an API call  to getDetails on initialization.
  */
 
 'use strict';
 
-const DetailCtrl = function($routeParams) {
+const DetailCtrl = function($routeParams, googleApiService, helperService) {
   var vm = this;
-  vm.title = 'dyn etail titled'
-  vm.params1 = $routeParams.placeid;
-  vm.params2 = $routeParams.photoref;
+
+  vm.placeid = $routeParams.placeid;
+  vm.photoref = $routeParams.photoref;
+  vm.result;
+  vm.starRating = {int: [], dec: []};
 
   function init() {
-    console.log(vm.params1, vm.params2);
+    console.log(vm.placeid, vm.photoref);
+    getDetails(vm.placeid, vm.photoref);
   }
+
+  function getDetails(placeid, photoref) {
+    googleApiService
+      .getDetails(placeid, photoref)
+      .then(result => {
+        // vm.result = result;
+        vm.result = helperService.formatTags([result])[0];
+        vm.starRating = helperService.createStarRating(result.rating);
+        console.log({result});
+      })
+      .catch(err => console.log({ err }));  
+  }
+
 
   init();
 }
 
-pathFinderApp.controller('detailCtrl', ['$routeParams', DetailCtrl]);
+pathFinderApp.controller('detailCtrl', [
+  '$routeParams', 
+  'googleApiService', 
+  'helperService',
+  DetailCtrl
+]);

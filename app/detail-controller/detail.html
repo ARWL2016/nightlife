@@ -1,7 +1,24 @@
-<div ng-controller="detailCtrl as detail">
-  <p>detail view</p>
-  <p>{{detail.title}}</p>
-  <p>{{detail.params1}}</p>
-  <p>{{detail.params2}}</p>
+<div ng-controller="detailCtrl as detail" class="detail-page-wrapper">
+
+  <div class="detail-page-content">
+    <img class="detail-image" src={{detail.result.photohref}} > 
+    <h1 class="detail-name">{{detail.result.name}}</h1>
+    <p>
+      <i ng-repeat="x in detail.starRating.int" class="fa fa-star" aria-hidden="true"></i>
+      <i ng-repeat="y in detail.starRating.dec" class="fa fa-star-half-o" aria-hidden="true"></i>
+    </p>
+    <p class="detail-tags">{{detail.result.types}}</p>
+    <p class="detail-vicinity"><i class="fa fa-location-arrow" aria-hidden="true"></i>{{detail.result.vicinity}}</p>
+    <p class="detail-phone-number"><i class="fa fa-phone" aria-hidden="true"></i>{{detail.result.formatted_phone_number}}</p>
+    <p class="detail-website-link"><i class="fa fa-external-link" aria-hidden="true"></i>
+      <a href="{{detail.result.website}}" >{{detail.result.website}}</a>
+    </p>
+    <p class="detail-map-link"><i class="fa fa-map-marker" aria-hidden="true"></i> 
+      <a href="{{detail.result.url}}">View on Map</a></p>
+    <p class="detail-rating">Average customer rating: {{detail.result.rating}}</p>
+
+  </div>
+
 
 </div>
+

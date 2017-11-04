@@ -1,3 +1,11 @@
+/**
+ * This service returns a set of methods which query the restful API
+ * on the back end (located at server/api). 
+ * Currently the getDetails method will call both the getDetails 
+ * AND the getPhoto method on the back end in parallel.
+ * Therefore the getPhoto method here is not used.
+ */
+
 'use strict';
 
 pathFinderApp
@@ -12,7 +20,6 @@ pathFinderApp
             return Promise.reject();
           }
         });
-        
     }
 
     function getDetails(placeid, photoref) {
@@ -26,6 +33,7 @@ pathFinderApp
         });
     }
 
+    // not currently in use
     function getPhoto(photoref) {
       return $http.get(`/api/data/photo?photoref=${photoref}`)
         .then(resp => {

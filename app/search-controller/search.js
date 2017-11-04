@@ -1,3 +1,8 @@
+/**
+ * This function is the controller for the search page, which 
+ * renders a search input and the results of the initial query
+ */
+
 'use strict';
 
 const SearchCtrl = function($location, googleApiService, helperService) {
@@ -8,21 +13,10 @@ const SearchCtrl = function($location, googleApiService, helperService) {
   vm.error;
   vm.results;
   vm.result;
-  vm.imagedata;
-  vm.limit = 20;
-  vm.previousPage = previousPage;
-  vm.nextPage = nextPage;
+  vm.limit = 20; // number of result to display (max 20)
   vm.sortByRating = sortByRating;
   vm.submitQuery = submitQuery; 
-  vm.getDetails = getDetails;
-  // vm.getPhoto = getPhoto;
-
-  function previousPage() {
-    vm.limit = 10;
-  }
-  function nextPage() {
-    vm.limit = -10;
-  }
+  vm.openDetailPage = openDetailPage;
 
   function sortByRating()  {
     vm.limit = 10;
@@ -31,6 +25,7 @@ const SearchCtrl = function($location, googleApiService, helperService) {
     })
   };
 
+  // TODO: add location and query params
   function submitQuery() {
     googleApiService
       .getInfo()
@@ -42,29 +37,11 @@ const SearchCtrl = function($location, googleApiService, helperService) {
       .catch(err => vm.error = 'No results');
   };
 
-  function getDetails(placeid, photoref) {
+  function openDetailPage(placeid, photoref) {
     console.log({ placeid, photoref });
-    $location.path(`/detail/${placeid}/${photoref}`);
-    // googleApiService
-    //   .getDetails(placeid, photoref)
-    //   .then(result => {
-    //     vm.result = result;
-    //     console.log({result});
-    //   })
-    //   .catch(err => console.log({ err }));
-      
+    $location.path(`/detail/${placeid}/${photoref}`); 
   }
 
-  // function getPhoto(photoref) {
-  //   console.log({photoref });
-  //   googleApiService
-  //     .getPhoto(photoref)
-  //     .then(result => {
-  //       vm.imagedata = result.data;
-  //       console.log({ result });
-  //     })
-  //     .catch(err => console.log({ err }));
-  // }
 }
 
 pathFinderApp.controller('searchCtrl', ['$location', 'googleApiService', 'helperService', SearchCtrl]);
