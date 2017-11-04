@@ -25,7 +25,7 @@ const DetailCtrl = function($routeParams, googleApiService, helperService) {
       .getDetails(placeid, photoref)
       .then(result => {
         // vm.result = result;
-        vm.result = helperService.formatTags([result])[0];
+        vm.result = helperService.formatTags(result)[0];
         vm.starRating = helperService.createStarRating(result.rating);
         console.log({result});
       })

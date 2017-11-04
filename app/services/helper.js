@@ -1,7 +1,7 @@
 /**
  * @function formatTags
- * @param resultsArray 
- * @return string 
+ * @param resultsArray or results object
+ * @return object array with types changed
  * This function takes in an array of tags and returns a 
  * string with items divided by commas and the _ removed
  * 
@@ -17,7 +17,11 @@
 
 pathFinderApp.factory('helperService', function() {
 
-  function formatTags(resultsArray) {
+  function formatTags(results) {
+   
+    // if results is an object, put into an array
+    const resultsArray = Array.isArray(results) ? results : [results];
+
     resultsArray.forEach(result => {
       let typesString = ''; 
 
