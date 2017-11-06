@@ -7,15 +7,27 @@
         <div class="input-wrapper">
           <span>Find</span>
           <span>Near</span>
-          <input type="text" name="searchQuery" ng-model="svm.search.query" class="search-input query-input" >
-          <input type="text" name="searchLocation" ng-model="svm.search.location" class="search-input location-input" >
+          <input 
+            type="text" 
+            name="searchQuery" 
+            ng-model="svm.search.type" 
+            class="search-input type-input" 
+            ng-keyup="svm.autocompleteType()"
+            autocomplete="off" >
+          <div class="type-complete-wrapper" ng-if="svm.typeMatches.length > 0">
+            <p ng-repeat="match in svm.typeMatches" ng-click="svm.selectAutocomplete($event)" class="type-complete-item">{{match}}</p>
+          </div>
+          <input type="text" name="searchLocation" ng-model="svm.search.query" class="search-input query-input" >
           <button type="submit" value="Search" ng-click="svm.submitQuery()" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
           <ul class="options-row">
-              <li><i class="fa fa-cutlery" aria-hidden="true"></i>Restaurants</li>
-              <li><i class="fa fa-glass" aria-hidden="true"></i>Nightlife</li>
-              <li><i class="fa fa-shopping-basket" aria-hidden="true"></i>Shopping</li>
-              <li><i class="fa fa-medkit" aria-hidden="true"></i>Health</li>
-            </ul>
+            <li><i class="fa fa-cutlery" aria-hidden="true"></i>Restaurants</li>
+            <li><i class="fa fa-glass" aria-hidden="true"></i>Nightlife</li>
+            <li><i class="fa fa-shopping-basket" aria-hidden="true"></i>Shopping</li>
+            <li><i class="fa fa-medkit" aria-hidden="true"></i>Health</li>
+          </ul>
+          <div class="search-error-wrapper">
+            <p class="search-error">{{svm.error}}</p>
+        </div>
         </div>
       </form>
     </section>

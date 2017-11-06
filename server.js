@@ -13,13 +13,13 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'app')));
 
 // development text-search data
-app.get('/api/data/info?', (req, res) => {
-  const data = fs.readFileSync(path.join(__dirname, '/ref/text-search.json'), 'utf8'); 
-  res.send(data);
-});
+// app.get('/api/data/info?', (req, res) => {
+//   const data = fs.readFileSync(path.join(__dirname, '/ref/text-search.json'), 'utf8'); 
+//   res.send(data);
+// });
 
 // production text search route
-// app.get('/api/data/info?', api.getInfo);
+app.get('/api/data/info?', api.textSearch);
 
 
 // details - DEV

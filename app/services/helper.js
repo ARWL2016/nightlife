@@ -64,16 +64,16 @@ pathFinderApp.factory('helperService', function() {
   }
 
   function createStarRating(num) {
-    const int = Math.floor(num);
-    const dec = (num - int).toFixed(1);
-    const result = {int: [], dec: []};
+    const integer = Math.floor(num);
+    const decimal = (num - integer).toFixed(1);
+    const result = {integer: [], decimal: []};
     
     for (let i = 0; i < int; i++) {
-      result.int.push(i);
+      result.integer.push(i);
     }
     
-    if (dec > 0.2) {
-      result.dec.push(1);
+    if (decimal > 0.2) {
+      result.decimal.push(1);
     }
 
     return result;

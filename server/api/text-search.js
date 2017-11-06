@@ -10,8 +10,11 @@ const params = {
   key: process.env.API_KEY
 }
 
-function getInfo(req, res) {
-  params.query = req.query.q;
+function textSearch(req, res) {
+  console.log(req.query);
+  params.query = req.query.q; // required parameter
+  params.type = req.query.type || ''; // optional parameter
+  console.log({params});
   
   const url = buildUrl(baseUrl, path, params);
   console.log(url);
@@ -26,5 +29,5 @@ function getInfo(req, res) {
 
 }
 
-module.exports = { getInfo };
+module.exports = { textSearch };
 

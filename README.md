@@ -40,6 +40,9 @@ https://maps.googleapis.com/maps/api/place/details/json?
 placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&
 key=YOUR_API_KEY
 
+Geocode 
+https://maps.googleapis.com/maps/api/geocode/json?address=london%22
+
 
 Place Photos 
 
@@ -50,3 +53,10 @@ ng-click="svm.getDetails(result.place_id, result.photos[0].photo_reference)"
  ng-click="svm.getPhoto(result.photos[0].photo_reference)"
 
 http://jsfiddle.net/2ZzZB/56/
+
+To do :  
+- add auto completion (and auto detection?) to place search - and get location data
+- use native angular validation styles
+- add authentication 
+- add going method
+- make design responsive

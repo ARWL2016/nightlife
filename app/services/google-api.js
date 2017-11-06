@@ -4,6 +4,10 @@
  * Currently the getDetails method will call both the getDetails 
  * AND the getPhoto method on the back end in parallel.
  * Therefore the getPhoto method here is not used.
+ * 
+ * @function textSearch 
+ * @params query (required) - an address or location 
+ * @params type (optional) - type of place, eg restaurant, hospital, bank
  */
 
 'use strict';
@@ -11,8 +15,8 @@
 pathFinderApp
   .factory('googleApiService', function ($http) {
 
-    function getInfo(query) {
-      return $http.get(`/api/data/info?q=${query}`)
+    function textSearch({query, type}) {
+      return $http.get(`/api/data/info?q=${query}&type=${type}`)
         .then(res => {
           if (res.status === 200) {
             return res.data.results;
@@ -46,6 +50,6 @@ pathFinderApp
         }).catch(err => console.log({ err }));
     }
 
-    return { getInfo, getDetails, getPhoto };
+    return { textSearch, getDetails, getPhoto };
 
   });

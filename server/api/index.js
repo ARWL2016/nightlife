@@ -1,5 +1,5 @@
-const { getInfo } = require('./get-info');
+const { textSearch } = require('./text-search');
 const { getPhoto } = require('./get-photo');
 const { getDetails } = require('./get-details');
 
-module.exports = { getInfo, getPhoto, getDetails };
+module.exports = { textSearch, getPhoto, getDetails };
