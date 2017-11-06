@@ -10,7 +10,14 @@
  * @return an object with one array for the integer value and one for the decimal
  * This method creates two arrays to be consumed by ng-repeat to generate
  * a star rating icon from a number value. 
- * TODO Must be a better way to do this
+ * TODO: Find a better way to do this
+ * 
+ * @function formatHours
+ * @param result object 
+ * @param result object 
+ * This method changes the data structure of the opening hours array from an array of strings 
+ * to an array of objects, with separate properties on the object for days and hours. This allows 
+ * for easier formatting in the template.
  */
 
 'use strict';
@@ -27,7 +34,7 @@ pathFinderApp.factory('helperService', function() {
 
       result.types.forEach((type, index, array) => {
         type = type.replace(/_/g, ' ');
-        type = titleCase(type);
+        type = sentenceCase(type);
         if (index < array.length -1) {
           typesString += type + ', ';
         } else {
@@ -41,7 +48,7 @@ pathFinderApp.factory('helperService', function() {
     return resultsArray;
   }  
 
-  function titleCase(str) {
+  function sentenceCase(str) {
     return str.substring(0,1).toUpperCase() + str.substring(1);
   }
 
@@ -59,7 +66,6 @@ pathFinderApp.factory('helperService', function() {
   function createStarRating(num) {
     const int = Math.floor(num);
     const dec = (num - int).toFixed(1);
-  
     const result = {int: [], dec: []};
     
     for (let i = 0; i < int; i++) {
@@ -73,6 +79,18 @@ pathFinderApp.factory('helperService', function() {
     return result;
   }
 
-  return { formatTags, createStarRating, formatHours };
+  function sortAZ(results) {
+    return results.sort((a, b) => {
+      const nameA = a.name.toLowerCase(); 
+      const nameB = b.name.toLowerCase();
+      if (nameA < nameB) return -1; 
+      else if (nameA > nameB) return 1; 
+      else return 0;
+    }); 
+  }
+
+  
+
+  return { formatTags, createStarRating, formatHours, sortAZ };
 
 });

@@ -15,15 +15,19 @@ const SearchCtrl = function($location, googleApiService, helperService) {
   vm.result;
   vm.limit = 20; // number of result to display (max 20)
   vm.sortByRating = sortByRating;
+  vm.sortAZ = sortAZ;
   vm.submitQuery = submitQuery; 
   vm.openDetailPage = openDetailPage;
 
   function sortByRating()  {
-    vm.limit = 10;
     vm.results = vm.results.sort((a, b) => {
       return b.rating - a.rating;
     })
   };
+
+  function sortAZ() {
+    vm.results = helperService.sortAZ(vm.results);
+  }
 
   // TODO: add location and query params
   function submitQuery() {
