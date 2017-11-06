@@ -2,21 +2,35 @@
 
   <div class="detail-page-content">
     <img class="detail-image" src={{detail.result.photohref}} > 
-    <h1 class="detail-name">{{detail.result.name}}</h1>
-    <p>
-      <i ng-repeat="x in detail.starRating.int" class="fa fa-star" aria-hidden="true"></i>
-      <i ng-repeat="y in detail.starRating.dec" class="fa fa-star-half-o" aria-hidden="true"></i>
-    </p>
-    <p class="detail-tags">{{detail.result.types}}</p>
-    <p class="detail-vicinity"><i class="fa fa-location-arrow" aria-hidden="true"></i>{{detail.result.vicinity}}</p>
-    <p class="detail-phone-number"><i class="fa fa-phone" aria-hidden="true"></i>{{detail.result.formatted_phone_number}}</p>
-    <p class="detail-website-link"><i class="fa fa-external-link" aria-hidden="true"></i>
-      <a href="{{detail.result.website}}" >{{detail.result.website}}</a>
-    </p>
-    <p class="detail-map-link"><i class="fa fa-map-marker" aria-hidden="true"></i> 
-      <a href="{{detail.result.url}}">View on Map</a></p>
-    <p class="detail-rating">Average customer rating: {{detail.result.rating}}</p>
+    <div class="detail-basic-info">
+      <h1 class="detail-header">{{detail.result.name}}</h1>
+      <p class="star-wrapper">
+        
+        <i ng-repeat="x in detail.starRating.int" class="fa fa-star detail-star" aria-hidden="true"></i>
+        <i ng-repeat="y in detail.starRating.dec" class="fa fa-star-half-o detail-star" aria-hidden="true"></i>
+        <span class="detail-rating"> {{detail.result.rating}} based on {{detail.result.reviews.length}} reviews.</span>
+      </p>
+      <p class="detail-tags">{{detail.result.types}}</p>
+      <p class="detail-vicinity"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;{{detail.result.vicinity}}
+        <a class="detail-map-link" href="{{detail.result.url}}"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;View on Map</a>
+      </p>
+      <p class="detail-phone-number"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{detail.result.formatted_phone_number}}</p>
+      <p class="detail-website-link"><i class="fa fa-external-link" aria-hidden="true"></i>
+        <a href="{{detail.result.website}}" >&nbsp;{{detail.result.website}}</a>
+      </p>
+  </div>
 
+  <div class="detail-opening-hours">
+    <h3>Hours</h3>
+    <!-- <p ng-repeat="text in detail.result.opening_hours.formatted_weekday_text"><b>{{text.day}}:&nbsp;</b>{{text.hours}}</p> -->
+    <table class="table-opening-hours">
+      <tr ng-repeat="text in detail.result.opening_hours.formatted_weekday_text">
+        <td class="table-day-cell">{{text.day}}</td>
+        <td class="table-hours-cell">{{text.hours}}</td>
+      </tr>
+    </table>
+  </div>
+  
   </div>
 
 

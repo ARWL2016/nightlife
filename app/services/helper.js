@@ -27,6 +27,7 @@ pathFinderApp.factory('helperService', function() {
 
       result.types.forEach((type, index, array) => {
         type = type.replace(/_/g, ' ');
+        type = titleCase(type);
         if (index < array.length -1) {
           typesString += type + ', ';
         } else {
@@ -38,6 +39,21 @@ pathFinderApp.factory('helperService', function() {
     });
 
     return resultsArray;
+  }  
+
+  function titleCase(str) {
+    return str.substring(0,1).toUpperCase() + str.substring(1);
+  }
+
+  function formatHours(result) {
+    result.opening_hours.formatted_weekday_text = []; 
+    result.opening_hours.weekday_text.map(text => {
+      const colonPos = text.indexOf(':');
+      const day = text.substring(0, 3);
+      const hours = text.substring(colonPos + 2);
+      result.opening_hours.formatted_weekday_text.push({day, hours});
+    }); 
+    return result;
   }
 
   function createStarRating(num) {
@@ -57,6 +73,6 @@ pathFinderApp.factory('helperService', function() {
     return result;
   }
 
-  return { formatTags, createStarRating };
+  return { formatTags, createStarRating, formatHours };
 
 });

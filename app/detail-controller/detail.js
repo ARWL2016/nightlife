@@ -14,7 +14,7 @@ const DetailCtrl = function($routeParams, googleApiService, helperService) {
   vm.photoref = $routeParams.photoref;
   vm.result;
   vm.starRating = {int: [], dec: []};
-
+  
   function init() {
     console.log(vm.placeid, vm.photoref);
     getDetails(vm.placeid, vm.photoref);
@@ -25,7 +25,7 @@ const DetailCtrl = function($routeParams, googleApiService, helperService) {
       .getDetails(placeid, photoref)
       .then(result => {
         // vm.result = result;
-        vm.result = helperService.formatTags(result)[0];
+        vm.result = helperService.formatHours(helperService.formatTags(result)[0]);
         vm.starRating = helperService.createStarRating(result.rating);
         console.log({result});
       })

@@ -1,28 +1,112 @@
+a {
+  color: #0073bb; 
+  text-decoration: none;
+}
+
+p {
+  /* border: 1px solid red; */
+  margin: 6px 0 6px 0;
+}
+
+i:not(.detail-star) {
+  color: #888;
+}
+
 .detail-page-wrapper{}
 
 .detail-page-content {
   margin: 0 auto;
   max-width: 800px;
   padding-top: 60px;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
+  max-width: 50%;
 }
 
-i {
+.detail-basic-info {
+  padding: 10px;
+  border: 1px solid #aaa;
+}
+
+
+.detail-image {
+  width: 100%;
+}
+
+.detail-header {
+  /* border: 1px dotted yellow; */
+  margin: 0px;
+}
+
+.star-wrapper {
+  margin-top: 3px;
+}
+
+.detail-star {
+  background-color: rgba(252, 0, 0, 0.76); 
+  padding: 5px 7px 5px 7px; 
+  border-radius: 2px;
   margin-right: 5px;
+  color: white;
 }
 
-/* .detail-image {}
-
-.detail-name{}
-
-.detail-vicinity{}
-
-.detail-phone-number{}
-
-.detail-website-link{}
-
-.detail-map-link{}
+.detail-star:last-child{
+  margin-left: -5px;
+}
 
 .detail-rating {
+  font-size: 0.9em; 
+}
 
-} */
+.detail-tags {
+  font-size: 0.9em;
+  color: #0073bb;
+}
+
+.detail-vicinity{
+  font-weight: bold;
+}
+
+.detail-map-link {
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+.detail-phone-number{
+  font-weight: bold;
+}
+
+.detail-website-link{
+  font-size: 0.9em;
+}
+
+/* OPENING HOURS + TABLE  */
+
+.detail-opening-hours {
+  padding: 10px;
+  border: 1px solid #aaa;
+}
+
+.detail-opening-hours h3 {
+  color: red;
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+tr:nth-child(odd) {
+  background-color: #ddd;
+
+}
+
+.table-opening-hours {
+  font-size: 0.85em;
+  line-height: 1.5em;
+}
+
+.table-day-cell {
+  font-weight: bold;
+  width: 60px;
+}
+
+.table-hours-cell {
+
+}
