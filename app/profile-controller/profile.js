@@ -34,7 +34,7 @@ const ProfileCtrl = function (googleApiService, helperService, localStorageServi
 
   function selectLocation(result) {
     vm.result = result;
-    vm.location = helperService.extractDataFromGeocodeResult(vm.result);
+    vm.location = helperService.filterGeocodeResult(vm.result);
     console.log(vm.result);
     console.log(vm.location);
     localStorageService.saveLocation(vm.location);

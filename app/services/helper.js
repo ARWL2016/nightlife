@@ -19,7 +19,7 @@
  * to an array of objects, with separate properties on the object for days and hours. This allows 
  * for easier formatting in the template.
  * 
- * @function extractDataFromGeocodeResult - we only need the location name (for UI display), and 
+ * @function filterGeocodeResult - we only need the location name (for UI display), and 
  * the lat / lon coordinates (for specifying the location in the text search query)
  */
 
@@ -92,7 +92,7 @@ pathFinderApp.factory('helperService', function() {
     }); 
   }
 
-  function extractDataFromGeocodeResult(result) {
+  function filterGeocodeResult(result) {
     const location = {}; 
     location.formatted_address = result.formatted_address;
     location.coords = result.geometry.location;
@@ -107,7 +107,7 @@ pathFinderApp.factory('helperService', function() {
     createStarRating, 
     formatHours, 
     sortAZ, 
-    extractDataFromGeocodeResult 
+    filterGeocodeResult 
   };
 
 });
