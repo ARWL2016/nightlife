@@ -20,6 +20,11 @@ var pathFinderApp = angular.module('pathFinderApp', ['ngRoute']);
         // controller: 'searchCtrl', 
         
       })
+      .when('/location', {
+        templateUrl: 'location-controller/location.html'   
+        // controller: 'locationCtrl', 
+        
+      })
       .when('/detail/:placeid/:photoref', {
         templateUrl: 'detail-controller/detail.html'  
         // controller: 'detailCtrl', 

@@ -19,7 +19,7 @@ const SearchCtrl = function($location, googleApiService, helperService, typeServ
   vm.result;
   vm.results;
   vm.search = {type: '', query: ''};
-  vm.showModal = true;
+  vm.showModal = false;
   vm.showTypeComplete = false; 
   vm.typeMatches = [];
   vm.validEstablishmentType = true;
