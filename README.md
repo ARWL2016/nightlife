@@ -56,6 +56,7 @@ http://jsfiddle.net/2ZzZB/56/
 
 To do :  
 - add auto completion (and auto detection?) to place search - and get location data
+- add British English options
 - use native angular validation styles
 - add authentication 
 - add going method

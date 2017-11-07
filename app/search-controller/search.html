@@ -1,24 +1,41 @@
 <div ng-controller="searchCtrl as svm" class="search-page-wrapper">
 
+
+
   <div class="search-section-wrapper">
     <section class="search-section-content">
       <h1 class="search-heading">Pathfinder</h1>
-      <form novalidate>
+      <form name = "searchForm" novalidate>
         <div class="input-wrapper">
           <span>Find</span>
           <span>Near</span>
           <input 
             type="text" 
-            name="searchQuery" 
+            name="type" 
             ng-model="svm.search.type" 
             class="search-input type-input" 
+            placeholder="type and select"
             ng-keyup="svm.autocompleteType()"
-            autocomplete="off" >
-          <div class="type-complete-wrapper" ng-if="svm.typeMatches.length > 0">
-            <p ng-repeat="match in svm.typeMatches" ng-click="svm.selectAutocomplete($event)" class="type-complete-item">{{match}}</p>
+            ng-blur="svm.closeAutocomplete()"
+            autocomplete="off" 
+            required>
+          <div class="type-complete-wrapper" ng-if="svm.typeMatches.length > 0 && svm.showTypeComplete">
+            <p ng-repeat="match in svm.typeMatches | limitTo:10" ng-click="svm.selectAutocomplete($event)" class="type-complete-item">{{match}}</p>
           </div>
-          <input type="text" name="searchLocation" ng-model="svm.search.query" class="search-input query-input" >
-          <button type="submit" value="Search" ng-click="svm.submitQuery()" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+          <input 
+            type="text" 
+            name="query" 
+            ng-model="svm.search.query" 
+            class="search-input query-input"
+            required >
+          <button 
+            type="submit" 
+            value="Search" 
+            ng-click="svm.submitQuery()" 
+            class="search-button"
+            ng-disabled="searchForm.$invalid">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
           <ul class="options-row">
             <li><i class="fa fa-cutlery" aria-hidden="true"></i>Restaurants</li>
             <li><i class="fa fa-glass" aria-hidden="true"></i>Nightlife</li>
@@ -26,7 +43,9 @@
             <li><i class="fa fa-medkit" aria-hidden="true"></i>Health</li>
           </ul>
           <div class="search-error-wrapper">
-            <p class="search-error">{{svm.error}}</p>
+            <p class="error type-error" ng-show="searchForm.type.$invalid && !searchForm.type.$pristine">enter the establishment type to search</p>
+            <p class="error type-error" ng-show="!svm.validEstablishmentType">invalid establishment type</p>
+            <p class="error location-error" ng-show="searchForm.query.$invalid && !searchForm.query.$pristine">enter the location to search</p>
         </div>
         </div>
       </form>
@@ -34,6 +53,8 @@
   </div> 
 
   <!-- end of search section -->
+
+
 
   <div class="results-section-wrapper">
     <div class="results-filter-panel">
@@ -59,6 +80,15 @@
   </div>
 
   <!-- end of results section -->
+
+      <!-- modal -->
+      <div class="modal" ng-show="svm.showModal">
+          <div class="modal-content" ng-show="svm.showModal">
+            <h2 class="modal-heading">Modal</h2>
+          </div>
+        </div>  
+        <!-- end of modal -->
   
- 
+
 </div>
+

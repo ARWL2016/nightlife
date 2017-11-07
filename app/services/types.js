@@ -3,6 +3,10 @@
  * @param type query from user search input 
  * @return the types array filtered by the search term 
  * note that only these types are accepted by the google API
+ * 
+ * @function matchOneType
+ * @param typeQuery a user search query for type of establishment
+ * @return true of query is one of allowed types array
  */
 
 'use strict';
@@ -17,5 +21,9 @@ pathFinderApp.factory('typeService', function() {
     });
   }
 
-  return {matchTypes}
+  function matchOneType(typeQuery) {
+    return types.indexOf(typeQuery.toLowerCase()) > -1; 
+  }
+
+  return {matchTypes, matchOneType};
 });

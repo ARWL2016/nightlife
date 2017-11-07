@@ -15,14 +15,17 @@
 const SearchCtrl = function($location, googleApiService, helperService, typeService) {
   var vm = this;
 
-  vm.error;
   vm.limit = 20; 
   vm.result;
   vm.results;
   vm.search = {type: '', query: ''};
+  vm.showModal = true;
+  vm.showTypeComplete = false; 
   vm.typeMatches = [];
+  vm.validEstablishmentType = true;
 
   vm.autocompleteType = autocompleteType;
+  vm.closeAutocomplete = closeAutocomplete;
   vm.openDetailPage = openDetailPage;
   vm.selectAutocomplete = selectAutocomplete;
   vm.sortAZ = sortAZ;
@@ -40,8 +43,10 @@ const SearchCtrl = function($location, googleApiService, helperService, typeServ
   }
 
   function autocompleteType() {
-    console.log(vm.search.type)
-    if (vm.search.type.length > 2) {
+    vm.validEstablishmentType = true;
+    
+    if (vm.search.type && vm.search.type.length > 0) {
+      vm.showTypeComplete = true;
       vm.typeMatches = typeService.matchTypes(vm.search.type);
       console.log(vm.typeMatches);
     }
@@ -52,13 +57,18 @@ const SearchCtrl = function($location, googleApiService, helperService, typeServ
     vm.typeMatches = [];
   }
 
+  function closeAutocomplete(){
+    vm.showTypeComplete = false;
+  }
+
   function submitQuery() {
-    if (!vm.search.query || !vm.search.type) {
-      console.log(vm.search);
-      vm.error = 'enter a search query and location';
+    
+    console.log(vm.search);
+    if (!typeService.matchOneType(vm.search.type)) {
+      vm.validEstablishmentType = false;
       return;
     }
-    console.log(vm.search);
+    
     googleApiService
       .textSearch(vm.search)
       .then(results => {
