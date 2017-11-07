@@ -1,0 +1,20 @@
+<div ng-controller="profileCtrl as pro" class="profile-page-wrapper">
+  <div class="profile-page-content">
+    <h1>{{ profile.title }}</h1>
+    <form name="locationSearch">
+      <label for="location">Location</label>
+      <input 
+        type="text"
+        name="location"
+        ng-model="pro.location"
+        autocomplete="off"
+        required>
+        <button ng-click="pro.searchLocation()">Search</button>
+    </form>
+    <div ng-show="pro.results" class="location-search-results-wrapper">
+      <p ng-repeat="result in pro.results" ng-click="pro.selectLocation(result)" class="location-search-result">
+        {{result.formatted_address}}
+      </p>
+    </div>
+  </div>  
+</div>

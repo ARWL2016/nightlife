@@ -30,11 +30,21 @@ pathFinderApp
       return $http.get(`/api/data/details?placeid=${placeid}&photoref=${photoref}`)
         .then(resp => {
           if (resp.status === 200) {
-            return resp.data.result;
+            return resp.data.results;
           } else {
             return Promise.reject('no data');
           }
         });
+    }
+
+    function getLocation(location) {
+      const url = `/api/data/location?address=${location}`
+      return $http.get(url)
+        .then(resp => {
+          // console.log({resp});
+          return resp.data.results;
+        })
+        .catch(e => console.log(e));
     }
 
     // not currently in use
@@ -50,6 +60,6 @@ pathFinderApp
         }).catch(err => console.log({ err }));
     }
 
-    return { textSearch, getDetails, getPhoto };
+    return { textSearch, getDetails, getPhoto, getLocation };
 
   });

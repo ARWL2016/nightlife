@@ -1,6 +1,7 @@
 /* app css stylesheet */
 @import './search-controller/search.css';
 @import './detail-controller/detail.css';
+@import './profile-controller/profile.css';
 
 * {
   font-family: 'Raleway', sans-serif;

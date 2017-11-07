@@ -1,0 +1,12 @@
+.profile-page-wrapper {
+
+}
+
+.profile-page-content {
+  max-width: 800px;
+}
+
+.location-search-result {
+  cursor: pointer; 
+  padding: 5px; 
+}
