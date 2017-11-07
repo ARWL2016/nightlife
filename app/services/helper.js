@@ -18,6 +18,9 @@
  * This method changes the data structure of the opening hours array from an array of strings 
  * to an array of objects, with separate properties on the object for days and hours. This allows 
  * for easier formatting in the template.
+ * 
+ * @function extractDataFromGeocodeResult - we only need the location name (for UI display), and 
+ * the lat / lon coordinates (for specifying the location in the text search query)
  */
 
 'use strict';
