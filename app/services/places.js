@@ -2,6 +2,7 @@
  * This service will provide static data objects for search locations, 
  * focusing on major cities. 
  * 
+ * NOT CURRENTLY IN USE
 */
 'use strict';
 

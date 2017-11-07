@@ -89,8 +89,22 @@ pathFinderApp.factory('helperService', function() {
     }); 
   }
 
+  function extractDataFromGeocodeResult(result) {
+    const location = {}; 
+    location.formatted_address = result.formatted_address;
+    location.coords = result.geometry.location;
+
+    return location;
+  }
+
   
 
-  return { formatTags, createStarRating, formatHours, sortAZ };
+  return { 
+    formatTags, 
+    createStarRating, 
+    formatHours, 
+    sortAZ, 
+    extractDataFromGeocodeResult 
+  };
 
 });
