@@ -24,13 +24,18 @@
     "dev": "nodemon server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
-    "test-single-run": "karma start karma.conf.js --single-run", 
+    "test-single-run": "karma start karma.conf.js --single-run",
     "kill": "taskkill /f /im node.exe"
   },
   "dependencies": {
+    "body-parser": "1.18.2",
+    "cookie-parser": "1.4.3",
     "dotenv": "4.0.0",
     "express": "4.16.2",
+    "express-session": "1.15.6",
     "lodash.pick": "4.4.0",
+    "passport": "0.4.0",
+    "passport-google-oauth": "1.0.0",
     "request": "2.83.0",
     "request-promise": "4.2.2",
     "winston": "2.4.0"

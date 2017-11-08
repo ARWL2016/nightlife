@@ -54,10 +54,14 @@ ng-click="svm.getDetails(result.place_id, result.photos[0].photo_reference)"
 
 http://jsfiddle.net/2ZzZB/56/
 
+Google OAuth
+https://github.com/jaredhanson/passport-google-oauth2 
+https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
+https://github.com/passport/express-4.x-facebook-example/blob/master/server.js 
+
 To do :  
 - add auto completion (and auto detection?) to place search - and get location data
 - add British English options
-- use native angular validation styles
 - add authentication 
 - add going method
 - make design responsive

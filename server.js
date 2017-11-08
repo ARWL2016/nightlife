@@ -1,16 +1,31 @@
 require('dotenv').config();
 
 const express =   require('express');
-const path =      require('path');
+const passport =  require('passport');
 const winston =   require('winston');
+const path =      require('path');
 const fs =        require('fs');
 
+const cookieParser = require('cookie-parser'); 
+const bodyParser = require('bodyParser');
+const session = require('express-session');
+
 const api = require('./server/api');
+const auth = require('./auth');
 
 const app = express();
 const port = process.env.PORT || 3000; 
 
 app.use(express.static(path.join(__dirname, 'app')));
+// read cookie from header and add to req.cookie
+app.use(cookieParser('keyboard cat'));
+// parse request body and add to req.body
+app.use(bodyParser).urlencoded({extended: true});
+app.use(session({
+  secret: 'keyboard cat', 
+  resave: true, 
+  saveUninitialized: true
+}))
 
 // development text-search data
 // app.get('/api/data/info?', (req, res) => {
