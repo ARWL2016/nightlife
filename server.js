@@ -7,25 +7,51 @@ const path =      require('path');
 const fs =        require('fs');
 
 const cookieParser = require('cookie-parser'); 
-const bodyParser = require('bodyParser');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 
 const api = require('./server/api');
-const auth = require('./auth');
+
+
 
 const app = express();
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+
 const port = process.env.PORT || 3000; 
 
 app.use(express.static(path.join(__dirname, 'app')));
-// read cookie from header and add to req.cookie
-app.use(cookieParser('keyboard cat'));
+
+app.use(cookieParser());
+
 // parse request body and add to req.body
-app.use(bodyParser).urlencoded({extended: true});
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
   secret: 'keyboard cat', 
   resave: true, 
   saveUninitialized: true
-}))
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/', (req, res) => {
+  res.sendFile('./app/index.html');
+})
+
+// auth routes 
+app.get('/auth/google', 
+  passport.authenticate('google', { scope: ['profile'] }));
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/'}), 
+  function(req, res) {
+    res.send('SUCCESS');
+  });
 
 // development text-search data
 // app.get('/api/data/info?', (req, res) => {

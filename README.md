@@ -58,6 +58,7 @@ Google OAuth
 https://github.com/jaredhanson/passport-google-oauth2 
 https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
 https://github.com/passport/express-4.x-facebook-example/blob/master/server.js 
+https://scotch.io/tutorials/easy-node-authentication-google 
 
 To do :  
 - add auto completion (and auto detection?) to place search - and get location data

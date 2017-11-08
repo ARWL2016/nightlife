@@ -8,7 +8,7 @@
 
 'use strict';
 
-const ProfileCtrl = function (googleApiService, helperService, localStorageService) {
+const ProfileCtrl = function (googleApiService, helperService, localStorageService, authService) {
   var vm = this;
   
   vm.error;
@@ -16,6 +16,7 @@ const ProfileCtrl = function (googleApiService, helperService, localStorageServi
   vm.query;
   vm.results; 
   vm.result;
+  vm.googleLogin = googleLogin;
   vm.searchLocation = searchLocation;
   vm.selectLocation = selectLocation;
 
@@ -40,11 +41,16 @@ const ProfileCtrl = function (googleApiService, helperService, localStorageServi
     localStorageService.saveLocation(vm.location);
   }
 
+  function googleLogin() {
+    authService.googleLogin();
+  }
+
 }
 
 pathFinderApp.controller('profileCtrl', [
   'googleApiService',
   'helperService',
   'localStorageService',
+  'authService',
   ProfileCtrl
 ]);
