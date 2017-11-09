@@ -12,7 +12,8 @@ const session = require('express-session');
 
 const api = require('./server/api');
 
-
+const {configPassport} = require('./server/config/auth');
+configPassport(passport);
 
 const app = express();
 
