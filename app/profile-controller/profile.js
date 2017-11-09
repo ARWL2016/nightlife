@@ -16,7 +16,6 @@ const ProfileCtrl = function (googleApiService, helperService, localStorageServi
   vm.query;
   vm.results; 
   vm.result;
-  vm.googleLogin = googleLogin;
   vm.searchLocation = searchLocation;
   vm.selectLocation = selectLocation;
 
@@ -41,9 +40,6 @@ const ProfileCtrl = function (googleApiService, helperService, localStorageServi
     localStorageService.saveLocation(vm.location);
   }
 
-  function googleLogin() {
-    authService.googleLogin();
-  }
 
 }
 
