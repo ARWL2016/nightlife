@@ -60,6 +60,10 @@ https://stackoverflow.com/questions/27637609/understanding-passport-serialize-de
 https://github.com/passport/express-4.x-facebook-example/blob/master/server.js 
 https://scotch.io/tutorials/easy-node-authentication-google 
 
+Tutorials
+https://scotch.io/tutorials/easy-node-authentication-setup-and-local
+https://stackoverflow.com/questions/19035373/how-do-i-redirect-in-expressjs-while-passing-some-context 
+
 To do :  
 - add auto completion (and auto detection?) to place search - and get location data
 - add British English options

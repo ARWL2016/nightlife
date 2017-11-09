@@ -1,4 +1,4 @@
-
+const url = require('url');
 
 module.exports = (app, passport) => {
 
@@ -6,21 +6,24 @@ module.exports = (app, passport) => {
     passport.authenticate('google', { scope: ['profile'] }));
 
   app.get('/auth/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/'}), 
-    function(req, res) {
-      res.send('SUCCESS');
-    });
+    passport.authenticate('google', { 
+      failureRedirect: '/', 
+      successRedirect: '/search'
+    }));
+    
 
   // facebook 
   app.get('/auth/facebook',
     passport.authenticate('facebook'));
 
   app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/' }),
+    passport.authenticate('facebook'),
     function(req, res) {
-      // Successful authentication, redirect home.
-      console.log('SUCCESS')
-      res.send('SUCCESS');
+      console.log(req.user);
+      const {displayName, token} = req.user;
+      res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
+
     });
 
-  }
+
+}

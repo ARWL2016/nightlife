@@ -11,14 +11,24 @@
 
  const GoogleStrategy = require('passport-google-oauth20').Strategy;
  const FacebookStrategy = require('passport-facebook').Strategy;
+ const {User} = require('../db');
 
  function configPassport(passport) {
     passport.serializeUser((user, done) => {
-      done(null, user);
+      console.log('serialize', user);
+      done(null, user.id);
     }); 
 
-    passport.deserializeUser((user, done) => {
-      done(null, user);
+    passport.deserializeUser((id, done) => {
+      User.findById(id)
+        .then(user => {
+          console.log('deserialize', user);
+          done(null, user);
+        })
+        .catch(err => {
+          done(err);
+        })
+      
     }); 
 
     passport.use(new GoogleStrategy({
@@ -34,16 +44,44 @@
     }));
 
     passport.use(new FacebookStrategy({
-      clientID: '142230009738845',
-      clientSecret: 'b61e6fdd97366d16c4ecb9f9b4afef7c',
+      clientID: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
       callbackURL: "//localhost:3000/auth/facebook/callback", 
       // these are standard passport return fields
       profileFields: ["id", "displayName", "photos"]
     },
-    function(accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+    function(accessToken, refreshToken, profile, done) {
+      console.log({profile});
+      console.log({accessToken});
+
+      process.nextTick(function() {
+        User.findOne({facebookId: profile.id})
+        .then(user => {
+          if (user) {
+            return done(null, user);
+          } else {
+            const newUser = new User({
+              facebookId: profile.id, 
+              displayName: profile.displayName, 
+              token: accessToken
+            }); 
+            newUser.save()
+              .then((createdUser) => {
+                console.log({createdUser});
+                return done(null, newUser);
+              })
+              .catch(err => {
+                throw err;
+              });
+          }
+        })
+        .catch(e => {
+          return done(e);
+        });
+      })
+
+     
+
     }
   ));
  };
