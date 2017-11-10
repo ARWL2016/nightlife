@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const UserSchema = require('./user-schema');
 const {logger} =  require('../config/logger');
 
 mongoose.Promise = global.Promise;
@@ -11,22 +12,6 @@ mongoose.connection.on('connected', () => {
 
 mongoose.connection.on('error', (err) => {
   logger.log('error', `MONGOOSE ERROR: ${err}`); 
-}); 
-
-const UserSchema = new mongoose.Schema({
-  facebookId: {
-    type: String
-  },  
-  googleId: {
-    type: String
-  },
-  displayName: {
-    type: String
-  }, 
-  token: {
-    type: String
-  }
-
 }); 
 
 const User = mongoose.model('user', UserSchema); 

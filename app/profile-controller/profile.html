@@ -1,6 +1,14 @@
 <div ng-controller="profileCtrl as pro" class="profile-page-wrapper">
   <div class="profile-page-content">
-    <h1>{{ profile.title }}</h1>
+    <h1>Profile</h1>
+    <p class="login-status">
+      <i class="fa fa-check-square" aria-hidden="true"></i>
+      <b>User: </b> {{pro.displayName || 'not logged in'}}
+    </p>
+    <p class="location-status">
+      <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <b>Location: </b> {{pro.location.formatted_address || 'not set'}}
+    </p>
     <form name="locationSearch">
       <label for="location">Location</label>
       <input 

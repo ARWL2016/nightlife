@@ -10,6 +10,7 @@
 
 const ProfileCtrl = function(
   $routeParams,
+  $location,
   googleApiService, 
   helperService, 
   localStorageService, 
@@ -18,9 +19,10 @@ const ProfileCtrl = function(
   var vm = this;
   
   vm.displayName = $routeParams.name || '';
-  vm.token = $routeParams.name || '';
+  vm.token = $routeParams.token || '';
   vm.error;
   vm.location;
+  vm.loggedIn = false;
   vm.query;
   vm.results; 
   vm.result;
@@ -30,6 +32,15 @@ const ProfileCtrl = function(
 
   function init() {
     console.log(vm.displayName, vm.token);
+    if (vm.displayName && vm.token) {
+      localStorageService.saveUser(vm.displayName, vm.token);
+    } else {
+      // get user 
+      // get location
+      vm.location = localStorageService.getLocation();
+    }
+    
+    // $location.path('/profile/')
   }
 
   function searchLocation() {
@@ -59,6 +70,8 @@ const ProfileCtrl = function(
 }
 
 pathFinderApp.controller('profileCtrl', [
+  '$routeParams',
+  '$location',
   'googleApiService',
   'helperService',
   'localStorageService',

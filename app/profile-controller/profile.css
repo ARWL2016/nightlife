@@ -3,7 +3,26 @@
 }
 
 .profile-page-content {
-  max-width: 800px;
+  max-width: 600px;
+  margin: 40px auto;
+  border: 1px dotted #ddd;
+}
+
+.profile-page-content p {
+  font-size: 1.1em; 
+  margin: 10px 0 10px 0;
+}
+
+i.fa {
+  font-size: 1.2em;;
+}
+
+.login-status i {
+  color: green;
+}
+
+.location-status i {
+  color: blue;
 }
 
 .location-search-result {

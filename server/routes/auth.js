@@ -22,6 +22,7 @@ module.exports = (app, passport) => {
     passport.authenticate('facebook'));
 
   app.get('/auth/facebook/callback',
+  // TODO: need an error redirect here
     passport.authenticate('facebook'),
     function(req, res) {
       console.log(req.user);
