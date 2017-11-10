@@ -8,16 +8,29 @@
 
 'use strict';
 
-const ProfileCtrl = function (googleApiService, helperService, localStorageService, authService) {
+const ProfileCtrl = function(
+  $routeParams,
+  googleApiService, 
+  helperService, 
+  localStorageService, 
+  authService
+  ) {
   var vm = this;
   
+  vm.displayName = $routeParams.name || '';
+  vm.token = $routeParams.name || '';
   vm.error;
   vm.location;
   vm.query;
   vm.results; 
   vm.result;
+  
   vm.searchLocation = searchLocation;
   vm.selectLocation = selectLocation;
+
+  function init() {
+    console.log(vm.displayName, vm.token);
+  }
 
   function searchLocation() {
     console.log(vm.query);
@@ -39,6 +52,8 @@ const ProfileCtrl = function (googleApiService, helperService, localStorageServi
     console.log(vm.location);
     localStorageService.saveLocation(vm.location);
   }
+
+  init();
 
 
 }
