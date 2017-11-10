@@ -1,7 +1,13 @@
+/**
+ * Passport configuration requires two routes: 
+ *  
+ */
+
 const url = require('url');
 
 module.exports = (app, passport) => {
 
+  // google
   app.get('/auth/google', 
     passport.authenticate('google', { scope: ['profile'] }));
 

@@ -21,7 +21,7 @@
     "update-deps": "npm update",
     "postupdate-deps": "bower update",
     "start": "node server.js",
-    "dev": "nodemon server.js",
+    "dev": "SET \"NODE_ENV=development\" && nodemon server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",

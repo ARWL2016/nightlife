@@ -3,7 +3,7 @@ require('dotenv').config();
 const express =   require('express');
 const passport =  require('passport');
 
-const winston =   require('winston');
+const {logger} =  require('./server/config/logger');
 const path =      require('path');
 const fs =        require('fs');
 
@@ -38,6 +38,6 @@ require('./server/routes/auth')(app, passport);
 require('./server/routes/data')(app);
 
 app.listen(port, () => {
-  winston.log('info', `Listening on PORT: ${port}`);
-  // console.log(process.env);
+  logger.log('info', `SERVER PORT: ${port}`);
+  logger.log('info', `NODE_ENV: ${process.env.NODE_ENV}`);
 });

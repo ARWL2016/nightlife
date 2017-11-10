@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
-const chalk = require('chalk') ;
+const {logger} =  require('../config/logger');
 
 mongoose.Promise = global.Promise;
 const mlabURI = process.env.MLAB_URI
 mongoose.connect(mlabURI); 
 
 mongoose.connection.on('connected', () => {
-  console.log(chalk.green('mongoose connected to: ' + mlabURI));
+  logger.log('info' ,`MONGOOSE URL: ${mlabURI}`);
 }); 
 
 mongoose.connection.on('error', (err) => {
-  console.log(chalk.red('mongoose connection error: ' + err)); 
+  logger.log('error', `MONGOOSE ERROR: ${err}`); 
 }); 
 
 const UserSchema = new mongoose.Schema({
