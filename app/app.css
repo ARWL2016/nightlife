@@ -2,6 +2,7 @@
 @import './search-controller/search.css';
 @import './detail-controller/detail.css';
 @import './profile-controller/profile.css';
+@import './login-controller/login.css';
 
 * {
   font-family: 'Raleway', sans-serif;

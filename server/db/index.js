@@ -17,6 +17,9 @@ const UserSchema = new mongoose.Schema({
   facebookId: {
     type: String
   },  
+  googleId: {
+    type: String
+  },
   displayName: {
     type: String
   }, 

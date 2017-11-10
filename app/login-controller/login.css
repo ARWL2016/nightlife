@@ -1,0 +1,32 @@
+.login-links-wrapper {
+  border: 1px dotted #ccc;
+  margin: 100px auto;
+  max-width: 400px;
+}
+
+.login-links-wrapper a {
+  border-radius: 3px; 
+  box-shadow: 2px 2px 2px 1px #AAA;
+  color: white; 
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  height: 40px; 
+  margin: 20px auto;
+  padding: 10px;
+  text-align: center;
+  width: 220px; 
+}
+
+.login-links-wrapper i {
+  color: white;
+  margin-right: 6px;
+}
+
+.fb-login-link {
+  background-color: #4267b2;
+}
+
+.google-login-link {
+  background-color: #db4437;
+}

@@ -1,9 +1,8 @@
 /**
  * Passport configuration requires two routes: 
- *  
+ * /auth/[provider] - called from href on front end; the passport authenticate method then redirects to the social login page
+ * /auth/[provider]/callback - after login, the provider will redirect to this route with the user information
  */
-
-const url = require('url');
 
 module.exports = (app, passport) => {
 
@@ -28,8 +27,6 @@ module.exports = (app, passport) => {
       console.log(req.user);
       const {displayName, token} = req.user;
       res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
-
     });
-
 
 }
