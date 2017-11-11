@@ -7,14 +7,14 @@
       <h1 class="search-heading">Pathfinder</h1>
       <form name = "searchForm" novalidate>
         <div class="input-wrapper">
-          <span>Find</span>
-          <span>Near</span>
+          <span>Type</span>
+          <span>Query</span>
           <input 
             type="text" 
             name="type" 
             ng-model="svm.search.type" 
             class="search-input type-input" 
-            placeholder="type and select"
+            placeholder="e.g. restaurant"
             ng-keyup="svm.autocompleteType()"
             ng-blur="svm.closeAutocomplete()"
             autocomplete="off" 
@@ -25,6 +25,7 @@
           <input 
             type="text" 
             name="query" 
+            placeholder="e.g. fish"
             ng-model="svm.search.query" 
             class="search-input query-input"
             required >

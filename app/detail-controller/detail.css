@@ -1,9 +1,9 @@
-a {
+.detail-page-content a {
   color: #0073bb; 
   text-decoration: none;
 }
 
-p {
+.detail-page-content p {
   /* border: 1px solid red; */
   margin: 6px 0 6px 0;
 }

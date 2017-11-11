@@ -9,15 +9,17 @@
       <i class="fa fa-map-marker" aria-hidden="true"></i>
         <b>Location: </b> {{pro.location.formatted_address || 'not set'}}
     </p>
-    <form name="locationSearch">
-      <label for="location">Location</label>
+    <form name="locationSearch" class="location-search-form">
+      <!-- <label for="location" class="location-form-label">Set Location</label> -->
       <input 
         type="text"
         name="location"
+        class="location-form-input"
         ng-model="pro.query"
+        placeholder="set location"
         autocomplete="off"
         required>
-        <button ng-click="pro.searchLocation()">Search</button>
+        <button ng-click="pro.searchLocation()" class="location-form-button"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
     <div ng-show="pro.results" class="location-search-results-wrapper">
       <p ng-repeat="result in pro.results" ng-click="pro.selectLocation(result)" class="location-search-result">

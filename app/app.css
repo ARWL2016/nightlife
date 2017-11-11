@@ -1,7 +1,7 @@
 /* app css stylesheet */
 @import './search-controller/search.css';
 @import './detail-controller/detail.css';
-@import './profile-controller/profile.css';
+@import './profile-controller/profile.css'; 
 @import './login-controller/login.css';
 
 * {
@@ -16,18 +16,21 @@
 .nav-wrapper {
   width: 100%; 
   background-color: #222222;
-  color: white;
+  
 }
 
 .nav-content {
   max-width: 800px;
   margin: 0 auto;
+  font-size: 0.9em;
 }
 
 .nav-menu {
   list-style: none;
   padding: 10px 0 10px 0;
-  margin: 0
+  margin: 0;
+  display: inline-block;
+  
 }
 
 .nav-brand {
@@ -37,13 +40,22 @@
 .nav-menu > li {
   display: inline;
   margin: 0 15px 0 15px;
-  font-size: 0.9em;
-  
+  color: white;
 }
 
 .nav-menu a {
   text-decoration: none;
   color: white;
 }
+
+.nav-location {
+  /* vertical-align: middle; */
+  line-height: 37px;
+  color: white;
+  float: right;
+
+}
+
+
 
 

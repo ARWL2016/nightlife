@@ -5,6 +5,15 @@ const pick = require('lodash.pick');
 const { buildUrl } = require('../utils');
 
 const baseUrl = process.env.BASE_URL;
+/**
+ * {@link https://developers.google.com/places/web-service/search#PlaceSearchRequests}
+ * text search: 
+ * @param - key (reqd) 
+ * @param - query - this is the search string, which could be a location or a type of establishment (option if type)
+ * @param - type (opt) - select from a limited list of establishment types - see ref/types
+ * @param - location (opt - but requires radius) - lat and lon on which to search
+ */
+
 const path = '/textsearch/json?';
 const params = {
   key: process.env.API_KEY

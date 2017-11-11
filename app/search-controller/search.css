@@ -83,7 +83,7 @@ input:focus {
 
 .query-input {
   left: 300px;
-  padding-left: 70px;
+  padding-left: 90px;
 }
 
 .search-button {
@@ -164,7 +164,7 @@ input:focus {
   left: 370px;
 }
 
-.ng-invalid.ng-dirty {
+.search-input.ng-invalid.ng-dirty {
   background-color: #f0f47a;
 }
 
