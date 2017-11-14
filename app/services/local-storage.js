@@ -16,12 +16,13 @@ pathFinderApp.factory('localStorageService', function() {
   function getLocation() {
     const location = localStorage.getItem('location') || null;
     console.log(location);
-    if (location) {
-      console.log(JSON.parse(location));
-      return JSON.parse(location);
-    } else {
-      return null;
-    }
+    // if (location) {
+    //   console.log(JSON.parse(location));
+    //   return JSON.parse(location);
+    // } else {
+    //   return null;
+    // }
+    return JSON.parse(location) || null;
     
   }
 
@@ -31,6 +32,19 @@ pathFinderApp.factory('localStorageService', function() {
     console.log(`saved ${displayName} to LS`);
   }
 
-  return { saveLocation, getLocation, saveUser };
+  function getUser() {
+    const user = localStorage.getItem('user') || null; 
+    console.log({user});
+    // if (user) {
+    //   return JSON.parse(user)
+    // } else {
+    //   return null;
+    // }
+
+    return JSON.parse(user) || null;
+
+  }
+
+  return { saveLocation, getLocation, saveUser, getUser };
 
 });

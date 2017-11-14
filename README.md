@@ -65,9 +65,8 @@ https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 https://stackoverflow.com/questions/19035373/how-do-i-redirect-in-expressjs-while-passing-some-context 
 
 To do :  
-- add loaders
 - add animations
 - add British English options
-- fix Google OAuth 
 - add going method
 - make design responsive
+- add footer

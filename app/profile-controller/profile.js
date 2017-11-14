@@ -25,37 +25,39 @@ const ProfileCtrl = function(
   vm.location = {formatted_address: '', coords: {}};
   vm.loggedIn = false;
   vm.query;
-  vm.results; 
   vm.result;
+  vm.results; 
+  vm.showSpinner = false;
   
   vm.searchLocation = searchLocation;
   vm.selectLocation = selectLocation;
 
   function init() {
-    console.log(vm.displayName, vm.token);
+
+    // logging in will set display name and token - IF
     if (vm.displayName && vm.token) {
       localStorageService.saveUser(vm.displayName, vm.token);
-      console.log('if');
+      $rootScope.$emit('rootScope:verifyLogin');
     } else {
-      console.log('else');
-      // get user 
-      vm.location = localStorageService.getLocation();
-      console.log('vm-loc', vm.location);
-      
-    
+      // get user if user exists on LS
+      const user = localStorageService.getUser();
+      if (user && user.displayName) {
+        vm.displayName = user.displayName; 
+        vm.token = user.token;
+        $rootScope.$emit('rootScope:verifyLogin');
+      }
     }
-    
-
+    vm.location = localStorageService.getLocation();
   }
 
   function searchLocation() {
-    console.log(vm.query);
+    vm.showSpinner = true;
     googleApiService.getLocation(vm.query)
       .then(results => {
+        vm.showSpinner = false;
         if (!results.length) {
           vm.error = 'no results';
         } else {
-          console.log({results});
           vm.results = results;
         }
       })

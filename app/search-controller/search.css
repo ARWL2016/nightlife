@@ -216,12 +216,12 @@ input:focus {
 .results-section-wrapper {
   margin-top: 50px;
   min-height: 300px;
-  border: 1px dotted pink;
+  /* border: 1px dotted pink; */
 }
 
 .results-section-content {
   max-width: 900px; 
-  border: 1px dotted green;
+  /* border: 1px dotted green; */
   margin: 0 auto;
   display: flex; 
   flex-direction: row; 

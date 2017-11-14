@@ -15,17 +15,38 @@
   margin: 10px 0 10px 0;
 }
 
-i.fa {
-  font-size: 1.2em;;
+/* PROFILE PAGE TABLE */
+
+.profile-table tr {
+  background-color: white;
+  height: 30px;
 }
 
-.login-status i {
+.profile-table-icon-cell > i.fa {
+  font-size: 1.2em;
+  width: 40px;
+  text-align: center;
+  margin: 0; 
+  padding: 0;
+}
+
+.profile-table-icon-cell > i.fa-check-square {
   color: green;
 }
 
-.location-status i {
+.profile-table-icon-cell > i.fa-times-circle {
+  color: red;
+}
+
+.profile-table-icon-cell > i.fa-map-marker {
   color: blue;
 }
+
+.profile-table-heading-cell {
+  width: 120px;
+}
+
+/* SEARCH FORM */
 
 .location-search-form {
   margin-top: 27px;
@@ -76,4 +97,6 @@ i.fa {
 .location-search-result:last-child {
   border: 0;
 }
+
+
 

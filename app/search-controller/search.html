@@ -5,7 +5,7 @@
       <h1 class="search-heading">Pathfinder</h1>
       <form name = "searchForm" novalidate>
         <p ng-show="!svm.location" class="location-setter">Before searching, set your <a href="#!/profile">location</a>.</p>
-        <p ng-show="svm.location" class="location-setter">Searching in the {{ svm.location.formatted_address}} area. <a href="#!/profile">Change location</a>.</p>
+        <p ng-show="svm.location" class="location-setter">Searching in {{ svm.location.formatted_address}}. <a href="#!/profile">Change location</a>.</p>
         <div class="input-wrapper">
           <span>Type</span>
           <span>Query</span>
@@ -61,7 +61,7 @@
 
 
   <div class="results-section-wrapper">
-    <div class="results-filter-panel">
+    <div ng-show="svm.results && svm.results.length > 2" class="results-filter-panel">
       <button type="button" ng-click="svm.sortByRating()" class="sortby-input">
         <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Sort By Rating
       </button>

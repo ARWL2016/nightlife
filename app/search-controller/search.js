@@ -41,9 +41,13 @@ const SearchCtrl = function(
   vm.submitQuery = submitQuery; 
 
   function init() {
-    vm.location = localStorageService.getLocation();
-    vm.search.location = `${vm.location.coords.lat},${vm.location.coords.lng}`;
-    console.log(vm.search);
+    vm.location = localStorageService.getLocation() || null;
+    console.log(vm.location);
+    if (vm.location) {
+      vm.search.location = `${vm.location.coords.lat},${vm.location.coords.lng}`;
+      console.log(vm.search);
+    }
+    
   }
 
   function sortByRating()  {

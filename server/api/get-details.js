@@ -10,6 +10,7 @@ const detailParams = { key: process.env.API_KEY };
 const photoParams = { key: process.env.API_KEY, maxwidth: 400 };
 
 function getDetails(req, res) {
+  console.log('************** GET DETAILS ******************');
   detailParams.placeid = req.query.placeid;
   photoParams.photoreference = req.query.photoref;
 

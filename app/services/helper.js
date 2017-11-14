@@ -56,13 +56,15 @@ pathFinderApp.factory('helperService', function() {
   }
 
   function formatHours(result) {
-    result.opening_hours.formatted_weekday_text = []; 
-    result.opening_hours.weekday_text.map(text => {
-      const colonPos = text.indexOf(':');
-      const day = text.substring(0, 3);
-      const hours = text.substring(colonPos + 2);
-      result.opening_hours.formatted_weekday_text.push({day, hours});
-    }); 
+    if (result.opening_hours) {
+      result.opening_hours.formatted_weekday_text = []; 
+      result.opening_hours.weekday_text.map(text => {
+        const colonPos = text.indexOf(':');
+        const day = text.substring(0, 3);
+        const hours = text.substring(colonPos + 2);
+        result.opening_hours.formatted_weekday_text.push({day, hours});
+      }); 
+    }
     return result;
   }
 
@@ -71,7 +73,7 @@ pathFinderApp.factory('helperService', function() {
     const decimal = (num - integer).toFixed(1);
     const result = {integer: [], decimal: []};
     
-    for (let i = 0; i < int; i++) {
+    for (let i = 0; i < integer; i++) {
       result.integer.push(i);
     }
     

@@ -30,3 +30,8 @@
     opacity: 0;
   }
 }
+
+/* profile component */
+.spinner-profile {
+  margin: 20px;
+}

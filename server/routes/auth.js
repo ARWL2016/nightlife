@@ -11,10 +11,13 @@ module.exports = (app, passport) => {
     passport.authenticate('google', { scope: ['profile'] }));
 
   app.get('/auth/google/callback', 
-    passport.authenticate('google', { 
-      failureRedirect: '/', 
-      successRedirect: '/search'
-    }));
+  passport.authenticate('google'),
+  function(req, res) {
+    console.log('**** GOOGLE CALLBACK ROUTE ***');
+    console.log(req.user);
+    const {displayName, token} = req.user;
+    res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
+  });
     
 
   // facebook 
@@ -29,5 +32,11 @@ module.exports = (app, passport) => {
       const {displayName, token} = req.user;
       res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
     });
+
+  app.get('/auth/logout', function(req, res){
+    console.log('LOGOUT ********************************');
+    req.logout();
+    res.redirect('/#!/profile');
+  });
 
 }
