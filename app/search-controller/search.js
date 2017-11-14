@@ -12,25 +12,39 @@
 
 'use strict';
 
-const SearchCtrl = function($location, googleApiService, helperService, typeService) {
+const SearchCtrl = function(
+  $location, 
+  googleApiService, 
+  helperService, 
+  localStorageService,
+  typeService, 
+  ) {
+
   var vm = this;
 
   vm.limit = 20; 
+  vm.location = {formatted_address: '', coords: {}};
   vm.result;
   vm.results;
-  vm.search = {type: '', query: ''};
-  vm.showModal = false;
+  vm.search = {type: '', query: '', location: ''};
+  vm.showSpinner = false;
   vm.showTypeComplete = false; 
   vm.typeMatches = [];
   vm.validEstablishmentType = true;
 
   vm.autocompleteType = autocompleteType;
-  vm.closeAutocomplete = closeAutocomplete;
+  // vm.closeAutocomplete = closeAutocomplete;
   vm.openDetailPage = openDetailPage;
   vm.selectAutocomplete = selectAutocomplete;
   vm.sortAZ = sortAZ;
   vm.sortByRating = sortByRating;
   vm.submitQuery = submitQuery; 
+
+  function init() {
+    vm.location = localStorageService.getLocation();
+    vm.search.location = `${vm.location.coords.lat},${vm.location.coords.lng}`;
+    console.log(vm.search);
+  }
 
   function sortByRating()  {
     vm.results = vm.results.sort((a, b) => {
@@ -48,35 +62,39 @@ const SearchCtrl = function($location, googleApiService, helperService, typeServ
     if (vm.search.type && vm.search.type.length > 0) {
       vm.showTypeComplete = true;
       vm.typeMatches = typeService.matchTypes(vm.search.type);
-      console.log(vm.typeMatches);
+      // console.log(vm.typeMatches);
     }
   }
 
   function selectAutocomplete(e) {
     vm.search.type = e.target.innerText;
     vm.typeMatches = [];
+    console.log(vm.search);
   }
 
-  function closeAutocomplete(){
-    vm.showTypeComplete = false;
-  }
+  // function closeAutocomplete(){
+  //   vm.showTypeComplete = false;
+  // }
 
   function submitQuery() {
-    
     console.log(vm.search);
     if (!typeService.matchOneType(vm.search.type)) {
       vm.validEstablishmentType = false;
       return;
     }
-    
+    vm.showSpinner = true;
     googleApiService
       .textSearch(vm.search)
       .then(results => {
         console.log({results});
 
         vm.results = helperService.formatTags(results);
+        vm.showSpinner = false;
       })
-      .catch(err => vm.error = 'No results');
+      .catch(err => {
+        vm.error = 'No results'; 
+        vm.showSpinner = false;
+      });
   };
 
   function openDetailPage(placeid, photoref) {
@@ -84,12 +102,15 @@ const SearchCtrl = function($location, googleApiService, helperService, typeServ
     $location.path(`/detail/${placeid}/${photoref}`); 
   }
 
+  init();
+
 }
 
 pathFinderApp.controller('searchCtrl', [
   '$location', 
   'googleApiService', 
   'helperService', 
+  'localStorageService',
   'typeService',
   SearchCtrl
 ]);

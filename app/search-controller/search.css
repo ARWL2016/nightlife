@@ -33,6 +33,16 @@
   text-align: center;
 }
 
+.location-setter {
+  color: white; 
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.location-setter > a {
+  color: white; 
+}
+
 .input-wrapper {
   /* border: 1px dotted greenyellow; */
   max-width: 600px;
@@ -220,21 +230,28 @@ input:focus {
 }
 
 .results-filter-panel {
-  text-align: center;
+  text-align: right;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .sortby-input {
-  color: blue;
+  color: #4267b2;
+  font-weight: bold;
+  padding: 6px 10px 6px 10px;
+  /* border-radius: 3px; */
+  margin-right: 10px;
+  font-size: 0.9em;
 }
 
 .result-card {
-  width: 280px; 
-  position: relative;
-  height: 300px; 
+  width: 100%; 
   overflow: hidden;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* display: inline-block; */
   margin: 8px; 
+  padding-left: 10px;
   border-radius: 5px;
 }
 
@@ -243,21 +260,15 @@ input:focus {
   background-color: #eee;
 }
 
-.card-heading-wrapper {
-  background-color: #2e2e2e;
-  margin: 0; 
-  padding: 15px 5px 15px 5px;
+.result-card > h2 {
+  color: #4267b2;
+  margin-bottom: 5px;
 }
 
-.card-heading-wrapper > h2 {
-  color: white;
-  text-align: center;
-  margin: 0;
+.result-card > p {
+  margin: 5px;
 }
 
-.card-content-wrapper {
-  padding: 15px;
-}
 
 .card-address {
 

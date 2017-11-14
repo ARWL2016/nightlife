@@ -65,8 +65,9 @@ https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 https://stackoverflow.com/questions/19035373/how-do-i-redirect-in-expressjs-while-passing-some-context 
 
 To do :  
-- add auto completion (and auto detection?) to place search - and get location data
+- add loaders
+- add animations
 - add British English options
-- add authentication 
+- fix Google OAuth 
 - add going method
 - make design responsive

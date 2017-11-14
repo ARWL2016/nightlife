@@ -1,11 +1,11 @@
 <div ng-controller="searchCtrl as svm" class="search-page-wrapper">
 
-
-
   <div class="search-section-wrapper">
     <section class="search-section-content">
       <h1 class="search-heading">Pathfinder</h1>
       <form name = "searchForm" novalidate>
+        <p ng-show="!svm.location" class="location-setter">Before searching, set your <a href="#!/profile">location</a>.</p>
+        <p ng-show="svm.location" class="location-setter">Searching in the {{ svm.location.formatted_address}} area. <a href="#!/profile">Change location</a>.</p>
         <div class="input-wrapper">
           <span>Type</span>
           <span>Query</span>
@@ -16,7 +16,7 @@
             class="search-input type-input" 
             placeholder="e.g. restaurant"
             ng-keyup="svm.autocompleteType()"
-            ng-blur="svm.closeAutocomplete()"
+            
             autocomplete="off" 
             required>
           <div class="type-complete-wrapper" ng-if="svm.typeMatches.length > 0 && svm.showTypeComplete">
@@ -28,7 +28,7 @@
             placeholder="e.g. fish"
             ng-model="svm.search.query" 
             class="search-input query-input"
-            required >
+            >
           <button 
             type="submit" 
             value="Search" 
@@ -44,12 +44,15 @@
             <li><i class="fa fa-medkit" aria-hidden="true"></i>Health</li>
           </ul>
           <div class="search-error-wrapper">
-            <p class="error type-error" ng-show="searchForm.type.$invalid && !searchForm.type.$pristine">enter the establishment type to search</p>
-            <p class="error type-error" ng-show="!svm.validEstablishmentType">invalid establishment type</p>
-            <p class="error location-error" ng-show="searchForm.query.$invalid && !searchForm.query.$pristine">enter the location to search</p>
+            <!-- <p class="error type-error" ng-show="searchForm.type.$invalid && !searchForm.type.$pristine">enter the establishment type to search</p> -->
+            <p class="error type-error" ng-show="!svm.validEstablishmentType">invalid type</p>
+            <!-- <p class="error location-error" ng-show="searchForm.query.$invalid && !searchForm.query.$pristine">enter the location to search</p> -->
         </div>
         </div>
       </form>
+      <!-- loader -->
+      <div ng-show="svm.showSpinner" class="spinner"></div>
+
     </section>
   </div> 
 
@@ -59,23 +62,22 @@
 
   <div class="results-section-wrapper">
     <div class="results-filter-panel">
-      <button type="button" ng-click="svm.sortByRating()" class="sortby-input">Sort By Rating</button>
-      <button type="button" ng-click="svm.sortAZ()" class="sortby-input">Sort A-Z</button>
+      <button type="button" ng-click="svm.sortByRating()" class="sortby-input">
+        <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Sort By Rating
+      </button>
+      <button type="button" ng-click="svm.sortAZ()" class="sortby-input">
+        <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i> Sort A-Z
+      </button>
     </div>  
-    <section class="results-section-content">
-      
+    <section class="results-section-content">  
       <div 
         class="result-card"
         ng-repeat="result in svm.results | limitTo:svm.limit" 
-        ng-click="svm.openDetailPage(result.place_id, result.photos[0].photo_reference)" >
-        <div class="card-heading-wrapper">
+        ng-click="svm.openDetailPage(result.place_id, result.photos[0].photo_reference)" > 
           <h2>{{ result.name }}</h2>
-        </div>
-        <div class="card-content-wrapper">
           <p class="card-address">{{ result.formatted_address }}</p>
           <p class="card-tags">{{result.types}}</span></p>
           <p class="card rating">Customer Rating: <b>{{ result.rating }}</b></p>
-      </div>
       </div>
     </section>  
   </div>
@@ -83,11 +85,11 @@
   <!-- end of results section -->
 
       <!-- modal -->
-      <div class="modal" ng-show="svm.showModal">
+      <!-- <div class="modal" ng-show="svm.showModal">
           <div class="modal-content" ng-show="svm.showModal">
             <h2 class="modal-heading">Modal</h2>
           </div>
-        </div>  
+        </div>   -->
         <!-- end of modal -->
   
 

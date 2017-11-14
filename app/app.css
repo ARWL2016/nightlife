@@ -3,6 +3,7 @@
 @import './detail-controller/detail.css';
 @import './profile-controller/profile.css'; 
 @import './login-controller/login.css';
+@import './spinner.css';
 
 * {
   font-family: 'Raleway', sans-serif;

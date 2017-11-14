@@ -15,8 +15,8 @@
 pathFinderApp
   .factory('googleApiService', function ($http) {
 
-    function textSearch({query, type}) {
-      return $http.get(`/api/data/info?q=${query}&type=${type}`)
+    function textSearch({query, type, location}) {
+      return $http.get(`/api/data/info?q=${query}&type=${type}&location=${location}`)
         .then(res => {
           if (res.status === 200) {
             return res.data.results;
