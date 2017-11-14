@@ -17,7 +17,7 @@ i:not(.detail-star) {
 .detail-page-content {
   margin: 0 auto;
   max-width: 800px;
-  padding-top: 60px;
+  padding-top: 30px;
   /* border: 1px solid blue; */
   max-width: 50%;
 }
