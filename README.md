@@ -65,3 +65,8 @@ DIARY CONTROLLER:
 - get diary events for location 
 
 https://stackoverflow.com/questions/9444745/javascript-how-to-get-tomorrows-date-in-format-dd-mm-yy
+
+
+Date and Time Inputs 
+- HTML5 inputs are not always compatible across browsers 
+- this application only needs the next week and hourly appointments, therefore just use a dropdown with generated choices
