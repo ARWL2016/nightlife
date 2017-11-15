@@ -35,7 +35,7 @@ i:not(.detail-star) {
   background-color: rgb(93, 212, 248);;
 }
 
-.diary-widget input {
+.diary-widget select {
   margin-right: 5px;
   border: 0;
   height: 30px;

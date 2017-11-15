@@ -1,14 +1,23 @@
 <div ng-controller="detailCtrl as detail" class="detail-page-wrapper">
   <div class="diary-widget">
     <form>
-      <input 
-        type="date"
-        name="date"
-        ng-model="detail.datetime.date">
-      <input 
-        type="time"
-        name="time"
-        ng-model="detail.datetime.time">
+
+      <select name="date" ng-model="detail.date"> 
+        <option value="today" selected>Today</option> 
+        <option value="{{date}}" ng-repeat="date in detail.dates" >{{date}}</option>
+      </select>
+
+      <select name="hour" ng-model="detail.hour"> 
+        <option value="1.00" selected>1.00</option> 
+        <option value="{{hour}}" ng-repeat="hour in detail.hours" >{{hour}}</option>
+      </select>
+
+      <select name="hour" ng-model="detail.amPm"> 
+          <option value="PM" selected>PM</option> 
+          <option value="AM" >AM</option> 
+          
+        </select>
+
       <div class="spinner-dots">
           <div class="bounce1"></div>
           <div class="bounce2"></div>
