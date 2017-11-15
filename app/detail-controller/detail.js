@@ -10,14 +10,17 @@
 const DetailCtrl = function($routeParams, googleApiService, helperService) {
   var vm = this;
 
-  vm.placeid = $routeParams.placeid;
-  vm.photoref = $routeParams.photoref;
-  vm.result;
+  // vm.datetime = {date: '', time: ''}
+  vm.placeid = $routeParams.placeid || null;
+  vm.photoref = $routeParams.photoref || null;
   vm.starRating = {int: [], dec: []};
+  vm.result;
+
+  vm.addToDiary = addToDiary;
   
   function init() {
     console.log(vm.placeid, vm.photoref);
-    getDetails(vm.placeid, vm.photoref);
+    // getDetails(vm.placeid, vm.photoref);
   }
 
   function getDetails(placeid, photoref) {
@@ -31,6 +34,10 @@ const DetailCtrl = function($routeParams, googleApiService, helperService) {
         console.log({result});
       })
       .catch(err => console.log({ err }));  
+  }
+
+  function addToDiary() {
+    console.log(vm.datetime);
   }
 
 

@@ -4,6 +4,7 @@
 @import './profile-controller/profile.css'; 
 @import './login-controller/login.css';
 @import './spinner.css';
+@import './spinner-dots.css';
 
 * {
   font-family: 'Raleway', sans-serif;

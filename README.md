@@ -1,5 +1,4 @@
 https://www.freecodecamp.org/challenges/build-a-nightlife-coordination-app 
-https://www.yelp.com/developers/documentation/v3/authentication 
 
 Geolocation 
 https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
@@ -12,27 +11,6 @@ User Story: As an unauthenticated user, when I login I should not have to search
 
 Google Places API
 
-https://developers.google.com/places/web-service/search#PlaceSearchRequests 
-
-Nearby Search 
-https://maps.googleapis.com/maps/api/place/nearbysearch/json
-?location=-33.8670522,151.1957362 req
-&radius=500&type=restaurant req
-&keyword=cruise
-&key=YOUR_API_KEY req
-
-Text Search
-
-req - query, key
-
-https://maps.googleapis.com/maps/api/place/textsearch/json?
-query=123+main+street&
-key=YOUR_API_KEY
-
-https://maps.googleapis.com/maps/api/place/textsearch/json?
-query=123+main+street&
-location=42.3675294,-71.186966&radius=10000&
-key=YOUR_API_KEY
 
 Place Details (requires ID from previous)
 
@@ -47,26 +25,43 @@ https://maps.googleapis.com/maps/api/geocode/json?address=london%22
 Place Photos 
 
 https://maps.googleapis.com/maps/api/place/photo?
-maxwidth=400& photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=YOUR_API_KEY
-
-ng-click="svm.getDetails(result.place_id, result.photos[0].photo_reference)" 
- ng-click="svm.getPhoto(result.photos[0].photo_reference)"
-
-http://jsfiddle.net/2ZzZB/56/
+maxwidth=400& photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU
+&key=YOUR_API_KEY
 
 Google OAuth
-https://github.com/jaredhanson/passport-google-oauth2 
-https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
-https://github.com/passport/express-4.x-facebook-example/blob/master/server.js 
 https://scotch.io/tutorials/easy-node-authentication-google 
 
 Tutorials
 https://scotch.io/tutorials/easy-node-authentication-setup-and-local
-https://stackoverflow.com/questions/19035373/how-do-i-redirect-in-expressjs-while-passing-some-context 
 
 To do :  
+- add back button to details page (store search results on service)
 - add animations
 - add British English options
 - add going method
 - make design responsive
 - add footer
+- add ng-cloak to detail page
+
+Bugs: 
+- stars not displaying
+
+Add to Diary Feature 
+- diary feature will operate on details page 
+- data needed: user display name and token; date and time of event; all properties of location used in the UI 
+- UI needs: a simple date and time picker + button 'Add to Diary' 
+- VALIDATION: time and date set for future; disable button when clicked; show loader till confimation received
+- CTRL: a datetime object; an add to diary method: POST user + location + datetime; an added to diary BOOL
+- SVC: helper: a method to trim the location object and return only needed values
+- SVC: diary: an add to diary method - return confirmation or error
+- SVR: diary route 
+- MDL: location: {all display properties, EVENT}
+- [MDL: user: {user properties, EVENT}]
+- MDL: event: {date and time, time added, userId and username, locationId}
+
+DIARY CONTROLLER: 
+- save event
+- get diary events for user
+- get diary events for location 
+
+https://stackoverflow.com/questions/9444745/javascript-how-to-get-tomorrows-date-in-format-dd-mm-yy

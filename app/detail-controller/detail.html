@@ -1,4 +1,23 @@
 <div ng-controller="detailCtrl as detail" class="detail-page-wrapper">
+  <div class="diary-widget">
+    <form>
+      <input 
+        type="date"
+        name="date"
+        ng-model="detail.datetime.date">
+      <input 
+        type="time"
+        name="time"
+        ng-model="detail.datetime.time">
+      <div class="spinner-dots">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+      <button ng-click="detail.addToDiary()">ADD TO DIARY</button>
+    </form>
+
+  </div>
 
   <div class="detail-page-content">
     <img class="detail-image" src={{detail.result.photohref}} > 

@@ -25,10 +25,13 @@ var pathFinderApp = angular.module('pathFinderApp', ['ngRoute']);
         // controller: 'profileCtrl', 
         
       })
+      // dev only
+      .when('/detail', {
+        templateUrl: 'detail-controller/detail.html'  
+      })
       .when('/detail/:placeid/:photoref', {
         templateUrl: 'detail-controller/detail.html'  
-        // controller: 'detailCtrl', 
-        
+        // controller: 'detailCtrl',  
       })
       .otherwise({redirectTo: '/search'});
   }]);
