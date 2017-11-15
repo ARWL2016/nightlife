@@ -22,9 +22,10 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'app')));
 
-app.use(cookieParser());
+// app.use(cookieParser());
 // parse request body and add to req.body
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(session({
   secret: 'keyboard cat', 
   resave: true, 
@@ -38,6 +39,7 @@ app.use(passport.session());
 // import routes
 require('./server/routes/auth')(app, passport);
 require('./server/routes/data')(app);
+require('./server/routes/diary')(app);
 
 app.listen(port, () => {
   logger.log('info', `SERVER PORT: ${port}`);

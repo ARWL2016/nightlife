@@ -11,27 +11,39 @@
 
 'use strict';
 
-const DetailCtrl = function($routeParams, datetimeHelperService, googleApiService, helperService) {
+const DetailCtrl = function(
+  $routeParams, 
+  datetimeHelperService, 
+  diaryService,
+  googleApiService, 
+  helperService,
+  localStorageService 
+) {
   var vm = this;
 
+  vm.added = false;
   vm.amPm = 'PM';
   vm.date = 'today';
   vm.dates;
+  vm.diaryBtnLabel = 'ADD TO DIARY';
+  vm.diarySpinner = false;
   vm.hour = '1.00';
   vm.hours;
   vm.placeid = $routeParams.placeid || null;
   vm.photoref = $routeParams.photoref || null;
-  vm.starRating = {int: [], dec: []};
   vm.result;
+  vm.starRating = {int: [], dec: []};
+  vm.user;
 
   vm.addToDiary = addToDiary;
   
-  function init() {
+  (function init() {
     console.log(vm.placeid, vm.photoref);
     vm.dates = datetimeHelperService.getNextWeek();
     vm.hours = datetimeHelperService.getHours();
-    // getDetails(vm.placeid, vm.photoref);
-  }
+    getDetails(vm.placeid, vm.photoref);
+    vm.user = localStorageService.getUser();
+  })()
 
   function getDetails(placeid, photoref) {
     googleApiService
@@ -49,16 +61,34 @@ const DetailCtrl = function($routeParams, datetimeHelperService, googleApiServic
   function addToDiary() {
     console.log(vm.date);
     console.log(vm.hour);
+
+    const datetime = datetimeHelperService.getDatetime(vm.date, vm.hour, vm.amPm);
+    const location = helperService.editResult(vm.result);
+
+    if (!vm.added && vm.user.displayName && location && datetime) {
+      vm.diarySpinner = true;
+      diaryService.addToDiary(vm.user, location, datetime)
+        .then(res => {
+          vm.diarySpinner = false; 
+          vm.diaryBtnLabel = 'REMOVE FROM DIARY';
+          vm.added = true;
+        })
+        .catch(e => {
+          vm.diarySpinner = false; 
+          console.log(e);
+        })
+    }
+
   }
 
-
-  init();
 }
 
 pathFinderApp.controller('detailCtrl', [
   '$routeParams', 
   'datetimeHelperService',
+  'diaryService',
   'googleApiService', 
   'helperService',
+  'localStorageService',
   DetailCtrl
 ]);

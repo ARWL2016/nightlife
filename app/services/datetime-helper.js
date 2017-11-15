@@ -23,6 +23,14 @@ pathFinderApp.factory('datetimeHelperService', function() {
     return nextWeek;
   }
 
+  function getTodaysDate() {
+    const currentDate = new Date();
+    const day = week[currentDate.getDay()];
+    const date = currentDate.getDate();
+    const month = months[currentDate.getMonth()];
+    return `${day}, ${date} ${month}`; 
+  }
+
   function getHours() {
     const hours = [];
     for (let i = 2; i < 13; i++) {
@@ -30,7 +38,19 @@ pathFinderApp.factory('datetimeHelperService', function() {
     }
     return hours;
   }
+
+  function getDatetime(dateInput, hour, amPm) {
+    if (dateInput && hour && amPm) {
+      let date = '';
+      if (dateInput = 'today') {
+        date = getTodaysDate();
+      }
+      return ({date, hour, amPm});
+    } else {
+      return null;
+    }
+  }
   
-  return { getNextWeek, getHours };
+  return { getNextWeek, getHours, getTodaysDate, getDatetime };
   
 });

@@ -102,14 +102,18 @@ pathFinderApp.factory('helperService', function() {
     return location;
   }
 
-  
+  function editResult(result) {
+    return _.pick(result, 
+      'formatted_address', 'id', 'name', 'opening_hours', 'photohref', 'place_id', 'rating', 'types', 'url', 'vicinity', 'website');
+  }
 
   return { 
     formatTags, 
     createStarRating, 
     formatHours, 
     sortAZ, 
-    filterGeocodeResult 
+    filterGeocodeResult,
+    editResult
   };
 
 });

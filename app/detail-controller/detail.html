@@ -1,5 +1,5 @@
 <div ng-controller="detailCtrl as detail" class="detail-page-wrapper">
-  <div class="diary-widget">
+  <div class="diary-widget" ng-show="detail.user.displayName">
     <form>
 
       <select name="date" ng-model="detail.date"> 
@@ -18,17 +18,17 @@
           
         </select>
 
-      <div class="spinner-dots">
+      <div ng-show="detail.diarySpinner" class="spinner-dots">
           <div class="bounce1"></div>
           <div class="bounce2"></div>
           <div class="bounce3"></div>
         </div>
-      <button ng-click="detail.addToDiary()">ADD TO DIARY</button>
+      <button ng-click="detail.addToDiary()">{{detail.diaryBtnLabel}}</button>
     </form>
 
   </div>
 
-  <div class="detail-page-content">
+  <div ng-show="detail.result" class="detail-page-content">
     <img class="detail-image" src={{detail.result.photohref}} > 
     <div class="detail-basic-info">
       <h1 class="detail-header">{{detail.result.name}}</h1>
@@ -46,18 +46,18 @@
       <p class="detail-website-link"><i class="fa fa-external-link" aria-hidden="true"></i>
         <a href="{{detail.result.website}}" target="_blank">&nbsp;{{detail.result.website}}</a>
       </p>
-  </div>
+    </div>
 
-  <div ng-show="detail.result.opening_hours" class="detail-opening-hours">
-    <h3>Hours</h3>
-    <!-- <p ng-repeat="text in detail.result.opening_hours.formatted_weekday_text"><b>{{text.day}}:&nbsp;</b>{{text.hours}}</p> -->
-    <table class="table-opening-hours">
-      <tr ng-repeat="text in detail.result.opening_hours.formatted_weekday_text">
-        <td class="table-day-cell">{{text.day}}</td>
-        <td class="table-hours-cell">{{text.hours}}</td>
-      </tr>
-    </table>
-  </div>
+    <div ng-show="detail.result.opening_hours" class="detail-opening-hours">
+      <h3>Hours</h3>
+      <!-- <p ng-repeat="text in detail.result.opening_hours.formatted_weekday_text"><b>{{text.day}}:&nbsp;</b>{{text.hours}}</p> -->
+      <table class="table-opening-hours">
+        <tr ng-repeat="text in detail.result.opening_hours.formatted_weekday_text">
+          <td class="table-day-cell">{{text.day}}</td>
+          <td class="table-hours-cell">{{text.hours}}</td>
+        </tr>
+      </table>
+    </div>
   
   </div>
 

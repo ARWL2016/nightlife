@@ -23,6 +23,7 @@
       <li class="nav-brand">Pathfinder</li>
       <li><a href="#!/search">Search</a></li>
       <li><a href="#!/profile">Profile</a></li>
+      <li><a href="#!/detail">det</a></li>
       <li ng-show="!main.loggedIn"><a href="#!/login">Login</a></li>
       <li ng-show="main.loggedIn"><a href="/auth/logout/" ng-click="main.logout()">Logout</a></li>
     </ul>
@@ -42,6 +43,7 @@
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/underscore/underscore-min.js"></script>
   <script src="app.js"></script>
   <script src="main.js"></script>
   <script src="search-controller/search.js"></script>
@@ -54,5 +56,6 @@
   <script src="services/auth.js"></script>
   <script src="services/local-storage.js"></script>
   <script src="services/datetime-helper.js"></script>
+  <script src="services/diary.js"></script>
 </body>
 </html>

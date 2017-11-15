@@ -42,6 +42,7 @@ To do :
 - make design responsive
 - add footer
 - add ng-cloak to detail page
+- add spinner to details page
 
 Bugs: 
 - stars not displaying
