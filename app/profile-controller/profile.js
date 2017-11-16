@@ -8,7 +8,18 @@
 
 'use strict';
 
-const ProfileCtrl = function(
+pathFinderApp.controller('ProfileCtrl', [
+  '$routeParams',
+  '$location',
+  '$rootScope',
+  'googleApiService',
+  'helperService',
+  'localStorageService',
+  'authService',
+  ProfileCtrl
+]);
+
+function ProfileCtrl(
   $routeParams,
   $location,
   $rootScope,
@@ -77,13 +88,3 @@ const ProfileCtrl = function(
 
 }
 
-pathFinderApp.controller('profileCtrl', [
-  '$routeParams',
-  '$location',
-  '$rootScope',
-  'googleApiService',
-  'helperService',
-  'localStorageService',
-  'authService',
-  ProfileCtrl
-]);

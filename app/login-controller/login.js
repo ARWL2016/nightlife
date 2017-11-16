@@ -7,4 +7,4 @@ const LoginCtrl = function () {
 
 }
 
-pathFinderApp.controller('loginCtrl', [LoginCtrl]);
+pathFinderApp.controller('LoginCtrl', [LoginCtrl]);

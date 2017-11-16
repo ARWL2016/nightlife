@@ -11,7 +11,7 @@
 
 'use strict';
 
-const DetailCtrl = function(
+function DetailCtrl (
   $routeParams, 
   datetimeHelperService, 
   diaryService,
@@ -41,9 +41,11 @@ const DetailCtrl = function(
     console.log(vm.placeid, vm.photoref);
     vm.dates = datetimeHelperService.getNextWeek();
     vm.hours = datetimeHelperService.getHours();
-    getDetails(vm.placeid, vm.photoref);
+    // getDetails(vm.placeid, vm.photoref);
     vm.user = localStorageService.getUser();
   })()
+
+  // Implementation
 
   function getDetails(placeid, photoref) {
     googleApiService
@@ -83,7 +85,7 @@ const DetailCtrl = function(
 
 }
 
-pathFinderApp.controller('detailCtrl', [
+pathFinderApp.controller('DetailCtrl', [
   '$routeParams', 
   'datetimeHelperService',
   'diaryService',

@@ -47,13 +47,9 @@ To do :
 Bugs: 
 - stars not displaying
 
-Add to Diary Feature 
-- diary feature will operate on details page 
-- data needed: user display name and token; date and time of event; all properties of location used in the UI 
-- UI needs: a simple date and time picker + button 'Add to Diary' 
+Add to Diary Feature  
 - VALIDATION: time and date set for future; disable button when clicked; show loader till confimation received
-- CTRL: a datetime object; an add to diary method: POST user + location + datetime; an added to diary BOOL
-- SVC: helper: a method to trim the location object and return only needed values
+- an added to diary BOOL
 - SVC: diary: an add to diary method - return confirmation or error
 - SVR: diary route 
 - MDL: location: {all display properties, EVENT}
@@ -68,6 +64,4 @@ DIARY CONTROLLER:
 https://stackoverflow.com/questions/9444745/javascript-how-to-get-tomorrows-date-in-format-dd-mm-yy
 
 
-Date and Time Inputs 
-- HTML5 inputs are not always compatible across browsers 
-- this application only needs the next week and hourly appointments, therefore just use a dropdown with generated choices
+

@@ -22,7 +22,6 @@ const MainCtrl = function(localStorageService, $rootScope) {
   
 
   $rootScope.$on('rootScope:changeLocation', function (event, data) {
-    console.log(data); // 'Emit!'
     vm.location = data;
   });
 

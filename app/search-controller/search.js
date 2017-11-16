@@ -12,7 +12,7 @@
 
 'use strict';
 
-const SearchCtrl = function(
+function SearchCtrl (
   $location, 
   googleApiService, 
   helperService, 
@@ -110,7 +110,7 @@ const SearchCtrl = function(
 
 }
 
-pathFinderApp.controller('searchCtrl', [
+pathFinderApp.controller('SearchCtrl', [
   '$location', 
   'googleApiService', 
   'helperService', 
