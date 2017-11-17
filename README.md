@@ -45,6 +45,7 @@ To do :
 - add spinner to details page
 
 Bugs: 
+
 - stars not displaying
 
 Add to Diary Feature  

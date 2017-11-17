@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const EventSchema = require('./event.schema');
 
 const UserSchema = new mongoose.Schema({
   facebookId: {
@@ -12,7 +13,8 @@ const UserSchema = new mongoose.Schema({
   }, 
   token: {
     type: String
-  }
+  }, 
+  events: [EventSchema] 
 
 }); 
 

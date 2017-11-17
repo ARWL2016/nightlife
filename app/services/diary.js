@@ -19,5 +19,4 @@ pathFinderApp.factory('diaryService', function($http) {
 
   
   return { addToDiary };
-  
 });

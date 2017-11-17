@@ -11,6 +11,8 @@
  * {@link https://console.developers.google.com/apis/credentials?project=nightlife-1509443022907 | Google Dev Console} 
  * {@link https://developers.facebook.com/apps/142230009738845/dashboard/ | Facebook Dev Console} 
  * Configure Google Sign in 
+ * 
+ * NB Profile.id returned from FB varies - do not use for db find 
  */
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -47,12 +49,16 @@ function registerUserWithProvider(idProperty) {
     console.log({accessToken});
 
     process.nextTick(function() {
-      User.findOne({[idProperty]: profile.id})
+      User.findOne({displayName: profile.displayName})
         .then(user => {
-            if (user) return done(null, user);
+            if (user) {
+              console.log('user found', user);
+              return done(null, user);
+            }
             else {
+              console.log('creating new user');
               const newUser = new User({
-                facebookId: profile.id, 
+                ['idProperty']: profile.id, 
                 displayName: profile.displayName, 
                 token: accessToken
               }); 

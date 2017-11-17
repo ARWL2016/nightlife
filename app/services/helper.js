@@ -19,8 +19,11 @@
  * to an array of objects, with separate properties on the object for days and hours. This allows 
  * for easier formatting in the template.
  * 
- * @function filterGeocodeResult - we only need the location name (for UI display), and 
+ * @function filterGeocodeResult() - we only need the location name (for UI display), and 
  * the lat / lon coordinates (for specifying the location in the text search query)
+ * 
+ * @function editResult() - this takes the full result returned from a detail search and returns just those properties 
+ * needed by the UI. 
  */
 
 'use strict';
@@ -103,6 +106,11 @@ pathFinderApp.factory('helperService', function() {
   }
 
   function editResult(result) {
+    delete result.opening_hours.formatted_weekday_text; 
+    delete result.opening_hours.periods; 
+    delete result.opening_hours.open_now;
+    delete result.id;
+
     return _.pick(result, 
       'formatted_address', 'id', 'name', 'opening_hours', 'photohref', 'place_id', 'rating', 'types', 'url', 'vicinity', 'website');
   }
