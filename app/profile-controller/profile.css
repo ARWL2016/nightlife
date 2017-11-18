@@ -4,7 +4,7 @@
 }
 
 .profile-page-content {
-  max-width: 600px;
+  max-width: 800px;
   margin: 40px auto;
   border: 1px dotted #ddd;
   padding: 30px;
@@ -96,6 +96,32 @@
 
 .location-search-result:last-child {
   border: 0;
+}
+
+/* EVENTS */
+.events-wrapper {
+  margin-top: 50px;
+  /* border: 1px solid #ccc; */
+}
+
+.events-table tr:nth-child(odd) {
+  background-color: rgb(93, 212, 248);
+}
+
+.events-table td {
+  padding: 15px;
+}
+
+.events-table td:nth-child(3) {
+  padding: 15px 50px;
+}
+
+.events-table td:nth-child(3):hover {
+  cursor: pointer;
+}
+
+.events-table i.fa-trash {
+  color: black;
 }
 
 

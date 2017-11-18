@@ -46,5 +46,19 @@
       </p>
     </div>
 
+    <!-- diary events  -->
+    <div class="events-wrapper">
+      <h1>Diary Events</h1>
+      <table class="events-table">
+        <tr ng-repeat="event in pro.events">
+          <td><b>{{event.place_name}}</b></td>
+          <td>{{event.date}} {{event.hour}} {{event.amPm}}</td>
+          <td ng-click="pro.deleteEvent(event)">
+            <i class="fa fa-trash" aria-hidden="true" title="remove event"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+
   </div>  
 </div>

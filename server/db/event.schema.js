@@ -16,6 +16,9 @@ const EventSchema = new mongoose.Schema({
   place_id: {
     type: String
   }, 
+  place_name: {
+    type: String
+  }
 
 
 }); 

@@ -47,8 +47,10 @@ function DetailCtrl (
     console.log(vm.placeid, vm.photoref);
     vm.dates = datetimeHelperService.getNextWeek();
     vm.hours = datetimeHelperService.getHours();
-    getDetails(vm.placeid, vm.photoref);
     vm.user = localStorageService.getUser();
+    if (vm.placeid && vm.photoref) {
+      getDetails(vm.placeid, vm.photoref);
+    }
   })()
 
   // Implementation
@@ -74,7 +76,7 @@ function DetailCtrl (
       diaryService.addToDiary(vm.user, location, datetime)
         .then(res => {
           vm.diarySpinner = false; 
-          vm.diaryBtnLabel = 'REMOVE FROM DIARY';
+          vm.diaryBtnLabel = 'ADDED';
           vm.added = true;
         })
         .catch(e => {

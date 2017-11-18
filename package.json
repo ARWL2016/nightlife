@@ -20,7 +20,7 @@
     "postinstall": "bower install",
     "update-deps": "npm update",
     "postupdate-deps": "bower update",
-    "start": "node server.js",
+    "start": "SET \"NODE_ENV=development\" && node server.js",
     "dev": "SET \"NODE_ENV=development\" && nodemon server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",

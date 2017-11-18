@@ -2,8 +2,9 @@
  * @prop query - search query entered by user
  * @prop results - an array of objects representing locations, returned by the geocode API 
  * @prop result - the location object selected by the user;
- * @function searchLocation - called on form submit, sends search query to geocode API call on service
- * @function selectLocation - called when user clicks on search result - will add location to local storage / db (if logged in)
+ * @function searchLocation() - called on form submit, sends search query to geocode API call on service
+ * @function selectLocation() - called when user clicks on search result - will add location to local storage / db (if logged in)
+ * @function getEvents() - fetch diaried events if user is logged in
  */
 
 'use strict';
@@ -12,10 +13,11 @@ pathFinderApp.controller('ProfileCtrl', [
   '$routeParams',
   '$location',
   '$rootScope',
+  'authService',
+  'diaryService',
   'googleApiService',
   'helperService',
   'localStorageService',
-  'authService',
   ProfileCtrl
 ]);
 
@@ -23,16 +25,18 @@ function ProfileCtrl(
   $routeParams,
   $location,
   $rootScope,
+  authService,
+  diaryService,
   googleApiService, 
   helperService, 
-  localStorageService, 
-  authService
+  localStorageService
   ) {
   const vm = this;
   
   vm.displayName = $routeParams.name || '';
   vm.token = $routeParams.token || '';
   vm.error;
+  vm.events;
   vm.location = {formatted_address: '', coords: {}};
   vm.loggedIn = false;
   vm.query;
@@ -42,24 +46,24 @@ function ProfileCtrl(
   
   vm.searchLocation = searchLocation;
   vm.selectLocation = selectLocation;
+  vm.deleteEvent = deleteEvent;
 
-  function init() {
-
-    // logging in will set display name and token - IF
+  (function init() {
     if (vm.displayName && vm.token) {
       localStorageService.saveUser(vm.displayName, vm.token);
       $rootScope.$emit('rootScope:verifyLogin');
+      getEvents();
     } else {
-      // get user if user exists on LS
       const user = localStorageService.getUser();
       if (user && user.displayName) {
         vm.displayName = user.displayName; 
         vm.token = user.token;
         $rootScope.$emit('rootScope:verifyLogin');
+        getEvents();
       }
     }
     vm.location = localStorageService.getLocation();
-  }
+  })()
 
   function searchLocation() {
     vm.showSpinner = true;
@@ -83,8 +87,26 @@ function ProfileCtrl(
     vm.results = undefined;
   }
 
-  init();
+  function getEvents() {
+    diaryService.getEvents(vm.displayName, vm.token)
+      .then(data => {
+        vm.events = data;
+      })
+      .catch(err => console.log(err));
+  }
 
+  function deleteEvent(event) {
+    console.log({event});
+    diaryService.deleteEvent(event)
+      .then(() => {
+        vm.events = vm.events.forEach(ev => {
+          return ev.place_id !== event.place_id;
+        });
+      })
+      .catch(e => console.log(e));
+  }
+
+  
 
 }
 

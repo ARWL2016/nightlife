@@ -106,10 +106,10 @@ pathFinderApp.factory('helperService', function() {
   }
 
   function editResult(result) {
-    delete result.opening_hours.formatted_weekday_text; 
-    delete result.opening_hours.periods; 
-    delete result.opening_hours.open_now;
-    delete result.id;
+    // delete result.opening_hours.formatted_weekday_text; 
+    // delete result.opening_hours.periods; 
+    // delete result.opening_hours.open_now;
+    // delete result.id;
 
     return _.pick(result, 
       'formatted_address', 'id', 'name', 'opening_hours', 'photohref', 'place_id', 'rating', 'types', 'url', 'vicinity', 'website');

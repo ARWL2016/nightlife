@@ -1,3 +1,3 @@
-const { addToDiary } = require('./diary');
+const { addToDiary, getEventsByUser, deleteEvent } = require('./diary');
 
-module.exports = { addToDiary };
+module.exports = { addToDiary, getEventsByUser, deleteEvent };

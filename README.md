@@ -43,24 +43,17 @@ To do :
 - add footer
 - add ng-cloak to detail page
 - add spinner to details page
+- move logout link to profile
 
 Bugs: 
 
 - stars not displaying
+- hours not always displaying
 
-Add to Diary Feature  
-- VALIDATION: time and date set for future; disable button when clicked; show loader till confimation received
-- an added to diary BOOL
-- SVC: diary: an add to diary method - return confirmation or error
-- SVR: diary route 
-- MDL: location: {all display properties, EVENT}
-- [MDL: user: {user properties, EVENT}]
-- MDL: event: {date and time, time added, userId and username, locationId}
-
-DIARY CONTROLLER: 
-- save event
-- get diary events for user
-- get diary events for location 
+Important 
+- fb OAuth does not apparently return a consistent id, so: 
+- currently uses displayName for identifying users - not reliable 
+- use email instead
 
 https://stackoverflow.com/questions/9444745/javascript-how-to-get-tomorrows-date-in-format-dd-mm-yy
 
