@@ -47,7 +47,6 @@ To do :
 
 Bugs: 
 
-- stars not displaying
 - hours not always displaying
 
 Important 

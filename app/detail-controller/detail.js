@@ -59,10 +59,8 @@ function DetailCtrl (
     googleApiService
       .getDetails(placeid, photoref)
       .then(result => {
-        console.log({result});
         vm.result = helperService.formatHours(helperService.formatTags(result)[0]);
-        vm.starRating = helperService.createStarRating(result.rating);
-        console.log({result});
+        vm.starRating = helperService.createStarRating(vm.result.rating);
       })
       .catch(err => console.log({ err }));  
   }
@@ -84,9 +82,7 @@ function DetailCtrl (
           console.log(e);
         })
     }
-
   }
-
 }
 
 pathFinderApp.controller('DetailCtrl', [

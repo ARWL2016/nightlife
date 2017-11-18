@@ -34,9 +34,8 @@
     <div class="detail-basic-info">
       <h1 class="detail-header">{{detail.result.name}}</h1>
       <p class="star-wrapper">
-        
-        <i ng-repeat="x in detail.starRating.int" class="fa fa-star detail-star" aria-hidden="true"></i>
-        <i ng-repeat="y in detail.starRating.dec" class="fa fa-star-half-o detail-star" aria-hidden="true"></i>
+        <i ng-repeat="int in detail.starRating.integer" class="fa fa-star detail-star" aria-hidden="true"></i>
+        <i ng-repeat="dec in detail.starRating.decimal" class="fa fa-star-half-o detail-star" aria-hidden="true"></i>
         <span class="detail-rating"> {{detail.result.rating}} based on {{detail.result.reviews.length}} reviews.</span>
       </p>
       <p class="detail-tags">{{detail.result.types}}</p>
