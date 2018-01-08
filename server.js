@@ -19,8 +19,11 @@ require('./server/config/auth').configPassport(passport);
 
 const app = express();
 const port = process.env.PORT || 3000; 
+const appDirectory = path.join(__dirname, 'dist');
+const libDirectory = path.join(__dirname, 'bower_components');
 
-app.use(express.static(path.join(__dirname, 'app')));
+app.use(express.static(appDirectory));
+app.use(express.static(libDirectory));
 
 // app.use(cookieParser());
 // parse request body and add to req.body
@@ -43,5 +46,7 @@ require('./server/routes/diary')(app);
 
 app.listen(port, () => {
   logger.log('info', `SERVER PORT: ${port}`);
+  logger.log('info', `SERVING APP FROM: ${appDirectory}`);
+  logger.log('info', `SERVING LIB FROM: ${libDirectory}`);
   logger.log('info', `NODE_ENV: ${process.env.NODE_ENV}`);
 });
