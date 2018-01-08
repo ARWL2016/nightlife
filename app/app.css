@@ -1,8 +1,8 @@
 /* app css stylesheet */
-@import './search-controller/search.css';
-@import './detail-controller/detail.css';
-@import './profile-controller/profile.css'; 
-@import './login-controller/login.css';
+@import './search/search.css';
+@import './detail/detail.css';
+@import './profile/profile.css'; 
+@import './login/login.css';
 @import './spinner.css';
 @import './spinner-dots.css';
 

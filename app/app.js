@@ -3,35 +3,44 @@
  * it DOES NOT need to be declared on the route too. This will run the digest cycle twice.
  */
 
-'use strict';
+(function(){ 
+  'use strict';
 
-// Declare app level module which depends on views, and components
-var pathFinderApp = angular.module('pathFinderApp', ['ngRoute']);
-  pathFinderApp.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  var app = angular.module('app', ['ngRoute']);
+  
+  app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
     $routeProvider
       .when('/login', {
-        templateUrl: 'login-controller/login.html'
-        // controller: 'loginCtrl'
+        templateUrl: 'login/login.html',
+        controller: 'LoginController', 
+        controllerAs: 'vm'
 
       })
       .when('/search', {
-        templateUrl: 'search-controller/search.html'   
-        // controller: 'searchCtrl', 
+        templateUrl: 'search/search.html',  
+        controller: 'SearchController', 
+        controllerAs: 'vm'
         
       })
       .when('/profile', {
-        templateUrl: 'profile-controller/profile.html'   
-        // controller: 'profileCtrl', 
+        templateUrl: 'profile/profile.html', 
+        controller: 'ProfileController', 
+        controllerAs: 'vm'
         
       })
       // dev only
       .when('/detail', {
-        templateUrl: 'detail-controller/detail.html'  
+        templateUrl: 'detail/detail.html',
+        controller: 'DetailController', 
+        controllerAs: 'vm'
       })
       .when('/detail/:placeid/:photoref', {
-        templateUrl: 'detail-controller/detail.html'  
-        // controller: 'detailCtrl',  
+        templateUrl: 'detail/detail.html',  
+        controller: 'DetailController', 
+        controllerAs: 'vm'
       })
       .otherwise({redirectTo: '/search'});
   }]);
+
+}());

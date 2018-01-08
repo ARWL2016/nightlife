@@ -1,0 +1,66 @@
+<div class="detail-page-wrapper">
+  <div class="diary-widget" ng-show="vm.user.displayName">
+    <form>
+
+      <select name="date" ng-model="vm.date"> 
+        <option value="today" selected>Today</option> 
+        <option value="{{date}}" ng-repeat="date in vm.dates" >{{date}}</option>
+      </select>
+
+      <select name="hour" ng-model="vm.hour"> 
+        <option value="1.00" selected>1.00</option> 
+        <option value="{{hour}}" ng-repeat="hour in vm.hours" >{{hour}}</option>
+      </select>
+
+      <select name="hour" ng-model="vm.amPm"> 
+          <option value="PM" selected>PM</option> 
+          <option value="AM" >AM</option> 
+          
+        </select>
+
+      <div ng-show="vm.diarySpinner" class="spinner-dots">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+      <button ng-click="vm.addToDiary()">{{vm.diaryBtnLabel}}</button>
+    </form>
+  </div>
+
+  <!-- end of diary widget -->
+
+  <div ng-show="vm.result" class="detail-page-content">
+    <img class="detail-image" src={{vm.result.photohref}} > 
+    <div class="detail-basic-info">
+      <h1 class="detail-header">{{vm.result.name}}</h1>
+      <p class="star-wrapper">
+        <i ng-repeat="int in vm.starRating.integer" class="fa fa-star detail-star" aria-hidden="true"></i>
+        <i ng-repeat="dec in vm.starRating.decimal" class="fa fa-star-half-o detail-star" aria-hidden="true"></i>
+        <span class="detail-rating"> {{vm.result.rating}} based on {{vm.result.reviews.length}} reviews.</span>
+      </p>
+      <p class="detail-tags">{{vm.result.types}}</p>
+      <p class="detail-vicinity"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;{{detail.result.vicinity}}
+        <a class="detail-map-link" href="{{vm.result.url}}" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;View on Map</a>
+      </p>
+      <p class="detail-phone-number"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{vm.result.formatted_phone_number}}</p>
+      <p class="detail-website-link"><i class="fa fa-external-link" aria-hidden="true"></i>
+        <a href="{{vm.result.website}}" target="_blank">&nbsp;{{vm.result.website}}</a>
+      </p>
+    </div>
+
+    <div ng-show="vm.result.opening_hours" class="detail-opening-hours">
+      <h3>Hours</h3>
+      <!-- <p ng-repeat="text in vm.result.opening_hours.formatted_weekday_text"><b>{{text.day}}:&nbsp;</b>{{text.hours}}</p> -->
+      <table class="table-opening-hours">
+        <tr ng-repeat="text in vm.result.opening_hours.formatted_weekday_text">
+          <td class="table-day-cell">{{text.day}}</td>
+          <td class="table-hours-cell">{{text.hours}}</td>
+        </tr>
+      </table>
+    </div>
+  
+  </div>
+
+
+</div>
+

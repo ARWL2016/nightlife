@@ -1,61 +1,64 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="pathFinderApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="pathFinderApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="pathFinderApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="pathFinderApp" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="app"> 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Pathfinder</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-  <script src="https://use.fontawesome.com/0e896508bc.js"></script>
+
+  <!-- Application CSS Root -->
   <link rel="stylesheet" href="app.css">
-  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
-<body ng-controller="mainCtrl as main">
+<body ng-controller="MainController as main">
   <div class="nav-wrapper">
     <nav class="nav-content">
-    <ul class="nav-menu">
-      <li class="nav-brand">Pathfinder</li>
-      <li><a href="#!/search">Search</a></li>
-      <li><a href="#!/profile">Profile</a></li>
-      <li><a href="#!/detail">det</a></li>
-      <li ng-show="!main.loggedIn"><a href="#!/login">Login</a></li>
-      <li ng-show="main.loggedIn"><a href="/auth/logout/" ng-click="main.logout()">Logout</a></li>
-    </ul>
+      <ul class="nav-menu">
+        <li class="nav-brand">Pathfinder</li>
+        <li><a href="#!/search">Search</a></li>
+        <li><a href="#!/profile">Profile</a></li>
+        <!-- convenience route for dev -->
+        <li><a href="#!/detail">det</a></li>
+        <li ng-show="!main.loggedIn"><a href="#!/login">Login</a></li>
+        <li ng-show="main.loggedIn"><a href="/auth/logout/" ng-click="main.logout()">Logout</a></li>
+      </ul>
  
-    <a href="#!/profile" class="nav-location">{{main.location.formatted_address}}</a>
-  </nav>
-</div>
-
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+      <a href="#!/profile" class="nav-location">{{main.location.formatted_address}}</a>
+    </nav>
+  </div>
 
   <div ng-view></div>
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/underscore/underscore-min.js"></script>
+  <!-- Libraries -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="lib/underscore/underscore-min.js"></script>
+  <script src="https://use.fontawesome.com/0e896508bc.js"></script>
+
+  <!-- Application Code -->
   <script src="app.js"></script>
-  <script src="main.js"></script>
-  <script src="search-controller/search.js"></script>
-  <script src="detail-controller/detail.js"></script>
-  <script src="profile-controller/profile.js"></script>
-  <script src="login-controller/login.js"></script>
-  <script src="services/google-api.js"></script>
-  <script src="services/helper.js"></script>
-  <script src="services/types.js"></script>
-  <script src="services/auth.js"></script>
-  <script src="services/local-storage.js"></script>
-  <script src="services/datetime-helper.js"></script>
-  <script src="services/diary.js"></script>
+  <script src="main.controller.js"></script>
+
+  <!-- Controllers -->
+  <script src="search/search.controller.js"></script>
+  <script src="detail/detail.controller.js"></script>
+  <script src="profile/profile.controller.js"></script>
+  <script src="login/login.controller.js"></script>
+
+  <!-- Services -->
+  <script src="services/google-api.service.js"></script>
+  <script src="services/helper.service.js"></script>
+  <script src="services/types.service.js"></script>
+  <script src="services/local-storage.service.js"></script>
+  <script src="services/datetime-helper.service.js"></script>
+  <script src="services/diary.service.js"></script>
 </body>
 </html>

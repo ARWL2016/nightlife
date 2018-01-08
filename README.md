@@ -1,9 +1,4 @@
-#### Code Cleanup 
-1. Add IIFEs to front end JS; create controller on global app
-2. refactor controller declarations 
-3. rename folders
-4. tidy up index.html 
-5. setup controllerAs on routes not templates 
+#### Code Cleanup  
 6. add docs 
 7. add babel
 
