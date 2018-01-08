@@ -1,13 +1,19 @@
+#### Code Cleanup 
+1. Add IIFEs to front end JS; create controller on global app
+2. refactor controller declarations 
+3. rename folders
+4. tidy up index.html 
+5. setup controllerAs on routes not templates 
+6. add docs 
+7. add babel
+
+
+
 https://www.freecodecamp.org/challenges/build-a-nightlife-coordination-app 
 
 Geolocation 
 https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
 
-#### User Stories 
-User Story: As an unauthenticated user, I can view all bars in my area.
-User Story: As an authenticated user, I can add myself to a bar to indicate I am going there tonight.
-User Story: As an authenticated user, I can remove myself from a bar if I no longer want to go there.
-User Story: As an unauthenticated user, when I login I should not have to search again.
 
 Google Places API
 

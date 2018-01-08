@@ -2,18 +2,18 @@ if (process.env.NODE_ENV === 'development') {
   require('dotenv').config();
 }
 
-const express =   require('express');
-const passport =  require('passport');
+const express = require('express');
+const passport = require('passport');
 
-const {logger} =  require('./server/config/logger');
-const path =      require('path');
-const fs =        require('fs');
+const fs = require('fs');
+const path = require('path');
 
 const cookieParser = require('cookie-parser'); 
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
+const {logger} = require('./server/config/logger');
 const { mongoose } = require('./server/db');
 require('./server/config/auth').configPassport(passport);
 
