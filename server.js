@@ -19,8 +19,8 @@ require('./server/config/auth').configPassport(passport);
 
 const app = express();
 const port = process.env.PORT || 3000; 
-const appDirectory = path.join(__dirname, 'dist');
-const libDirectory = path.join(__dirname, 'bower_components');
+const appDirectory = path.join(__dirname, 'client/dist');
+const libDirectory = path.join(__dirname, 'client/bower_components');
 
 app.use(express.static(appDirectory));
 app.use(express.static(libDirectory));

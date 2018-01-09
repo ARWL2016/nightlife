@@ -15,10 +15,11 @@
         "src/**/**/*.spec.js": true,
         "app/**/**/*test.js": true,
         "src/**/**/*.js.map": true,
-        "**/*.log": false,
+        "**/*.log": true,
         "e2e": true, 
         "LICENSE": true,
-        "*travis*": true
+        "*travis*": true, 
+        ".vscode/": true
     },
     "terminal.integrated.shell.windows": "C:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
     "terminal.integrated.fontSize": 14,
