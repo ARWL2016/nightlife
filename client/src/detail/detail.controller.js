@@ -42,6 +42,7 @@
     // UI
     vm.diaryBtnLabel = 'ADD TO DIARY';
     vm.diarySpinner = false;
+    vm.error = '';
 
     // data
     vm.placeid = $routeParams.placeid || null;
@@ -73,8 +74,9 @@
     vm.addToDiary = () => {
       const datetime = datetimeSvc.getDatetime(vm.date, vm.hour, vm.amPm);
       const location = helperSvc.editResult(vm.result);
+      console.log(helperSvc.objectIsEmpty([location, vm.user, datetime]));
 
-      if (!vm.added && vm.user.displayName && location && datetime) {
+      if (!vm.added) {
         vm.diarySpinner = true;
         diarySvc.addToDiary(vm.user, location, datetime)
           .then(res => {
@@ -84,7 +86,7 @@
           })
           .catch(e => {
             vm.diarySpinner = false; 
-            console.log(e);
+            vm.error = 'Sorry. Event could not be added.'
           })
       }
     }

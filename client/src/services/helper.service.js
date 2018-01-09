@@ -24,15 +24,21 @@
  * 
  * @function editResult() - this takes the full result returned from a detail search and returns just those properties 
  * needed by the UI. 
+ * 
+ * @function objectIsEmpty(objArray) - takes in an array of objects and returns true if any object is empty
  */
 
 (function(){
-'use strict';
+  'use strict';
 
-angular.module('app').factory('helperService', function() {
+angular
+  .module('app')
+  .factory('helperService', helperService);
+
+function helperService() {
 
   function formatTags(results) {
-   
+  
     // if results is an object, put into an array
     const resultsArray = Array.isArray(results) ? results : [results];
 
@@ -116,15 +122,26 @@ angular.module('app').factory('helperService', function() {
       'formatted_address', 'id', 'name', 'opening_hours', 'photohref', 'place_id', 'rating', 'types', 'url', 'vicinity', 'website');
   }
 
+  function objectIsEmpty(objArray) {
+    let empty = false;
+    objArray.forEach(obj => {
+      if (Object.entries(obj).length === 0) {
+        empty = true;
+      }
+    });
+    return empty;
+  }
+
   return { 
     formatTags, 
     createStarRating, 
     formatHours, 
     sortAZ, 
     filterGeocodeResult,
-    editResult
+    editResult, 
+    objectIsEmpty
   };
 
-});
+};
 
 }());

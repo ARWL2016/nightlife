@@ -4,9 +4,13 @@
  */
 
 (function(){
-'use strict';
+  'use strict';
 
-angular.module('app').factory('localStorageService', function() {
+angular
+  .module('app')
+  .factory('localStorageService', localStorageService);
+  
+function localStorageService() {
 
   function saveLocation(location) {
     console.log({location});
@@ -48,6 +52,6 @@ angular.module('app').factory('localStorageService', function() {
 
   return { saveLocation, getLocation, saveUser, getUser };
 
-});
+};
 
 }());

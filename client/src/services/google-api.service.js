@@ -13,57 +13,62 @@
 (function(){
 'use strict';
 
-angular.module('app')
-  .factory('googleApiService', function ($http) {
+angular
+  .module('app')
+  .factory('googleApiService', googleApiService);
 
-    function textSearch({query, type, location}) {
-      return $http.get(`/api/data/info?q=${query}&type=${type}&location=${location}`)
-        .then(res => {
-          if (res.status === 200) {
-            return res.data.results;
-          } else {
-            return Promise.reject();
-          }
-        });
-    }
+googleApiService.$inject = ['$http'];
+  
+function googleApiService($http) {
 
-    function getDetails(placeid, photoref) {
-      return $http.get(`/api/data/details?placeid=${placeid}&photoref=${photoref}`)
-        .then(resp => {
-          if (resp.status === 200) {
-            console.log({resp});
-            return resp.data.result;
-          } else {
-            return Promise.reject('no data');
-          }
-        });
-    }
+  function textSearch({query, type, location}) {
+    return $http.get(`/api/data/info?q=${query}&type=${type}&location=${location}`)
+      .then(res => {
+        if (res.status === 200) {
+          return res.data.results;
+        } else {
+          return Promise.reject();
+        }
+      });
+  }
 
-    function getLocation(location) {
-      const url = `/api/data/location?address=${location}`
-      return $http.get(url)
-        .then(resp => {
-          // console.log({resp});
-          return resp.data.results;
-        })
-        .catch(e => console.log(e));
-    }
+  function getDetails(placeid, photoref) {
+    return $http.get(`/api/data/details?placeid=${placeid}&photoref=${photoref}`)
+      .then(resp => {
+        if (resp.status === 200) {
+          console.log({resp});
+          return resp.data.result;
+        } else {
+          return Promise.reject('no data');
+        }
+      });
+  }
 
-    // not currently in use
-    function getPhoto(photoref) {
-      return $http.get(`/api/data/photo?photoref=${photoref}`)
-        .then(resp => {
-          if (resp.status === 200) {
-            console.log(resp);
-            return Promise.resolve(resp.data.result);
-          } else {
-            return Promise.reject();
-          }
-        }).catch(err => console.log({ err }));
-    }
+  function getLocation(location) {
+    const url = `/api/data/location?address=${location}`
+    return $http.get(url)
+      .then(resp => {
+        // console.log({resp});
+        return resp.data.results;
+      })
+      .catch(e => console.log(e));
+  }
 
-    return { textSearch, getDetails, getPhoto, getLocation };
+  // not currently in use
+  function getPhoto(photoref) {
+    return $http.get(`/api/data/photo?photoref=${photoref}`)
+      .then(resp => {
+        if (resp.status === 200) {
+          console.log(resp);
+          return Promise.resolve(resp.data.result);
+        } else {
+          return Promise.reject();
+        }
+      }).catch(err => console.log({ err }));
+  }
 
-  });
+  return { textSearch, getDetails, getPhoto, getLocation };
+
+};
 
 }());

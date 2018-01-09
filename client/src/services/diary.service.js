@@ -1,20 +1,36 @@
 (function(){
-'use strict;'
+  'use strict;'
 
-angular.module('app').factory('diaryService', function($http) {
+angular
+  .module('app')
+  .factory('diaryService', diaryService);
+
+diaryService.$inject = ['$http', 'helperService'];
+
+function diaryService($http, helperSvc) {
+
+  return { addToDiary, getEvents, deleteEvent };
 
   function addToDiary(user, location, datetime) {
-    const data = JSON.stringify({user, location, datetime});
+    if (helperSvc.objectIsEmpty([user, location, datetime])) {
+      return Promise.reject('Could not add to diary. Data incomplete.');
+    }
 
+    const data = JSON.stringify({user, location, datetime});
     const url = '/api/diary/add';
     const config = { headers : {'Content-Type': 'application/json'}};
 
     console.log({url, data});
     return $http.post(url, data, config)
       .then(resp => {
+        // TODO: validate response
         console.log(resp);
+        return resp;
       })
-      .catch(e => console.log(e));
+      .catch(e => {
+        console.log(e); 
+        return e;
+      });
   }
 
   function getEvents(displayName, token) {
@@ -38,12 +54,9 @@ angular.module('app').factory('diaryService', function($http) {
         console.log(resp);
       })
       .catch(e => console.log(e));
-
   }
   
 
-  
-  return { addToDiary, getEvents, deleteEvent };
-});
+}
 
 }());

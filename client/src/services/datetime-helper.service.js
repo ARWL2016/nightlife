@@ -1,7 +1,11 @@
 (function(){
-'use strict;'
+  'use strict';
 
-angular.module('app').factory('datetimeHelperService', function() {
+angular
+  .module('app')
+  .factory('datetimeHelperService', datetimeHelperService);
+
+function datetimeHelperService() {
 
   const week = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const months = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
@@ -54,6 +58,6 @@ angular.module('app').factory('datetimeHelperService', function() {
   
   return { getNextWeek, getHours, getTodaysDate, getDatetime };
   
-});
+};
 
 }());

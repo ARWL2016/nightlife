@@ -6,7 +6,7 @@
 */
 
 (function(){
-'use strict';
+  'use strict';
 
 let cities = require('./uk-cities.json');
 
