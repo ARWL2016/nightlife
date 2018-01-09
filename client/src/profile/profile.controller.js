@@ -91,7 +91,7 @@ function ProfileController(
       .then(data => {
         vm.events = data;
       })
-      .catch(err => console.log(err));
+      .catch(e => console.log(e));
   }
 
   function deleteEvent(event) {

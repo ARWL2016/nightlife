@@ -6,12 +6,15 @@
   "repository": "",
   "license": "MIT",
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "scripts": {
     "postinstall": "bower install",
     "start": "SET \"NODE_ENV=development\" && node server.js",
-    "dev": "SET \"NODE_ENV=development\" && nodemon server.js",
+    "server": "SET \"NODE_ENV=development\" && nodemon server.js",
+    "dev": "concurrently \"npm run server\" \"npm run build:watch\" ",
     "build": "babel client/src --out-dir client/dist --copy-files",
     "build:watch": "babel client/src --out-dir client/dist --copy-files -w",
     "test": "karma start karma.conf.js",
@@ -41,6 +44,7 @@
     "babel-preset-env": "1.6.1",
     "babel-preset-es2015": "6.24.1",
     "bower": "^1.7.7",
+    "concurrently": "3.5.1",
     "http-server": "^0.9.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",

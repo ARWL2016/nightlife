@@ -1,6 +1,6 @@
 /**
  * The detailCtrl controls the template which displays 
- * information about individual search results.
+ * information about single search results.
  * This page is linked to dynamically from the search 
  * results and makes an API call  to getDetails on initialization.
  * 
@@ -9,6 +9,7 @@
  * @prop vm.hour - the hour string selected by the user in the diary widget 
  * @prop vm.hours - an array of hours, e.g. ['1.00', '2.00' ...]
  * @prop placeid - unique googleapi id associated with a location 
+ * @prop 
  * 
  * @function getDetails - runs automatically when template is linked to from search results; this makes two 
  * calls to the googleAPI: see server/api/get-details and server/api/getphoto
@@ -30,33 +31,34 @@
   function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, helperSvc, localStorageSvc ) {
     var vm = this;
 
+    // diary widget props
     vm.added = false;
+    vm.hour = '1.00';
+    vm.hours = datetimeSvc.getHours;
     vm.amPm = 'PM';
     vm.date = 'today';
-    vm.dates;
+    vm.dates = datetimeSvc.getNextWeek;
+
+    // UI
     vm.diaryBtnLabel = 'ADD TO DIARY';
     vm.diarySpinner = false;
-    vm.hour = '1.00';
-    vm.hours;
+
+    // data
     vm.placeid = $routeParams.placeid || null;
     vm.photoref = $routeParams.photoref || null;
     vm.result;
     vm.starRating = {int: [], dec: []};
-    vm.user;
+    vm.user = localStorageSvc.getUser();
 
-    vm.addToDiary = addToDiary;
-    
-    (function init() {
+    function initialize() {
       console.log(vm.placeid, vm.photoref);
-      vm.dates = datetimeSvc.getNextWeek();
-      vm.hours = datetimeSvc.getHours();
-      vm.user = localStorageSvc.getUser();
+      console.log(vm.user);
+
+      // vm.user = localStorageSvc.getUser();
       if (vm.placeid && vm.photoref) {
         getDetails(vm.placeid, vm.photoref);
       }
-    })()
-
-    // Implementation
+    }
 
     function getDetails(placeid, photoref) {
       googleApiSvc
@@ -68,7 +70,7 @@
         .catch(err => console.log({ err }));  
     }
 
-    function addToDiary() {
+    vm.addToDiary = () => {
       const datetime = datetimeSvc.getDatetime(vm.date, vm.hour, vm.amPm);
       const location = helperSvc.editResult(vm.result);
 
@@ -86,6 +88,8 @@
           })
       }
     }
+
+    initialize();
   }
 
 }());
