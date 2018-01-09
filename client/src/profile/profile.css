@@ -12,7 +12,7 @@
 
 .profile-page-content p {
   font-size: 1.1em; 
-  margin: 10px 0 10px 0;
+  margin: 10px 0 20px 0;
 }
 
 /* PROFILE PAGE TABLE */
@@ -96,6 +96,12 @@
 
 .location-search-result:last-child {
   border: 0;
+}
+
+.location-search-result i {
+  color: green; 
+  padding: 0 10px;
+  
 }
 
 /* EVENTS */

@@ -24,7 +24,7 @@
           <div class="bounce2"></div>
           <div class="bounce3"></div>
         </div>
-      <button ng-click="vm.addToDiary()" ng-disabled="vm.added">{{vm.diaryBtnLabel}}</button>
+      <button ng-click="vm.addToDiary()" ng-disabled="vm.added">{{ vm.diaryBtnLabel | uppercase }}</button>
     </form>
   </div>
   <div>{{ vm.error }}</div>

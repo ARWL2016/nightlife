@@ -4,7 +4,12 @@
 - https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md 
 
 #### Code Cleanup  
-6. add docs 
+- add docs 
+- make controller syntax consistent
+
+#### Bugs: 
+- hours not always displaying
+- all events deleting at once
 
 #### Google Places API
 
@@ -36,8 +41,7 @@ To do :
 - add spinner to details page
 - move logout link to profile
 
-Bugs: 
-- hours not always displaying
+
 
 Important 
 - fb OAuth does not apparently return a consistent id, so: 

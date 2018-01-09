@@ -1,6 +1,7 @@
 <div class="profile-page-wrapper">
   <div class="profile-page-content">
     <h1>Profile</h1>
+    <p>Set your location with the search box below. Login to add events to your diary.</p>
     <table class="profile-table">
       <tr>
         <td class="profile-table-icon-cell">
@@ -42,13 +43,15 @@
     <div ng-show="vm.showSpinner" class="spinner spinner-profile"></div>
     <div ng-show="vm.results" class="location-search-results-wrapper">
       <p ng-repeat="result in vm.results" ng-click="vm.selectLocation(result)" class="location-search-result">
-        {{result.formatted_address}}
+        <i class="fa fa-plus-square" aria-hidden="true"></i> {{result.formatted_address}}
       </p>
     </div>
 
     <!-- diary events  -->
     <div class="events-wrapper">
       <h1>Diary Events</h1>
+      <p ng-if="vm.displayName && vm.events.length < 1">You haven't added any events yet!</p>
+      <p ng-if="!vm.displayName">not logged in.</p>
       <table class="events-table">
         <tr ng-repeat="event in vm.events">
           <td><b>{{event.place_name}}</b></td>

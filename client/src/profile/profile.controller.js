@@ -90,6 +90,7 @@ function ProfileController(
     diarySvc.getEvents(vm.displayName, vm.token)
       .then(data => {
         vm.events = data;
+        console.log(vm.events);
       })
       .catch(e => console.log(e));
   }
