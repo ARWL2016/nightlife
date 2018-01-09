@@ -48,13 +48,13 @@
     vm.photoref = $routeParams.photoref || null;
     vm.result;
     vm.starRating = {int: [], dec: []};
-    vm.user = localStorageSvc.getUser();
+    vm.user;
 
     function initialize() {
       console.log(vm.placeid, vm.photoref);
       console.log(vm.user);
 
-      // vm.user = localStorageSvc.getUser();
+      vm.user = localStorageSvc.getUser();
       if (vm.placeid && vm.photoref) {
         getDetails(vm.placeid, vm.photoref);
       }
