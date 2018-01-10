@@ -3,95 +3,83 @@
   <div class="search-section-wrapper">
     <section class="search-section-content">
       <h1 class="search-heading">Pathfinder</h1>
-      <form name = "searchForm" novalidate>
+
+      
         <p ng-show="!vm.location" class="location-setter">Before searching, set your <a href="#!/profile">location</a>.</p>
         <p ng-show="vm.location" class="location-setter">Searching in {{ vm.location.formatted_address}}. <a href="#!/profile">Change location</a>.</p>
-        <div class="input-wrapper">
-          <span>Type</span>
-          <span>Query</span>
-          <input 
-            type="text" 
-            name="type" 
-            ng-model="vm.search.type" 
-            class="search-input type-input" 
-            placeholder="e.g. restaurant"
-            ng-keyup="vm.autocompleteType()"
+        
+        <form name="searchForm" class="search-form" novalidate>
+        
+          <div class="input-wrapper">  
+            <label for="category">Category</label>
             
-            autocomplete="off" 
-            required>
-          <div class="type-complete-wrapper" ng-if="vm.typeMatches.length > 0 && vm.showTypeComplete">
-            <p ng-repeat="match in vm.typeMatches | limitTo:10" ng-click="vm.selectAutocomplete($event)" class="type-complete-item">{{match}}</p>
+            <input 
+              type="text" 
+              id="category"
+              name="category" 
+              ng-model="vm.search.category" 
+              class="category-input" 
+              placeholder="e.g. restaurant"
+              ng-keyup="vm.autocompleteCategory()"
+              
+              autocomplete="off" 
+              required>
+            <div class="category-dropdown" ng-if="vm.showCategoryDropdown">
+              <p ng-repeat="match in vm.categoryMatches | limitTo:10" ng-click="vm.selectAutocomplete($event)">{{match}}</p>
+            </div>
           </div>
-          <input 
-            type="text" 
-            name="query" 
-            placeholder="e.g. fish"
-            ng-model="vm.search.query" 
-            class="search-input query-input"
-            >
+
+ 
+
+          <div class="input-wrapper">  
+            <label for="query">Query</label>
+            <input
+              id="query" 
+              type="text" 
+              name="query" 
+              placeholder="e.g. fish"
+              ng-model="vm.search.query" 
+              class="query-input">
+          </div>
+
           <button 
             type="submit" 
             value="Search" 
             ng-click="vm.submitQuery()" 
-            class="search-button"
             ng-disabled="searchForm.$invalid">
-            <i class="fa fa-search" aria-hidden="true"></i>
+            <i class="fa fa-search" aria-hidden="true"></i> SEARCH
           </button>
-          <ul class="options-row">
-            <li><i class="fa fa-cutlery" aria-hidden="true"></i>Restaurants</li>
-            <li><i class="fa fa-glass" aria-hidden="true"></i>Nightlife</li>
-            <li><i class="fa fa-shopping-basket" aria-hidden="true"></i>Shopping</li>
-            <li><i class="fa fa-medkit" aria-hidden="true"></i>Health</li>
-          </ul>
+
           <div class="search-error-wrapper">
-            <!-- <p class="error type-error" ng-show="searchForm.type.$invalid && !searchForm.type.$pristine">enter the establishment type to search</p> -->
-            <p class="error type-error" ng-show="!vm.validEstablishmentType">invalid type</p>
-            <!-- <p class="error location-error" ng-show="searchForm.query.$invalid && !searchForm.query.$pristine">enter the location to search</p> -->
+            <p class="error category-error" ng-show="!vm.validEstablishmentCategory">invalid Category</p>
         </div>
-        </div>
+        
       </form>
+
+      <ul class="options-row">
+        <li><i class="fa fa-cutlery" aria-hidden="true"></i>Restaurants</li>
+        <li><i class="fa fa-glass" aria-hidden="true"></i>Nightlife</li>
+        <li><i class="fa fa-shopping-basket" aria-hidden="true"></i>Shopping</li>
+        <li><i class="fa fa-medkit" aria-hidden="true"></i>Health</li>
+      </ul>
       <!-- loader -->
       <div ng-show="vm.showSpinner" class="spinner"></div>
 
+      
+
     </section>
+    
   </div> 
 
-  <!-- end of search section -->
+  <!-- Validation -->
+  <!-- <p>Valid? {{ searchForm.category | json }}</p> -->
 
-  <search-results></search-results>
 
-  <div class="results-section-wrapper">
-    <div ng-show="vm.results && vm.results.length > 2" class="results-filter-panel">
-      <button type="button" ng-click="vm.sortByRating()" class="sortby-input">
-        <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Sort By Rating
-      </button>
-      <button type="button" ng-click="vm.sortAZ()" class="sortby-input">
-        <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i> Sort A-Z
-      </button>
-    </div>  
-    <section class="results-section-content">  
-      <div 
-        class="result-card"
-        ng-repeat="result in vm.results | limitTo:vm.limit" 
-        ng-click="vm.openDetailPage(result.place_id, result.photos[0].photo_reference)" > 
-          <h2>{{ result.name }}</h2>
-          <p class="card-address">{{ result.formatted_address }}</p>
-          <p class="card-tags">{{result.types}}</span></p>
-          <p class="card rating">Customer Rating: <b>{{ result.rating }}</b></p>
-      </div>
-    </section>  
-  </div>
 
-  <!-- end of results section -->
+  <search-results results="vm.results"></search-results>
 
-      <!-- modal -->
-      <!-- <div class="modal" ng-show="vm.showModal">
-          <div class="modal-content" ng-show="vm.showModal">
-            <h2 class="modal-heading">Modal</h2>
-          </div>
-        </div>   -->
-        <!-- end of modal -->
-  
+ 
+
 
 </div>
 

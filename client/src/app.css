@@ -1,5 +1,6 @@
 /* app css stylesheet */
 @import './search/search.css';
+@import './search/results.css';
 @import './detail/detail.css';
 @import './profile/profile.css'; 
 @import './login/login.css';

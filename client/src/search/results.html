@@ -1,1 +1,21 @@
-<h3>RESULTS</h3>
+<div class="results-section-wrapper">
+  <div ng-show="vm.results && vm.results.length > 2" class="results-filter-panel">
+    <button type="button" ng-click="vm.sortByRating()" class="sortby-input">
+      <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Sort By Rating
+    </button>
+    <button type="button" ng-click="vm.sortAZ()" class="sortby-input">
+      <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i> Sort A-Z
+    </button>
+  </div>  
+  <section class="results-section-content">  
+    <div 
+      class="result-card"
+      ng-repeat="result in vm.results | limitTo:20" 
+      ng-click="vm.routeToDetailPage(result.place_id, result.photos[0].photo_reference)" > 
+        <h2>{{ result.name }}</h2>
+        <p class="card-address">{{ result.formatted_address }}</p>
+        <p class="card-tags">{{result.types}}</span></p>
+        <p class="card rating">Customer Rating: <b>{{ result.rating }}</b></p>
+    </div>
+  </section>  
+</div>

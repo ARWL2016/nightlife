@@ -1,11 +1,11 @@
 /**
  * This is the controller for the main search page, which 
  * displays two search inputs and the results of the user query.
- * There are functions for autocompleting the type input, submitting 
+ * There are functions for autocompleting the category input, submitting 
  * the query, and sorting the results by rating and A-Z.
  * 20 results are displayed - this is the max no. returned by the API.
  * 
- * @property search.type refers to a type of establishment (restaurant, station etc)
+ * @property search.category refers to a category of establishment (restaurant, station etc)
  * @property search.query - a location query such as a city or street
  * @property limit - can filter the search results (useful on mobile?)
  */
@@ -18,85 +18,60 @@ angular.module('app').controller('SearchController', [
   'googleApiService', 
   'helperService', 
   'localStorageService',
-  'typeService',
+  'categoryService',
   SearchController
 ]);
 
-function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, typeSvc) {
+function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, categorySvc) {
 
   var vm = this;
 
-  vm.limit = 20; 
   vm.location = {formatted_address: '', coords: {}};
-  vm.result;
   vm.results;
-  vm.search = {type: '', query: '', location: ''};
+  vm.search = {category: '', query: '', location: ''};
   vm.showSpinner = false;
-  vm.showTypeComplete = false; 
-  vm.typeMatches = [];
-  vm.validEstablishmentType = true;
+  vm.showCategoryDropdown = true; 
+  vm.categoryMatches = [];
 
-  vm.autocompleteType = autocompleteType;
-  // vm.closeAutocomplete = closeAutocomplete;
-  vm.openDetailPage = openDetailPage;
+  // custom validator - category must match one from list
+  vm.validEstablishmentCategory = true;
+
+  vm.autocompleteCategory = autocompleteCategory;
   vm.selectAutocomplete = selectAutocomplete;
-  vm.sortAZ = sortAZ;
-  vm.sortByRating = sortByRating;
   vm.submitQuery = submitQuery; 
 
   function init() {
     console.log('init...');
     vm.location = localStorageSvc.getLocation() || null;
-    // console.log(vm.location);
     if (vm.location) {
       vm.search.location = `${vm.location.coords.lat},${vm.location.coords.lng}`;
-      // console.log(vm.search);
-    }
-    
-  }
-
-  function sortByRating()  {
-    vm.results = vm.results.sort((a, b) => {
-      return b.rating - a.rating;
-    })
-  };
-
-  function sortAZ() {
-    vm.results = helperSvc.sortAZ(vm.results);
-  }
-
-  function autocompleteType() {
-    vm.validEstablishmentType = true;
-    
-    if (vm.search.type && vm.search.type.length > 0) {
-      vm.showTypeComplete = true;
-      vm.typeMatches = typeSvc.matchTypes(vm.search.type);
-      // console.log(vm.typeMatches);
     }
   }
 
+  function autocompleteCategory() {
+    vm.validEstablishmentCategory = true;
+    
+    if (vm.search.category && vm.search.category.length > 0) {
+      vm.showCategoryDropdown = true;
+      vm.categoryMatches = categorySvc.matchCategories(vm.search.category);
+    }
+  }
+
+  // when the user selects a category from the dropdown - delete the list
   function selectAutocomplete(e) {
-    vm.search.type = e.target.innerText;
-    vm.typeMatches = [];
-    console.log(vm.search);
+    vm.search.category = e.target.innerText;
+    vm.categoryMatches = [];
   }
-
-  // function closeAutocomplete(){
-  //   vm.showTypeComplete = false;
-  // }
 
   function submitQuery() {
-    console.log(vm.search);
-    if (!typeSvc.matchOneType(vm.search.type)) {
-      vm.validEstablishmentType = false;
+    if (!categorySvc.matchOneCategory(vm.search.category)) {
+      vm.validEstablishmentCategory = false;
       return;
     }
     vm.showSpinner = true;
     googleApiSvc
       .textSearch(vm.search)
       .then(results => {
-        console.log({results});
-
         vm.results = helperSvc.formatTags(results);
         vm.showSpinner = false;
       })
@@ -106,11 +81,6 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, t
       });
   };
 
-  function openDetailPage(placeid, photoref) {
-    console.log({ placeid, photoref });
-    $location.path(`/detail/${placeid}/${photoref}`); 
-  }
-
   init();
 
 }
@@ -118,3 +88,5 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, t
 
 
 }());
+
+// vm.categoryMatches.length > 0 && 
