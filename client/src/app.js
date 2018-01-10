@@ -40,7 +40,7 @@
         controller: 'DetailController', 
         controllerAs: 'vm'
       })
-      .otherwise({redirectTo: '/detail'});
+      .otherwise({redirectTo: '/search'});
   }]);
 
 }());
