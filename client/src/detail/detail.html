@@ -1,6 +1,7 @@
 <div class="detail-page-wrapper">
-  <diary date="vm.date"></diary>
-  <div class="diary-widget" ng-show="vm.user.displayName">
+  
+  <diary ng-show="vm.user.displayName"></diary>
+  <!-- <div class="diary-widget" ng-show="vm.user.displayName">
     <form>
 
       <select name="date" ng-model="vm.date"> 
@@ -27,7 +28,7 @@
       <button ng-click="vm.addToDiary()" ng-disabled="vm.added">{{ vm.diaryBtnLabel | uppercase }}</button>
     </form>
   </div>
-  <div>{{ vm.error }}</div>
+  <div>{{ vm.error }}</div> -->
 
   <!-- end of diary widget -->
 

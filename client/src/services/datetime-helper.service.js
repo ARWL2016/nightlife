@@ -1,3 +1,9 @@
+/**
+ *  Set of datetime helpers. 
+ * 
+ *  @function injectCurrentDate - replaces 'today' with current date on datetime object
+ */
+
 (function(){
   'use strict';
 
@@ -44,19 +50,14 @@ function datetimeHelperService() {
     return hours;
   }
 
-  function getDatetime(dateInput, hour, amPm) {
-    if (dateInput && hour && amPm) {
-      let date = '';
-      if (dateInput = 'today') {
-        date = getTodaysDate();
+  function injectCurrentDate(datetime) {
+      if (datetime.date = 'today') {
+        datetime.date = getTodaysDate();
       }
-      return ({date, hour, amPm});
-    } else {
-      return null;
-    }
+      return datetime;
   }
   
-  return { getNextWeek, getHours, getTodaysDate, getDatetime };
+  return { getNextWeek, getHours, getTodaysDate, injectCurrentDate };
   
 };
 
