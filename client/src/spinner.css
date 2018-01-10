@@ -1,10 +1,7 @@
 .spinner {
   width: 40px;
   height: 40px;
-  margin: auto;
-  margin-top: 120px;
-  margin-bottom: 0px;
-  /* background-color: #333; */
+  margin: 20px auto;
   background-color: #4267b2;
 
   border-radius: 100%;  

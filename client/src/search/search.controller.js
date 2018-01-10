@@ -29,8 +29,8 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
   vm.location = {formatted_address: '', coords: {}};
   vm.results;
   vm.search = {category: '', query: '', location: ''};
-  vm.showSpinner = false;
-  vm.showCategoryDropdown = true; 
+  vm.showSpinner = true;
+  vm.showCategoryDropdown = false; 
   vm.categoryMatches = [];
 
   // custom validator - category must match one from list
