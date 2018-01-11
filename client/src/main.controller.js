@@ -15,7 +15,7 @@
     (function init() {
       vm.location = localStorageSvc.getLocation();
       vm.user = localStorageSvc.getUser(); 
-
+      console.log(vm.user);
       if (vm.user && vm.user.displayName) {
         vm.loggedIn = true;
       } 

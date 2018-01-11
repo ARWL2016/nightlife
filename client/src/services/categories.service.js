@@ -26,11 +26,12 @@ function categoryService() {
     });
   }
 
-  function matchOneCategory(categoryQuery) {
+  function isCategoryValid(categoryQuery) {
+  
     return categories.indexOf(categoryQuery.toLowerCase()) > -1; 
   }
 
-  return {matchCategories, matchOneCategory};
+  return {matchCategories, isCategoryValid};
 };
 
 }());

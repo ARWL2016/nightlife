@@ -37,15 +37,13 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
 
   // UI props
   vm.showSpinner = false;
-  vm.showCategoryDropdown = false; 
+  vm.showDropdown = false; 
   vm.categoryMatches = [];
-
-  // custom validator - category must match one from list
-  vm.validEstablishmentCategory = true;
+  vm.message;
 
   // public methods
-  vm.autocompleteCategory = autocompleteCategory;
-  vm.selectAutocomplete = selectAutocomplete;
+  vm.populateAutocomplete = populateAutocomplete;
+  vm.selectFromAutocomplete = selectFromAutocomplete;
   vm.submitQuery = submitQuery; 
 
   function init() {
@@ -65,38 +63,45 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
 
   }
 
-  function autocompleteCategory() {
-    vm.validEstablishmentCategory = true;
-    
+  function populateAutocomplete() {
+    console.log(vm.search.category);
+    vm.message = '';
     if (vm.search.category && vm.search.category.length > 0) {
-      vm.showCategoryDropdown = true;
+      vm.showDropdown = true;
       vm.categoryMatches = categorySvc.matchCategories(vm.search.category);
     }
   }
 
-  // when the user selects a category from the dropdown - delete the list
-  function selectAutocomplete(e) {
+  // set category and hide autocomplete
+  function selectFromAutocomplete(e) {
+    vm.message = '';
     vm.search.category = e.target.innerText;
     vm.categoryMatches = [];
   }
 
   function submitQuery() {
-    if (!categorySvc.matchOneCategory(vm.search.category)) {
-      vm.validEstablishmentCategory = false;
-      return;
+    if (!categorySvc.isCategoryValid(vm.search.category)) {
+      return vm.message = 'Invalid category. Please choose one from the list.'
     }
     console.log(vm.search);
     vm.showSpinner = true;
     googleApiSvc
       .textSearch(vm.search)
       .then(results => {
-        vm.results = helperSvc.formatTags(results);
-        vm.showSpinner = false;
+        if (results.length) {
+          vm.results = helperSvc.formatTags(results);
+          // vm.showSpinner = false;
+        } else {
+          vm.message = 'Your search returned no results.'
+        }
       })
       .catch(err => {
-        vm.error = 'No results'; 
+        vm.message = 'Oops! Something went wrong...'; 
+        
+      })
+      .finally(() => {
         vm.showSpinner = false;
-      });
+      })
   };
 
   init();

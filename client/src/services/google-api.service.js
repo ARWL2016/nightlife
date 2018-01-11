@@ -27,7 +27,9 @@ function googleApiService($http, localStorageSvc) {
       .then(res => {
         if (res.status === 200) {
           const {results} = res.data;
-          localStorageSvc.saveResults(results, {category, query});
+          if (results.length > 0) {
+            localStorageSvc.saveResults(results, {category, query});
+          }
           return results;
         } else {
           return Promise.reject();

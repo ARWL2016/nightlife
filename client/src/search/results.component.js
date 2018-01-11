@@ -16,7 +16,8 @@ angular
     controllerAs: 'vm', 
     controller: SearchResultsController, 
     bindings: {
-      results: '<'
+      results: '<', 
+      message: '<'
     }
   }); 
 
