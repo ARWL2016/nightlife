@@ -24,6 +24,7 @@
     
     $rootScope.$on('rootScope:changeLocation', function (event, data) {
       vm.location = data;
+      localStorageSvc.clearCachedResults();
     });
 
     $rootScope.$on('rootScope:verifyLogin', function (event, data) {

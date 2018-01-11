@@ -17,15 +17,18 @@ angular
   .module('app')
   .factory('googleApiService', googleApiService);
 
-googleApiService.$inject = ['$http'];
+googleApiService.$inject = ['$http', 'localStorageService'];
   
-function googleApiService($http) {
+function googleApiService($http, localStorageSvc) {
 
-  function textSearch({query, type, location}) {
-    return $http.get(`/api/data/info?q=${query}&type=${type}&location=${location}`)
+  function textSearch({category, query, coords}) {
+
+    return $http.get(`/api/data/info?q=${query}&type=${category}&location=${coords}`)
       .then(res => {
         if (res.status === 200) {
-          return res.data.results;
+          const {results} = res.data;
+          localStorageSvc.saveResults(results, {category, query});
+          return results;
         } else {
           return Promise.reject();
         }

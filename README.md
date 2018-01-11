@@ -1,5 +1,19 @@
 ### Pathfinder App 
 
+Caching 
+User stories: 
+- when the user navigates back to the search page, the previous search will be available
+- on app start up, the cache will be clear
+- when the user changes location, the cache will be cleared
+
+How?
+- create cache service with post, get, delete methods V
+- cache will store results + query (location not needed)  V
+- on the controller init, check for the cache and render the results and populate the inputs V
+- when the textsearch returns, the results will be cached with the query
+
+
+
 #### Useful links: 
 - https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md 
 
@@ -8,8 +22,11 @@
 - make controller syntax consistent
 
 #### Bugs: 
+- logout does not clear localstorage
 - hours not always displaying
 - all events deleting at once
+- local storage set item should be wrapped in try / catch
+- results categories weirdly formatted
 
 #### Google Places API
 

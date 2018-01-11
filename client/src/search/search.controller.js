@@ -26,26 +26,43 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
 
   var vm = this;
 
-  vm.location = {formatted_address: '', coords: {}};
+  // data props
+  vm.location = localStorageSvc.getLocation();
+  vm.search = {
+    category: '', 
+    query: '', 
+    coords: ''
+  };
   vm.results;
-  vm.search = {category: '', query: '', location: ''};
-  vm.showSpinner = true;
+
+  // UI props
+  vm.showSpinner = false;
   vm.showCategoryDropdown = false; 
   vm.categoryMatches = [];
 
   // custom validator - category must match one from list
   vm.validEstablishmentCategory = true;
 
+  // public methods
   vm.autocompleteCategory = autocompleteCategory;
   vm.selectAutocomplete = selectAutocomplete;
   vm.submitQuery = submitQuery; 
 
   function init() {
-    console.log('init...');
-    vm.location = localStorageSvc.getLocation() || null;
-    if (vm.location) {
-      vm.search.location = `${vm.location.coords.lat},${vm.location.coords.lng}`;
+    // get any cached results
+    const cache = localStorageSvc.getCachedResults();
+    console.log(cache);
+    if (cache) {
+      vm.results = cache.results;
+      vm.search.category = cache.searchParams.category; 
+      vm.search.query = cache.searchParams.query; 
     }
+    
+    // add location to search query
+    if (vm.location) {
+      vm.search.coords = `${vm.location.coords.lat},${vm.location.coords.lng}`;
+    }
+
   }
 
   function autocompleteCategory() {
@@ -68,6 +85,7 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
       vm.validEstablishmentCategory = false;
       return;
     }
+    console.log(vm.search);
     vm.showSpinner = true;
     googleApiSvc
       .textSearch(vm.search)

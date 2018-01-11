@@ -89,8 +89,15 @@ form.search-form > div.input-wrapper:first-child {
   font-weight: bold;
   float: right;
   /* width: 40px; */
-
   border: none;
+}
+
+.search-form > button:hover {
+  cursor: pointer;
+}
+
+.search-form > button:disabled {
+  cursor: not-allowed;
 }
 
 .search-form > button > i {

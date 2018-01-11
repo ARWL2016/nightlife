@@ -43,4 +43,8 @@
       .otherwise({redirectTo: '/search'});
   }]);
 
+  app.run(['localStorageService', function(localStorageSvc) {
+    localStorageSvc.clearCachedResults();
+  }])
+
 }());

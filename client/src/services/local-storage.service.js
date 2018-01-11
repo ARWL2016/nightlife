@@ -3,6 +3,8 @@
  * @function saveLocation - save the user's selected location 
  */
 
+// NEEDS CODE REVIEW
+
 (function(){
   'use strict';
 
@@ -19,16 +21,8 @@ function localStorageService() {
   }
 
   function getLocation() {
-    const location = localStorage.getItem('location') || null;
-    console.log(location);
-    // if (location) {
-    //   console.log(JSON.parse(location));
-    //   return JSON.parse(location);
-    // } else {
-    //   return null;
-    // }
-    return JSON.parse(location) || null;
-    
+    const location = localStorage.getItem('location');
+    return JSON.parse(location);
   }
 
   function saveUser(displayName, token) {
@@ -47,10 +41,31 @@ function localStorageService() {
     // }
 
     return JSON.parse(user) || null;
-
   }
 
-  return { saveLocation, getLocation, saveUser, getUser };
+  function saveResults(results, searchParams) {
+    const packet = {results, searchParams};
+    localStorage.setItem('results', JSON.stringify(packet));
+  }
+
+  function getCachedResults() {
+    const cachedResults = localStorage.getItem('results');
+    return JSON.parse(cachedResults);
+  }
+
+  function clearCachedResults() {
+    localStorage.setItem('results', null);
+  }
+
+  return { 
+    saveLocation, 
+    getLocation, 
+    saveUser, 
+    getUser, 
+    saveResults,
+    getCachedResults,
+    clearCachedResults
+   };
 
 };
 

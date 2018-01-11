@@ -6,7 +6,9 @@
 
       
         <p ng-show="!vm.location" class="location-setter">Before searching, set your <a href="#!/profile">location</a>.</p>
-        <p ng-show="vm.location" class="location-setter">Searching in {{ vm.location.formatted_address}}. <a href="#!/profile">Change location</a>.</p>
+        <p ng-show="vm.location" class="location-setter">Searching in {{ vm.location.formatted_address}}. 
+          <a href="#!/profile">Change location</a>.
+        </p>
         
         <form name="searchForm" class="search-form" novalidate>
         
@@ -46,7 +48,7 @@
             type="submit" 
             value="Search" 
             ng-click="vm.submitQuery()" 
-            ng-disabled="searchForm.$invalid">
+            ng-disabled="searchForm.$invalid || !vm.location">
             <i class="fa fa-search" aria-hidden="true"></i> SEARCH
           </button>
 
