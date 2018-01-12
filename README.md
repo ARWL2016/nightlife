@@ -1,16 +1,9 @@
 ### Pathfinder App 
 
-Caching 
-User stories: 
-- when the user navigates back to the search page, the previous search will be available
-- on app start up, the cache will be clear
-- when the user changes location, the cache will be cleared
-
-How?
-- create cache service with post, get, delete methods V
-- cache will store results + query (location not needed)  V
-- on the controller init, check for the cache and render the results and populate the inputs V
-- when the textsearch returns, the results will be cached with the query
+Implement Error Handling Service 
+- create method to process errors, adding date, origin, reason 
+- persist to backend - create route and controller 
+- adjust for dev and production mode
 
 
 

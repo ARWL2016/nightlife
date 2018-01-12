@@ -2,9 +2,13 @@
 
 'use strict';
 
-  angular.module('app').controller('MainController', ['localStorageService', '$rootScope', MainController]);
+  angular
+    .module('app')
+    .controller('MainController', MainController);
 
-  function MainController(localStorageSvc, $rootScope) {
+  MainController.$inject = ['localStorageService', 'errorService', '$rootScope'];
+
+  function MainController(localStorageSvc, errorSvc, $rootScope) {
     const vm = this;
   
     vm.location;
@@ -13,9 +17,9 @@
     vm.logout = logout;
     
     (function init() {
+      errorSvc.logError('main.controller', 'test');
       vm.location = localStorageSvc.getLocation();
       vm.user = localStorageSvc.getUser(); 
-      console.log(vm.user);
       if (vm.user && vm.user.displayName) {
         vm.loggedIn = true;
       } 

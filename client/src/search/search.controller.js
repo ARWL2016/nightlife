@@ -49,7 +49,6 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
   function init() {
     // get any cached results
     const cache = localStorageSvc.getCachedResults();
-    console.log(cache);
     if (cache) {
       vm.results = cache.results;
       vm.search.category = cache.searchParams.category; 

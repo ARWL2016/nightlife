@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const UserSchema = require('./user.schema');
 const LocationSchema = require('./location.schema');
 const EventSchema = require('./event.schema');
+const ErrorSchema = require('./error.schema');
 const {logger} =  require('../config/logger');
 
 mongoose.Promise = global.Promise;
@@ -19,10 +20,12 @@ mongoose.connection.on('error', (err) => {
 const User = mongoose.model('user', UserSchema); 
 const Location = mongoose.model('location', LocationSchema); 
 const Event = mongoose.model('event', LocationSchema); 
+const Error = mongoose.model('error', ErrorSchema);
 
 module.exports = {
   mongoose, 
   User, 
   Location, 
-  Event
+  Event, 
+  Error
 }

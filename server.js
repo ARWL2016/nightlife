@@ -43,6 +43,8 @@ app.use(passport.session());
 require('./server/routes/auth')(app, passport);
 require('./server/routes/data')(app);
 require('./server/routes/diary')(app);
+require('./server/routes/error')(app);
+require('./server/routes/config')(app);
 
 app.listen(port, () => {
   logger.log('info', `SERVER PORT: ${port}`);

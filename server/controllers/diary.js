@@ -79,10 +79,7 @@ function deleteEvent(req, res) {
           console.log(e);
           res.sendStatus(500);
         }
-      })
-    
-
-    
+      }); 
 }
 
 

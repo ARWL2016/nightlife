@@ -1,6 +1,6 @@
 /**
- * when a controller is declared in the template with the ng-controller directive,
- * it DOES NOT need to be declared on the route too. This will run the digest cycle twice.
+ *  PURPOSE: declare routes and do app config
+ *  Nb: app.config bootstraps the app. Services are not available until app.run. 
  */
 
 (function(){ 
@@ -43,8 +43,17 @@
       .otherwise({redirectTo: '/search'});
   }]);
 
-  app.run(['localStorageService', function(localStorageSvc) {
+  app.run(['localStorageService', 'errorService', function(localStorageSvc, errorSvc) {
+    
+    errorSvc.getEnv()
+      .then(() => {
+        console.log(`Pathfinder app running in ${errorSvc.clientEnv} mode`);
+      });
+
     localStorageSvc.clearCachedResults();
+
+    
+    
   }])
 
 }());
