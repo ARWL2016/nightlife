@@ -1,9 +1,7 @@
 /**
- * This service sets and gets data to local storage in the browser
- * @function saveLocation - save the user's selected location 
+ *  PURPOSE: this service sets, gets and clears data in browser local storage
+ *  TODO: replace custom methods with generic methods
  */
-
-// NEEDS CODE REVIEW
 
 (function(){
   'use strict';
@@ -14,15 +12,24 @@ angular
   
 function localStorageService() {
 
-  function saveLocation(location) {
-    localStorage.setItem('location', JSON.stringify(location));
+  // generic methods
+  function cache(identifier, data) {
+    console.log(`Saving to cache with id ${identifier}`);
+    localStorage.setItem(identifier, JSON.stringify(data));
   }
 
-  function getLocation() {
-    const location = localStorage.getItem('location');
-    return JSON.parse(location);
+  function getFromCache(identifier) {
+    console.log(`Retrieving from cache with id ${identifier}`);
+    const cache = localStorage.getItem(identifier);
+    return JSON.parse(cache);
+  } 
+
+  function clearCache(identifier) {
+    console.log(`Clearing cache with id ${identifier}`);
+    localStorage.setItem(identifier, null);
   }
 
+  // custom methods
   function saveUser(displayName, token) {
     const packet = {displayName, token}; 
     localStorage.setItem('user', JSON.stringify(packet));
@@ -47,31 +54,15 @@ function localStorageService() {
     localStorage.setItem('results', null);
   }
 
-  function saveResult(result) {
-    console.log(result);
-    localStorage.setItem('result', JSON.stringify(result));
-  }
-
-  function getCachedResult() {
-    const cachedResult = localStorage.getItem('result');
-    return JSON.parse(cachedResult);
-  }
-
-  function clearCachedResult() {
-    localStorage.setItem('result', null);
-  }
-
-  return { 
-    saveLocation, 
-    getLocation, 
+  return {  
     saveUser, 
     getUser, 
     saveResults,
     getCachedResults,
     clearCachedResults,
-    saveResult, 
-    getCachedResult, 
-    clearCachedResult
+    cache, 
+    getFromCache, 
+    clearCache
    };
 
 };

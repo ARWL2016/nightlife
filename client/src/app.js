@@ -51,7 +51,7 @@
       });
 
     localStorageSvc.clearCachedResults();
-    localStorageSvc.clearCachedResult();
+    localStorageSvc.clearCache('result');
 
     
     

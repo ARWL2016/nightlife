@@ -27,7 +27,7 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
   var vm = this;
 
   // data props
-  vm.location = localStorageSvc.getLocation();
+  vm.location = localStorageSvc.getFromCache('location');
   vm.search = {
     category: '', 
     query: '', 
@@ -61,7 +61,7 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
     }
 
     // clear result from detail page before user can route there
-    localStorageSvc.clearCachedResult();
+    localStorageSvc.clearCache('result');
 
   }
 

@@ -61,7 +61,7 @@ function ProfileController(
         getEvents();
       }
     }
-    vm.location = localStorageSvc.getLocation();
+    vm.location = localStorageSvc.getFromCache('location');
   }
 
   function searchLocation() {
@@ -81,7 +81,8 @@ function ProfileController(
     vm.result = result;
     vm.location = helperSvc.filterGeocodeResult(vm.result);
     $rootScope.$emit('rootScope:changeLocation', vm.location);
-    localStorageSvc.saveLocation(vm.location);
+    // localStorageSvc.saveLocation(vm.location);
+    localStorageSvc.cache('location', vm.location);
     vm.query = undefined;
     vm.results = undefined;
   }

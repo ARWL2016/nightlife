@@ -1,11 +1,8 @@
 /**
  * This controller displays information about a single search result.
- * This page is routed from the search page and makes an API call to getDetails on init.
- * This page contains a child component - diary - for adding events.
- * 
- * @prop placeid - unique googleapis id associated with a location 
- * @function getDetails - this makes two calls to the googleAPI: see server/api/get-details and server/api/getphoto
- * 
+ * This page is routed from the search page and make API calls to getDetails on init.
+ * The result is cached. This cache will load unless the page is routed to from the search page (where the cache is cleared)
+ * This page renders a child component - <diary> - for adding events, if the user is logged in.
  */
 
 (function(){
@@ -29,7 +26,11 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
   vm.user = localStorageSvc.getUser();
 
   // computed values
-  vm.starRating = {int: [], dec: []};
+  vm.starRating = () => {
+    if (vm.result) {
+      return helperSvc.createStarRating(vm.result.rating);
+    }
+  }
   vm.parsedWebsiteUrl = () => {
     if (vm.result) {
       return helperSvc.getDomainFromUrl(vm.result.website);
@@ -40,11 +41,14 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
   vm.message = '';
 
   function initialize() {
-    const cachedResult = localStorageSvc.getCachedResult();
+    const cachedResult = localStorageSvc.getFromCache('result');
+    const cachedPhotoUrl = localStorageSvc.getFromCache('photoUrl');
 
     // return cached result if it exists
     if (cachedResult) {
-      return vm.result = cachedResult;
+      vm.result = cachedResult;
+      vm.photoUrl = cachedPhotoUrl;
+      return;
     } 
 
     // else make API calls
@@ -70,11 +74,10 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
       .getDetails(vm.placeid)
       .then(result => {
         vm.result = helperSvc.formatHours(helperSvc.formatTags(result)[0]);
-        vm.starRating = helperSvc.createStarRating(vm.result.rating);
+        // vm.starRating = helperSvc.createStarRating(vm.result.rating);
         
-        console.log(vm.result);
         // cache result 
-        localStorageSvc.saveResult(vm.result);
+        localStorageSvc.cache('result', vm.result);
       })
       .catch(err => {
         errorSvc.logError('detail.controller.getDetails', err);
@@ -85,8 +88,11 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
     googleApiSvc
       .getPhoto(vm.photoref)
       .then(photoUrl => {
-        console.log(photoUrl);
         vm.photoUrl = photoUrl;
+
+        // save to cache
+        localStorageSvc.cache('photoUrl', photoUrl);
+
       })
       .catch(err => {
         errorSvc.logError('detail.controller.getPhoto', err);
