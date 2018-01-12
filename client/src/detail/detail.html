@@ -1,3 +1,5 @@
+<div ng-show="vm.showSpinner" class="spinner detail-page-spinner"></div>
+
 <div ng-show="vm.result" class="detail-page-content">
 
   <!-- diary custom component -->
@@ -5,10 +7,10 @@
 
     <div class="detail-basic-info">
       <h1 class="detail-header">{{vm.result.name}}</h1>
-      <p class="star-wrapper">
+      <p  class="star-wrapper">
         <i ng-repeat="int in vm.starRating.integer" class="fa fa-star detail-star" aria-hidden="true"></i>
         <i ng-repeat="dec in vm.starRating.decimal" class="fa fa-star-half-o detail-star" aria-hidden="true"></i>
-        <span class="detail-rating"> {{vm.result.rating}} based on {{vm.result.reviews.length}} reviews.</span>
+        <span ng-show="vm.result.rating" class="detail-rating"> {{vm.result.rating}} based on {{vm.result.reviews.length}} reviews.</span>
       </p>
       <p class="detail-tags">{{vm.result.types}}</p>
       <p ng-show="vm.result.vicinity" class="detail-vicinity"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;{{ vm.result.vicinity }}

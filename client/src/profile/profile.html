@@ -23,7 +23,7 @@
           <b>Location</b>
         </td>
         <td>
-            {{vm.location.formatted_address || 'not set'}}
+            {{vm.locationObj.formatted_address || 'not set'}}
         </td>
       </tr>
     </table>
@@ -41,14 +41,15 @@
         <button ng-click="vm.searchLocation()" class="location-form-button"><i class="fa fa-search" aria-hidden="true"></i></button>    
     </form>
     <div ng-show="vm.showSpinner" class="spinner spinner-profile"></div>
-    <div ng-show="vm.results" class="location-search-results-wrapper">
-      <p ng-repeat="result in vm.results" ng-click="vm.selectLocation(result)" class="location-search-result">
-        <i class="fa fa-plus-square" aria-hidden="true"></i> {{result.formatted_address}}
+    <div ng-show="vm.locationOptions" class="location-search-results-wrapper">
+      <p ng-repeat="option in vm.locationOptions" ng-click="vm.selectLocation(option)" class="location-search-result">
+        <i class="fa fa-plus-square" aria-hidden="true"></i> {{option.formatted_address}}
       </p>
     </div>
 
-    <!-- diary events  -->
-    <div class="events-wrapper">
+    <!-- custom event component  -->
+    <events></events>
+    <!-- <div class="events-wrapper">
       <h1>Diary Events</h1>
       <p ng-if="vm.displayName && vm.events.length < 1">You haven't added any events yet!</p>
       <p ng-if="!vm.displayName">not logged in.</p>
@@ -61,7 +62,7 @@
           </td>
         </tr>
       </table>
-    </div>
+    </div> -->
 
   </div>  
 </div>

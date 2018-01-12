@@ -110,6 +110,23 @@
   /* border: 1px solid #ccc; */
 }
 
+.events-table {
+  width: 100%;
+}
+
+.events-table tr {
+  display: flex; 
+  flex-direction: row;
+}
+
+.events-table td:nth-child(1) {
+  flex-grow: 2;
+}
+
+.events-table td:nth-child(2) {
+  flex-grow: 1;
+}
+
 .events-table tr:nth-child(odd) {
   background-color: rgb(93, 212, 248);
 }
@@ -119,7 +136,7 @@
 }
 
 .events-table td:nth-child(3) {
-  padding: 15px 50px;
+  padding: 15px 25px;
 }
 
 .events-table td:nth-child(3):hover {

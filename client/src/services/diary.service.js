@@ -5,17 +5,17 @@ angular
   .module('app')
   .factory('diaryService', diaryService);
 
-diaryService.$inject = ['$http', 'helperService'];
+diaryService.$inject = ['$http', 'helperService', 'localStorageService'];
 
-function diaryService($http, helperSvc) {
+function diaryService($http, helperSvc, localStorageSvc) {
 
   return { addToDiary, getEvents, deleteEvent };
 
   function addToDiary(user, location, datetime) {
 
-    // if (helperSvc.objectIsEmpty([user, location, datetime])) {
-    //   return Promise.reject('Could not add to diary. Data incomplete.');
-    // }
+    if (helperSvc.objectIsEmpty([user, location, datetime])) {
+      return Promise.reject('Could not add to diary. Data incomplete.');
+    }
 
     const data = JSON.stringify({user, location, datetime});
     const url = '/api/diary/add';
@@ -26,7 +26,9 @@ function diaryService($http, helperSvc) {
       
   }
 
-  function getEvents(displayName, token) {
+  function getEvents() {
+    const user = localStorageSvc.getUser();
+    const { displayName, token } = user;
     const url = `api/diary/events/user?name=${displayName}&token=${token}`;
     return $http.get(url)
       .then(resp => {

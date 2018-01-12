@@ -32,15 +32,17 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
     }
   }
   vm.parsedWebsiteUrl = () => {
-    if (vm.result) {
+    if (vm.result && vm.result.website) {
       return helperSvc.getDomainFromUrl(vm.result.website);
     }
   }
 
   // UI properties
   vm.message = '';
+  vm.showSpinner = false;
 
   function initialize() {
+    vm.showSpinner = true;
     const cachedResult = localStorageSvc.getFromCache('result');
     const cachedPhotoUrl = localStorageSvc.getFromCache('photoUrl');
 
@@ -48,6 +50,7 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
     if (cachedResult) {
       vm.result = cachedResult;
       vm.photoUrl = cachedPhotoUrl;
+      vm.showSpinner = false;
       return;
     } 
 
@@ -81,7 +84,8 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
       })
       .catch(err => {
         errorSvc.logError('detail.controller.getDetails', err);
-      });  
+      })
+      .finally(() => vm.showSpinner = false);
   }
 
   function getPhoto() {
@@ -104,7 +108,10 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
     
     diarySvc.addToDiary(vm.user, location, datetime)
       .then(() => $rootScope.$broadcast('eventAdded'))
-      .catch(() => $rootScope.$broadcast('eventNotAdded'));
+      .catch((err) => {
+        $rootScope.$broadcast('eventNotAdded');
+        errorSvc.logError('detail.controller.addLocationToDiary', err);
+      });
   }
 
   initialize();

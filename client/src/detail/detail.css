@@ -34,6 +34,12 @@ i:not(.detail-star) {
   color: #888;
 }
 
+/* SPINNER */ 
+div.detail-page-spinner {
+  margin-top: 100px;
+}
+
+
 
 
 
