@@ -25,6 +25,7 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
   vm.placeid = $routeParams.placeid || null;
   vm.photoref = $routeParams.photoref || null;
   vm.result;
+  vm.photoUrl;
   vm.user = localStorageSvc.getUser();
 
   // computed values
@@ -35,22 +36,38 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
     }
   }
 
+  // UI properties
+  vm.message = '';
+
   function initialize() {
     const cachedResult = localStorageSvc.getCachedResult();
+
+    // return cached result if it exists
     if (cachedResult) {
-      vm.result = cachedResult;
-    } else if (vm.placeid && vm.photoref) {
-      getDetails(vm.placeid, vm.photoref);
+      return vm.result = cachedResult;
+    } 
+
+    // else make API calls
+    if (vm.placeid) {
+      getDetails();
+
+      // make API call for photo if only ref is available
+      if (vm.photoref) {
+        getPhoto();
+      }
+    } else {
+      vm.message = 'Sorry, details not available';
     }
+    
   }
 
   $rootScope.$on('addToDiary', (event, datetime) => {
     addLocationToDiary(datetime);
   });
 
-  function getDetails(placeid, photoref) {
+  function getDetails() {
     googleApiSvc
-      .getDetails(placeid, photoref)
+      .getDetails(vm.placeid)
       .then(result => {
         vm.result = helperSvc.formatHours(helperSvc.formatTags(result)[0]);
         vm.starRating = helperSvc.createStarRating(vm.result.rating);
@@ -62,6 +79,18 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
       .catch(err => {
         errorSvc.logError('detail.controller.getDetails', err);
       });  
+  }
+
+  function getPhoto() {
+    googleApiSvc
+      .getPhoto(vm.photoref)
+      .then(photoUrl => {
+        console.log(photoUrl);
+        vm.photoUrl = photoUrl;
+      })
+      .catch(err => {
+        errorSvc.logError('detail.controller.getPhoto', err);
+      })
   }
 
   function addLocationToDiary(datetime) {

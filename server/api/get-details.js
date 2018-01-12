@@ -1,41 +1,30 @@
 const request = require('request');
 const rp = require('request-promise');
 
-const {buildUrl} = require('../utils');
+const { buildUrl } = require('../utils');
 
 const baseUrl = process.env.BASE_URL;
-const detailPath = '/details/json?';
-const photoPath = '/photo?';
-const detailParams = { key: process.env.API_KEY };
-const photoParams = { key: process.env.API_KEY, maxwidth: 400 };
+const path = '/details/json?';
+const params = { key: process.env.API_KEY };
 
 function getDetails(req, res) {
-  console.log('************** GET DETAILS ******************');
-  detailParams.placeid = req.query.placeid;
-  photoParams.photoreference = req.query.photoref;
 
-  const detailUrl = buildUrl(baseUrl, detailPath, detailParams);
-  const photoUrl = buildUrl(baseUrl, photoPath, photoParams);
-  const photoOptions = {
-    uri: photoUrl,
-    resolveWithFullResponse: true
-  };
+  params.placeid = req.query.placeid;
 
-  console.log({ detailUrl, photoUrl });
+  const url = buildUrl(baseUrl, path, params);
 
-  Promise.all([rp(detailUrl), rp(photoOptions)])
-    .then(resp => {
-      const {href} = resp[1].request;
-      console.log({href});
-      const responseObj = JSON.parse(resp[0]);
+  console.log({ url });
 
-      responseObj.result.photohref = href;
-      console.log(responseObj);
-      res.json(responseObj);
+  rp(url)
+    .then(data => {
+      // const data = JSON.parse(response[0]);
+      console.log('*******************  RESPONSE');
+      // console.log(response);
+      res.status(200).send(data);
     })
     .catch(e => {
       console.log(e); 
-      res.send({err});
+      res.status(500).send(err);
     });
 
 

@@ -17,9 +17,19 @@ angular
   .module('app')
   .factory('googleApiService', googleApiService);
 
-googleApiService.$inject = ['$http', 'localStorageService'];
+googleApiService.$inject = ['$http', 'localStorageService', 'errorService'];
   
-function googleApiService($http, localStorageSvc) {
+function googleApiService($http, localStorageSvc, errorSvc) {
+
+  function getLocation(location) {
+    const url = `/api/data/location?address=${location}`
+    return $http.get(url)
+      .then(resp => {
+        // console.log({resp});
+        return resp.data.results;
+      })
+      .catch(e => console.log(e));
+  }
 
   function textSearch({category, query, coords}) {
 
@@ -38,38 +48,25 @@ function googleApiService($http, localStorageSvc) {
   }
 
   function getDetails(placeid, photoref) {
-    return $http.get(`/api/data/details?placeid=${placeid}&photoref=${photoref}`)
+    return $http.get(`/api/data/details?placeid=${placeid}`)
       .then(resp => {
-        if (resp.status === 200) {
           console.log({resp});
           return resp.data.result;
-        } else {
-          return Promise.reject('no data');
-        }
-      });
-  }
-
-  function getLocation(location) {
-    const url = `/api/data/location?address=${location}`
-    return $http.get(url)
-      .then(resp => {
-        // console.log({resp});
-        return resp.data.results;
       })
-      .catch(e => console.log(e));
+      .catch(err => {
+        errorSvc.logError('google-api.service.getDetails', err);
+      })
   }
 
   // not currently in use
   function getPhoto(photoref) {
     return $http.get(`/api/data/photo?photoref=${photoref}`)
       .then(resp => {
-        if (resp.status === 200) {
-          console.log(resp);
-          return Promise.resolve(resp.data.result);
-        } else {
-          return Promise.reject();
-        }
-      }).catch(err => console.log({ err }));
+        console.log({resp});
+        return resp.data;
+      }).catch(err => {
+        errorSvc.logError('google-api.service.getPhoto', err);
+      });
   }
 
   return { textSearch, getDetails, getPhoto, getLocation };

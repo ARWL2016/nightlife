@@ -71,7 +71,7 @@ function localStorageService() {
     clearCachedResults,
     saveResult, 
     getCachedResult, 
-    clearCachedResults
+    clearCachedResult
    };
 
 };

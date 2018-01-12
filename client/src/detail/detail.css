@@ -27,7 +27,7 @@
 
 .detail-page-content p {
   /* border: 1px solid red; */
-  margin: 6px 0 6px 0;
+  margin: 8px 0;
 }
 
 i:not(.detail-star) {
@@ -102,7 +102,7 @@ i:not(.detail-star) {
 }
 
 .detail-opening-hours td {
-  padding: 3px;
+  padding: 5px 12px;
 }
 
 tr:nth-child(odd) {
@@ -127,7 +127,8 @@ tr:nth-child(odd) {
 /* IMAGE */
 
 .detail-image-wrapper {
-  padding: 10px;
+  padding: 20px;
+  flex-grow: 1;
 
   /* border: 1px solid #aaa; */
 }

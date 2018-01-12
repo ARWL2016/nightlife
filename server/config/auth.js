@@ -23,14 +23,14 @@ const { fb, google } = require('./index');
 
 function configPassport(passport) {
   passport.serializeUser((user, done) => {
-    console.log('serialize', user);
+    // console.log('serialize', user);
     done(null, user.id);
   }); 
 
   passport.deserializeUser((id, done) => {
     User.findById(id)
       .then(user => {
-        console.log('deserialize', user);
+        // console.log('deserialize', user);
         done(null, user);
       })
       .catch(err => {
@@ -45,8 +45,8 @@ function configPassport(passport) {
 
 function registerUserWithProvider(idProperty) {
   function registerUser(accessToken, refreshToken, profile, done) {
-    console.log({profile});
-    console.log({accessToken});
+    // console.log({profile});
+    // console.log({accessToken});
 
     process.nextTick(function() {
       User.findOne({displayName: profile.displayName})

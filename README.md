@@ -1,14 +1,18 @@
 ### Pathfinder App 
 
-Implement Error Handling Service 
-- create method to process errors, adding date, origin, reason 
-- persist to backend - create route and controller 
-- adjust for dev and production mode
+Goal1: 
+- decouple detail from photoref
+
+Goal2: 
+- review add to diary function 
+- make sure it adds and removes events correctly 
+- avoid duplicates
 
 
 
 #### Useful links: 
 - https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md 
+- https://mlab.com/home 
 
 #### Code Cleanup  
 - add docs 
@@ -20,6 +24,7 @@ Implement Error Handling Service
 - all events deleting at once
 - local storage set item should be wrapped in try / catch
 - results categories weirdly formatted
+- check location setting - not returning cities?
 
 #### Google Places API
 

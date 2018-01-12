@@ -14,7 +14,7 @@ module.exports = (app, passport) => {
   passport.authenticate('google'),
   function(req, res) {
     console.log('**** GOOGLE CALLBACK ROUTE ***');
-    console.log(req.user);
+    // console.log(req.user);
     const {displayName, token} = req.user;
     res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
   });
@@ -28,7 +28,7 @@ module.exports = (app, passport) => {
   // TODO: need an error redirect here
     passport.authenticate('facebook'),
     function(req, res) {
-      console.log(req.user);
+      // console.log(req.user);
       const {displayName, token} = req.user;
       res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
     });

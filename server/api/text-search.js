@@ -1,10 +1,3 @@
-const request = require('request');
-const rp = require('request-promise');
-const pick = require('lodash.pick');
-
-const { buildUrl } = require('../utils');
-
-const baseUrl = process.env.BASE_URL;
 /**
  * {@link https://developers.google.com/places/web-service/search#PlaceSearchRequests}
  * text search: 
@@ -13,6 +6,14 @@ const baseUrl = process.env.BASE_URL;
  * @param - type (opt) - select from a limited list of establishment types - see ref/types
  * @param - location (opt - but requires radius) - lat and lon on which to search
  */
+
+const request = require('request');
+const rp = require('request-promise');
+const pick = require('lodash.pick');
+
+const { buildUrl } = require('../utils');
+
+const baseUrl = process.env.BASE_URL;
 
 const path = '/textsearch/json?';
 const params = {

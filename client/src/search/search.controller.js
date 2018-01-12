@@ -60,6 +60,9 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
       vm.search.coords = `${vm.location.coords.lat},${vm.location.coords.lng}`;
     }
 
+    // clear result from detail page before user can route there
+    localStorageSvc.clearCachedResult();
+
   }
 
   function populateAutocomplete() {
@@ -89,8 +92,7 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
       .then(results => {
         if (results.length) {
           vm.results = helperSvc.formatTags(results);
-          // clear result from detail page before user can route there
-          localStorageSvc.clearCachedResult();
+          
         } else {
           vm.message = 'Your search returned no results.'
         }
