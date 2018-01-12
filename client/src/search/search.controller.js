@@ -89,7 +89,8 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
       .then(results => {
         if (results.length) {
           vm.results = helperSvc.formatTags(results);
-          // vm.showSpinner = false;
+          // clear result from detail page before user can route there
+          localStorageSvc.clearCachedResult();
         } else {
           vm.message = 'Your search returned no results.'
         }

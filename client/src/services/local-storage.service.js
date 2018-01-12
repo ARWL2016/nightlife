@@ -47,6 +47,20 @@ function localStorageService() {
     localStorage.setItem('results', null);
   }
 
+  function saveResult(result) {
+    console.log(result);
+    localStorage.setItem('result', JSON.stringify(result));
+  }
+
+  function getCachedResult() {
+    const cachedResult = localStorage.getItem('result');
+    return JSON.parse(cachedResult);
+  }
+
+  function clearCachedResult() {
+    localStorage.setItem('result', null);
+  }
+
   return { 
     saveLocation, 
     getLocation, 
@@ -54,6 +68,9 @@ function localStorageService() {
     getUser, 
     saveResults,
     getCachedResults,
+    clearCachedResults,
+    saveResult, 
+    getCachedResult, 
     clearCachedResults
    };
 

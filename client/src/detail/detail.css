@@ -1,3 +1,23 @@
+/* LAYOUT */
+
+.detail-page-content {
+  margin: 20px auto;
+  max-width: 700px;
+  /* border: 1px solid blue; */
+  /* border: 1px solid #aaa; */
+}
+
+.detail-basic-info {
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
+}
+
+.detail-secondary-info {
+  display: flex; 
+  flex-direction: row;
+}
+
+
 /* ELEMENT STYLES */
 
 .detail-page-content a {
@@ -14,54 +34,11 @@ i:not(.detail-star) {
   color: #888;
 }
 
-/* LAYOUT */
 
-.detail-page-content {
-  margin: 0 auto;
-  max-width: 800px;
-  padding-top: 30px;
-  /* border: 1px solid blue; */
-  max-width: 50%;
-}
 
-/* DIARY WIDGET */
 
-.diary-widget {
-  margin: 10px auto;
-  max-width: 600px; 
-  padding: 8px;
-  border-radius: 3px;
-  /* background-color: #2e2e2e; */
-  background-color: rgb(93, 212, 248);;
-}
-
-.diary-widget select {
-  margin-right: 5px;
-  border: 0;
-  height: 30px;
-  border-radius: 3px;
-}
-
-.diary-widget button {
-  font-size: 0.8em; 
-  font-weight: bold;
-  padding: 0 12px;
-  height: 30px;
-  border: 0;
-  border-radius: 3px;
-  float: right;
-}
 
 /* LOCATION CARD */
-
-.detail-basic-info {
-  padding: 10px;
-  border: 1px solid #aaa;
-}
-
-.detail-image {
-  width: 100%;
-}
 
 .detail-header {
   /* border: 1px dotted yellow; */
@@ -110,17 +87,22 @@ i:not(.detail-star) {
   font-size: 0.9em;
 }
 
-/* OPENING HOURS + TABLE  */
+/* OPENING HOURS  */
 
 .detail-opening-hours {
   padding: 10px;
-  border: 1px solid #aaa;
+  min-width: 200px;
+  /* border: 1px solid #aaa; */
 }
 
-.detail-opening-hours h3 {
+.detail-opening-hours > h3 {
   color: red;
   font-size: 1em;
   margin-top: 5px;
+}
+
+.detail-opening-hours td {
+  padding: 3px;
 }
 
 tr:nth-child(odd) {
@@ -140,4 +122,16 @@ tr:nth-child(odd) {
 
 .table-hours-cell {
 
+}
+
+/* IMAGE */
+
+.detail-image-wrapper {
+  padding: 10px;
+
+  /* border: 1px solid #aaa; */
+}
+
+.detail-image {
+  width: 100%;
 }

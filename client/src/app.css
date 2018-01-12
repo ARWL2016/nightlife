@@ -2,6 +2,7 @@
 @import './search/search.css';
 @import './search/results.css';
 @import './detail/detail.css';
+@import './detail/diary.css';
 @import './profile/profile.css'; 
 @import './login/login.css';
 @import './spinner.css';

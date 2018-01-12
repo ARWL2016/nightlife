@@ -16,20 +16,30 @@ angular
   .controller('DetailController', DetailController);
 
 DetailController.$inject = 
-  ['$routeParams', 'datetimeHelperService','diaryService','googleApiService', 'helperService','localStorageService', '$rootScope'];
+  ['$routeParams', 'datetimeHelperService','diaryService','googleApiService', 'helperService','localStorageService', '$rootScope', 'errorService'];
 
-function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, helperSvc, localStorageSvc, $rootScope ) {
+function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, helperSvc, localStorageSvc, $rootScope, errorSvc ) {
   var vm = this;
 
   // data
   vm.placeid = $routeParams.placeid || null;
   vm.photoref = $routeParams.photoref || null;
   vm.result;
-  vm.starRating = {int: [], dec: []};
   vm.user = localStorageSvc.getUser();
 
+  // computed values
+  vm.starRating = {int: [], dec: []};
+  vm.parsedWebsiteUrl = () => {
+    if (vm.result) {
+      return helperSvc.getDomainFromUrl(vm.result.website);
+    }
+  }
+
   function initialize() {
-    if (vm.placeid && vm.photoref) {
+    const cachedResult = localStorageSvc.getCachedResult();
+    if (cachedResult) {
+      vm.result = cachedResult;
+    } else if (vm.placeid && vm.photoref) {
       getDetails(vm.placeid, vm.photoref);
     }
   }
@@ -44,8 +54,14 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
       .then(result => {
         vm.result = helperSvc.formatHours(helperSvc.formatTags(result)[0]);
         vm.starRating = helperSvc.createStarRating(vm.result.rating);
+        
+        console.log(vm.result);
+        // cache result 
+        localStorageSvc.saveResult(vm.result);
       })
-      .catch(err => console.log({ err }));  
+      .catch(err => {
+        errorSvc.logError('detail.controller.getDetails', err);
+      });  
   }
 
   function addLocationToDiary(datetime) {
