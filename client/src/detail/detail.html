@@ -24,9 +24,15 @@
       </p>
     </div>
 
+    
+
     <div class="detail-secondary-info">
+      <div class="detail-image-wrapper">
+        <img class="detail-image" src={{vm.photoUrl}} > 
+      </div>
+      
       <div ng-show="vm.result.opening_hours" class="detail-opening-hours">
-        <h3>Hours</h3>
+        <h3>Opening Hours</h3>
         <!-- <p ng-repeat="text in vm.result.opening_hours.formatted_weekday_text"><b>{{text.day}}:&nbsp;</b>{{text.hours}}</p> -->
         <table class="table-opening-hours">
           <tr ng-repeat="text in vm.result.opening_hours.formatted_weekday_text">
@@ -36,9 +42,7 @@
         </table>
       </div>
 
-      <div class="detail-image-wrapper">
-        <img class="detail-image" src={{vm.photoUrl}} > 
-      </div>
+     
     </div>
   
   </div>

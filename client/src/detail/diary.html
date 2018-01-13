@@ -1,4 +1,5 @@
 <div class="diary-widget">
+  
   <form>
 
     <select name="date" ng-model="vm.datetime.date"> 
@@ -16,14 +17,12 @@
       <option value="AM" >AM</option> 
     </select>
 
-    <div ng-show="vm.diarySpinner" class="spinner-dots">
-      <div class="bounce1"></div>
-      <div class="bounce2"></div>
-      <div class="bounce3"></div>
-    </div>
-    
     <button ng-click="vm.emitDatetime()" ng-disabled="vm.added">{{ vm.diaryBtnLabel() | uppercase }}</button>
-  
   </form>
+</div>
+<div ng-show="vm.diarySpinner" class="spinner-dots diary-spinner">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
 </div>
 <div>{{ vm.error }}</div>

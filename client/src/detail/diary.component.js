@@ -34,6 +34,7 @@ angular
     vm.error = '';
 
     vm.emitDatetime = () => {
+      console.log('emit dt');
       vm.error = '';
       const dt = datetimeSvc.injectCurrentDate(vm.datetime);
       vm.diarySpinner = true;

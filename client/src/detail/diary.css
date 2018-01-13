@@ -2,15 +2,16 @@
 
 .diary-widget {
   margin: 10px 0;
+  min-height: 50px;
   max-width: 700px; 
-  padding: 8px;
+  padding: 2px 8px;
   border-radius: 3px;
   /* background-color: #2e2e2e; */
   background-color: rgb(93, 212, 248);;
 }
 
 .diary-widget select {
-  margin-right: 5px;
+  margin: 8px 2px;
   border: 0;
   height: 30px;
   border-radius: 3px;
@@ -23,5 +24,23 @@
   height: 30px;
   border: 0;
   border-radius: 3px;
+  margin: 8px 2px;
   float: right;
+}
+
+div.diary-spinner {
+  color: black;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 510px) {
+  .diary-widget {
+    margin: 10px;
+  }
+
+  .diary-widget button {
+    float: none;
+  }
+
 }

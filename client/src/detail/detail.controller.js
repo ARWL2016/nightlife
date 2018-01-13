@@ -13,9 +13,9 @@ angular
   .controller('DetailController', DetailController);
 
 DetailController.$inject = 
-  ['$routeParams', 'datetimeHelperService','diaryService','googleApiService', 'helperService','localStorageService', '$rootScope', 'errorService'];
+  ['$routeParams', 'datetimeHelperService','diaryService','googleApiService', 'helperService','localStorageService', '$scope', '$rootScope', 'errorService'];
 
-function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, helperSvc, localStorageSvc, $rootScope, errorSvc ) {
+function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, helperSvc, localStorageSvc, $scope, $rootScope, errorSvc ) {
   var vm = this;
 
   // data
@@ -68,7 +68,8 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
     
   }
 
-  $rootScope.$on('addToDiary', (event, datetime) => {
+  $scope.$on('addToDiary', (event, datetime) => {
+    console.log('add to diary event');
     addLocationToDiary(datetime);
   });
 

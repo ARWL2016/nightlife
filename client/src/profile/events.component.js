@@ -34,6 +34,7 @@ function EventsController(diarySvc, errorService, localStorageSvc) {
         console.log(vm.events);
       })
       .catch(e => console.log(e));
+      
   }
 
   function deleteEvent(eventToDelete) {

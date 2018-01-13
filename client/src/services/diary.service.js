@@ -5,9 +5,9 @@ angular
   .module('app')
   .factory('diaryService', diaryService);
 
-diaryService.$inject = ['$http', 'helperService', 'localStorageService'];
+diaryService.$inject = ['$http', 'helperService', 'localStorageService', 'errorService'];
 
-function diaryService($http, helperSvc, localStorageSvc) {
+function diaryService($http, helperSvc, localStorageSvc, errorSvc) {
 
   return { addToDiary, getEvents, deleteEvent };
 

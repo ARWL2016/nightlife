@@ -8,7 +8,7 @@
 .spinner-dots > div {
   width: 8px;
   height: 8px;
-  background-color: white;
+  background-color: darkslategrey;
 
   border-radius: 100%;
   display: inline-block;

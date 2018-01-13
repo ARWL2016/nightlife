@@ -1,7 +1,8 @@
 /* LAYOUT */
 
 .detail-page-content {
-  margin: 20px auto;
+  margin: 0 auto;
+  padding: 10px;
   max-width: 700px;
   /* border: 1px solid blue; */
   /* border: 1px solid #aaa; */
@@ -14,7 +15,17 @@
 
 .detail-secondary-info {
   display: flex; 
+  display: -webkit-box;      
+  display: -moz-box;         
+  display: -ms-flexbox;      
+  display: -webkit-flex; 
   flex-direction: row;
+}
+
+.detail-image-wrapper {
+  padding: 10px;
+  flex-grow: 1;
+
 }
 
 
@@ -38,10 +49,6 @@ i:not(.detail-star) {
 div.detail-page-spinner {
   margin-top: 100px;
 }
-
-
-
-
 
 
 /* LOCATION CARD */
@@ -102,7 +109,7 @@ div.detail-page-spinner {
 }
 
 .detail-opening-hours > h3 {
-  color: red;
+  color: black;
   font-size: 1em;
   margin-top: 5px;
 }
@@ -126,19 +133,18 @@ tr:nth-child(odd) {
   width: 60px;
 }
 
-.table-hours-cell {
-
-}
-
 /* IMAGE */
-
-.detail-image-wrapper {
-  padding: 20px;
-  flex-grow: 1;
-
-  /* border: 1px solid #aaa; */
-}
 
 .detail-image {
   width: 100%;
+}
+
+/* MEDIA QUERIES */ 
+
+@media screen and (max-width: 680px) {
+  .detail-secondary-info {
+    flex-direction: column;
+  }
+
+  
 }
