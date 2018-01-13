@@ -1,3 +1,5 @@
+// configuration for google and facebook O-Auth strategies
+
 module.exports = {
   fb: {
     clientID: process.env.FACEBOOK_CLIENT_ID,

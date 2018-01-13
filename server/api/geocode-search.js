@@ -1,3 +1,8 @@
+/**
+ *  Pass a location string such as 'London' and get back geocode data (lat and lon)
+ *  {@link https://maps.googleapis.com/maps/api/geocode/json?address=london%22}
+ */
+
 const request = require('request');
 const rp = require('request-promise');
 

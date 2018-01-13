@@ -19,8 +19,6 @@ const EventSchema = new mongoose.Schema({
   place_name: {
     type: String
   }
-
-
 }); 
 
 module.exports = EventSchema;

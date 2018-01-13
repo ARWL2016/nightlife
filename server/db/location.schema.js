@@ -1,8 +1,3 @@
-/**
- * place_id - this is used for calling the GoogleAPI 
- * 
- */
-
 const mongoose = require('mongoose');
 const EventSchema = require('./event.schema');
 

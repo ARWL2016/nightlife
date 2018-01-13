@@ -1,9 +1,10 @@
+// utility method for creating json city data - not needed by live app
+
 const fs = require('fs');
 const path = require('path');
 
 const text = fs.readFileSync(path.join(__dirname, '../../ref/uk-cities'), 'utf8'); 
 
-// console.log();
 const cityListArr = text.split(' '); 
 let dataArr = [];
 

@@ -23,20 +23,17 @@ const { fb, google } = require('./index');
 
 function configPassport(passport) {
   passport.serializeUser((user, done) => {
-    // console.log('serialize', user);
     done(null, user.id);
   }); 
 
   passport.deserializeUser((id, done) => {
     User.findById(id)
       .then(user => {
-        // console.log('deserialize', user);
         done(null, user);
       })
       .catch(err => {
         done(err);
       })
-    
   }); 
 
   passport.use(new GoogleStrategy(google, registerUserWithProvider('googleId')));
@@ -45,35 +42,31 @@ function configPassport(passport) {
 
 function registerUserWithProvider(idProperty) {
   function registerUser(accessToken, refreshToken, profile, done) {
-    // console.log({profile});
-    // console.log({accessToken});
 
     process.nextTick(function() {
       User.findOne({displayName: profile.displayName})
         .then(user => {
-            if (user) {
-              console.log('user found', user);
-              return done(null, user);
-            }
-            else {
-              console.log('creating new user');
-              const newUser = new User({
-                ['idProperty']: profile.id, 
-                displayName: profile.displayName, 
-                token: accessToken
-              }); 
-              return newUser.save();
-            }
-          }).then(createdUser => {
-            return done(null, createdUser); 
-          }).catch(e => {
-            return done(e);
-          });
+          if (user) {
+            return done(null, user);
+          } else {
+            const newUser = new User({
+              ['idProperty']: profile.id, 
+              displayName: profile.displayName, 
+              token: accessToken
+            }); 
+            return newUser.save();
+          }
+        })
+        .then(createdUser => {
+          return done(null, createdUser); 
+        })
+        .catch(e => {
+          return done(e);
+        });
     })
   }
 
   return registerUser;
 }
-
 
 module.exports = { configPassport };

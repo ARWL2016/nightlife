@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-const {logger} = require('./server/config/logger');
+const { logger } = require('./server/config/logger');
 const { mongoose } = require('./server/db');
 require('./server/config/auth').configPassport(passport);
 
@@ -30,7 +30,7 @@ app.use(express.static(libDirectory));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(session({
-  secret: 'keyboard cat', 
+  secret: process.env.SESSION_SECRET, 
   resave: true, 
   saveUninitialized: true, 
   store: new MongoStore({mongooseConnection: mongoose.connection})
