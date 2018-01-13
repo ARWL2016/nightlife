@@ -1,17 +1,17 @@
-<div class="search-page-wrapper">
+<div class="search-page-wrapper" ng-click="vm.removeAutocomplete($event)">
 
   <div class="search-section-wrapper">
     <section class="search-section-content">
-      <h1 class="search-heading">Pathfinder</h1>
 
-      
+      <!-- LOCATION STATUS AND LINK -->
+      <h1 class="search-heading">Pathfinder</h1>
         <p ng-show="!vm.location" class="location-setter">Before searching, set your <a href="#!/profile">location</a>.</p>
         <p ng-show="vm.location" class="location-setter">Searching in {{ vm.location.formatted_address}}
           <a href="#!/profile">Change&nbsp;Location</a>
         </p>
         
+        <!-- SEARCH FORM -->
         <form name="searchForm" class="search-form" novalidate>
-        
           <div class="input-wrapper">  
             <label for="category">Category</label>
             <div class="dropdown-holder">
@@ -24,7 +24,6 @@
               placeholder="e.g. restaurant"
               ng-keyup="vm.populateAutocomplete()"
               ng-blur="vm.validateCategory()"
-              
               autocomplete="off" 
               required>
             <div class="category-dropdown" ng-if="vm.showDropdown">
@@ -32,8 +31,6 @@
             </div>
           </div>
           </div>
-
- 
 
           <div class="input-wrapper">  
             <label for="query">Query</label>
@@ -55,24 +52,22 @@
               <i class="fa fa-search" aria-hidden="true"></i>&nbsp;SEARCH
             </button>
           </div>
-
       </form>
 
+      <!-- OPTIONS LIST -->
       <ul class="options-row">
         <li><i class="fa fa-cutlery" aria-hidden="true"></i>Restaurants</li>
         <li><i class="fa fa-glass" aria-hidden="true"></i>Nightlife</li>
         <li><i class="fa fa-shopping-basket" aria-hidden="true"></i>Shopping</li>
         <li><i class="fa fa-medkit" aria-hidden="true"></i>Health</li>
       </ul>
-      <!-- loader -->
-      <div ng-show="vm.showSpinner" class="spinner"></div>
 
+      <!-- SPINNER -->
+      <div ng-show="vm.showSpinner" class="spinner search-page-spinner"></div>
     </section>
-    
   </div> 
 
-<!-- results custom component -->
+<!-- CUSTOM COMPONENT -->
   <search-results results="vm.results" message="vm.message"></search-results>
-
 </div>
 

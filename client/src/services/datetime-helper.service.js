@@ -1,7 +1,5 @@
 /**
- *  Set of datetime helpers. 
- * 
- *  @function injectCurrentDate - replaces 'today' with current date on datetime object
+ *  PURPOSE: Provide datetime helper methods to the diary widget
  */
 
 (function(){
@@ -16,6 +14,7 @@ function datetimeHelperService() {
   const week = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const months = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
   
+  // get all the dates for next week
   function getNextWeek() {
     const nextWeek = [];
     
@@ -26,7 +25,6 @@ function datetimeHelperService() {
       const day = week[currentDate.getDay()];
       const date = currentDate.getDate();
       const month = months[currentDate.getMonth()];
-      // const dateString = i === 0 ? 'Today' : `${day}, ${date} ${month}`; 
       const dateString = `${day}, ${date} ${month}`; 
 
       nextWeek.push(dateString);
@@ -42,6 +40,7 @@ function datetimeHelperService() {
     return `${day}, ${date} ${month}`; 
   }
 
+  // get list of 1.00 - 12.00 
   function getHours() {
     const hours = [];
     for (let i = 2; i < 13; i++) {
@@ -58,7 +57,6 @@ function datetimeHelperService() {
   }
   
   return { getNextWeek, getHours, getTodaysDate, injectCurrentDate };
-  
 };
 
 }());

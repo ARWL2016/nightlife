@@ -1,4 +1,6 @@
 <div class="results-section-wrapper">
+
+  <!-- SORT BUTTONS -->
   <div ng-show="vm.results && vm.results.length > 2" class="results-filter-panel">
     <button type="button" ng-click="vm.sortByRating()" class="sortby-input">
       <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Sort By Rating
@@ -8,6 +10,7 @@
     </button>
   </div>  
 
+  <!-- SEARCH RESULTS -->
   <section class="results-section-content">  
     <div 
       class="result-card"
@@ -15,7 +18,7 @@
       ng-click="vm.routeToDetailPage(result.place_id, result.photos[0].photo_reference)" > 
         <h2>{{ result.name }}</h2>
         <p class="card-address">{{ result.formatted_address }}</p>
-        <p class="card-tags">{{result.types}}</span></p>
+        <p class="card-tags">{{ result.types }}</span></p>
         <p class="card rating">Customer Rating: <b>{{ result.rating }}</b></p>
     </div>
     <div>{{ vm.message }}</div>

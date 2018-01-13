@@ -6,7 +6,7 @@
 (function(){ 
   'use strict';
 
-  var app = angular.module('app', ['ngRoute']);
+  const app = angular.module('app', ['ngRoute']);
   
   app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
@@ -15,27 +15,18 @@
         templateUrl: 'login/login.html',
         controller: 'LoginController', 
         controllerAs: 'vm'
-
       })
       .when('/search', {
         templateUrl: 'search/search.html',  
         controller: 'SearchController', 
         controllerAs: 'vm'
-        
       })
       .when('/profile', {
         templateUrl: 'profile/profile.html', 
         controller: 'ProfileController', 
         controllerAs: 'vm'
-        
       })
-      // dev only
-      .when('/detail', {
-        templateUrl: 'detail/detail.html',
-        controller: 'DetailController', 
-        controllerAs: 'vm'
-      })
-      .when('/detail/:placeid/:photoref', {
+      .when('/detail/:placeid/:photoref?', {
         templateUrl: 'detail/detail.html',  
         controller: 'DetailController', 
         controllerAs: 'vm'
@@ -44,17 +35,15 @@
   }]);
 
   app.run(['localStorageService', 'errorService', function(localStorageSvc, errorSvc) {
-    
+    // fetch environment from server
     errorSvc.getEnv()
       .then(() => {
         console.log(`Pathfinder app running in ${errorSvc.clientEnv} mode`);
       });
 
+    // clear cache
     localStorageSvc.clearCachedResults();
     localStorageSvc.clearCache('result');
-
-    
-    
-  }])
+  }]);
 
 }());

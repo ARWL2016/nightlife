@@ -1,25 +1,18 @@
 ### Pathfinder App 
 
-Goal
-- add responsive design
-
-
-
 #### Useful links: 
 - https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md 
 - https://mlab.com/home 
+- http://tobiasahlin.com/spinkit/ - css loaders / spinners
 
-#### Code Cleanup  
-- add docs 
-- make controller syntax consistent
 
-#### Bugs: 
-- logout does not clear localstorage
+#### Notes 
+- css files are kept next to controllers but are global
+
+#### Bugs / upgrades
 - hours not always displaying
-- all events deleting at once
-- local storage set item should be wrapped in try / catch
-- results categories weirdly formatted
-- check location setting - not returning cities?
+- local storage set item should be wrapped in try / catch - although our data cannot exceed limit
+- can we log in and out without reloading the page?
 
 #### Google Places API
 

@@ -1,68 +1,59 @@
-<div class="profile-page-wrapper">
-  <div class="profile-page-content">
-    <h1>Profile</h1>
-    <p>Set your location with the search box below. Login to add events to your diary.</p>
-    <table class="profile-table">
-      <tr>
-        <td class="profile-table-icon-cell">
-          <i ng-show="vm.displayName" class="fa fa-check-square" aria-hidden="true"></i>
-          <i ng-show="!vm.displayName" class="fa fa-times-circle" aria-hidden="true"></i>
-        </td>
-        <td class="profile-table-heading-cell">
-          <b>User</b>
-        </td>
-        <td>
-          {{vm.displayName || 'not logged in'}}
-        </td>
-      </tr>
-      <tr>
-        <td class="profile-table-icon-cell">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-        </td>
-        <td class="profile-table-heading-cell">
-          <b>Location</b>
-        </td>
-        <td>
-            {{vm.locationObj.formatted_address || 'not set'}}
-        </td>
-      </tr>
-    </table>
 
-    <form name="locationSearch" class="location-search-form">
-      <!-- <label for="location" class="location-form-label">Set Location</label> -->
-      <input 
-        type="text"
-        name="location"
-        class="location-form-input"
-        ng-model="vm.query"
-        placeholder="e.g. Bristol, UK"
-        autocomplete="off"
-        required>
-        <button ng-click="vm.searchLocation()" class="location-form-button"><i class="fa fa-search" aria-hidden="true"></i></button>    
-    </form>
-    <div ng-show="vm.showSpinner" class="spinner spinner-profile"></div>
-    <div ng-show="vm.locationOptions" class="location-search-results-wrapper">
-      <p ng-repeat="option in vm.locationOptions" ng-click="vm.selectLocation(option)" class="location-search-result">
-        <i class="fa fa-plus-square" aria-hidden="true"></i> {{option.formatted_address}}
-      </p>
-    </div>
+<section class="profile-page-content">
+  <h1>Profile</h1>
+  <p>Set your location with the search box below. Sign in to view diary events.</p>
 
-    <!-- custom event component  -->
-    <events></events>
-    <!-- <div class="events-wrapper">
-      <h1>Diary Events</h1>
-      <p ng-if="vm.displayName && vm.events.length < 1">You haven't added any events yet!</p>
-      <p ng-if="!vm.displayName">not logged in.</p>
-      <table class="events-table">
-        <tr ng-repeat="event in vm.events">
-          <td><b>{{event.place_name}}</b></td>
-          <td>{{event.date}} {{event.hour}} {{event.amPm}}</td>
-          <td ng-click="vm.deleteEvent(event)">
-            <i class="fa fa-trash" aria-hidden="true" title="remove event"></i>
-          </td>
-        </tr>
-      </table>
-    </div> -->
+  <!-- PROFILE INFO TABLE -->
+  <table class="profile-table">
+    <tr>
+      <td class="profile-table-icon-cell">
+        <i ng-show="vm.displayName" class="fa fa-check-square" aria-hidden="true"></i>
+        <i ng-show="!vm.displayName" class="fa fa-times-circle" aria-hidden="true"></i>
+      </td>
+      <td class="profile-table-heading-cell">
+        <b>User</b>
+      </td>
+      <td>
+        {{vm.displayName || 'not logged in'}}
+      </td>
+    </tr>
+    <tr>
+      <td class="profile-table-icon-cell">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+      </td>
+      <td class="profile-table-heading-cell">
+        <b>Location</b>
+      </td>
+      <td>
+          {{vm.locationObj.formatted_address || 'not set'}}
+      </td>
+    </tr>
+  </table>
 
-  </div>  
-</div>
+  <!-- LOCATION SEARCH WIDGET -->
+  <form name="locationSearch" class="location-search-form">
+    <input 
+      type="text"
+      name="location"
+      class="location-form-input"
+      ng-model="vm.query"
+      ng-focus="vm.clearError()"
+      placeholder="e.g. Bristol, UK"
+      autocomplete="off"
+      required>
+      <button ng-click="vm.searchLocation()" class="location-form-button"><i class="fa fa-search" aria-hidden="true"></i></button>    
+  </form>
+  <p>{{ vm.error }}</p>
+
+  <!-- SPINNER -->
+  <div ng-show="vm.showSpinner" class="spinner spinner-profile"></div>
+  <div ng-show="vm.locationOptions" class="location-search-results-wrapper">
+    <p ng-repeat="option in vm.locationOptions" ng-click="vm.selectLocation(option)" class="location-search-result">
+      <i class="fa fa-plus-square" aria-hidden="true"></i> {{option.formatted_address}}
+    </p>
+  </div>
+
+  <!-- CUSTOM COMPONENT  -->
+  <events></events>
+
+</section>  

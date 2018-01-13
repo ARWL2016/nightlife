@@ -7,11 +7,10 @@
  * 
  * @property search.category refers to a category of establishment (restaurant, station etc)
  * @property search.query - a location query such as a city or street
- * @property limit - can filter the search results (useful on mobile?)
  */
 
 (function(){
-'use strict';
+  'use strict';
 
 angular.module('app').controller('SearchController', [
   '$location', 
@@ -44,6 +43,7 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
   // public methods
   vm.populateAutocomplete = populateAutocomplete;
   vm.selectFromAutocomplete = selectFromAutocomplete;
+  vm.removeAutocomplete = removeAutocomplete;
   vm.submitQuery = submitQuery; 
 
   function init() {
@@ -55,18 +55,16 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
       vm.search.query = cache.searchParams.query; 
     }
     
-    // add location to search query
+    // add location to search query object
     if (vm.location) {
       vm.search.coords = `${vm.location.coords.lat},${vm.location.coords.lng}`;
     }
 
-    // clear result from detail page before user can route there
+    // clear cached result from detail page before user can route there
     localStorageSvc.clearCache('result');
-
   }
 
   function populateAutocomplete() {
-    console.log(vm.search.category);
     vm.message = '';
     if (vm.search.category && vm.search.category.length > 0) {
       vm.showDropdown = true;
@@ -81,25 +79,29 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
     vm.categoryMatches = [];
   }
 
+  function removeAutocomplete(event) {
+    if (event.target.classname !== 'category-dropdown') {
+      vm.showDropdown = false;
+    }
+  }
+
   function submitQuery() {
     if (!categorySvc.isCategoryValid(vm.search.category)) {
       return vm.message = 'Invalid category. Please choose one from the list.'
     }
-    console.log(vm.search);
     vm.showSpinner = true;
     googleApiSvc
       .textSearch(vm.search)
       .then(results => {
         if (results.length) {
           vm.results = helperSvc.formatTags(results);
-          
         } else {
           vm.message = 'Your search returned no results.'
         }
       })
       .catch(err => {
         vm.message = 'Oops! Something went wrong...'; 
-        
+        errorSvc.logError('search.controller.submitQuery', 'text search error');
       })
       .finally(() => {
         vm.showSpinner = false;

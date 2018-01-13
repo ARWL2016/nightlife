@@ -36,6 +36,7 @@ function errorService($http) {
         const timestamp = (new Date()).toUTCString();
         const errorData = {error, origin, timestamp};
 
+        // if logError returns an error, what do we do with that? Hmmm... 
         $http.post(`/api/error/log`, errorData);
       }
     }

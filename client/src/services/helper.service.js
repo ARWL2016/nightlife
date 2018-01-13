@@ -54,10 +54,8 @@ function helperService() {
           typesString += type;
         }
       });
-
       result.types = typesString;
     });
-
     return resultsArray;
   }  
 
@@ -86,11 +84,9 @@ function helperService() {
     for (let i = 0; i < integer; i++) {
       result.integer.push(i);
     }
-    
     if (decimal > 0.2) {
       result.decimal.push(1);
     }
-
     return result;
   }
 
@@ -113,11 +109,7 @@ function helperService() {
   }
 
   function editResult(result) {
-    // delete result.opening_hours.formatted_weekday_text; 
-    // delete result.opening_hours.periods; 
-    // delete result.opening_hours.open_now;
-    // delete result.id;
-
+    // lodash is mounted on the window object
     return window._.pick(result, 
       'formatted_address', 'id', 'name', 'opening_hours', 'photohref', 'place_id', 'rating', 'types', 'url', 'vicinity', 'website');
   }

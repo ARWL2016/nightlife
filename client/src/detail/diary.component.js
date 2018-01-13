@@ -1,3 +1,9 @@
+/**
+ *  PURPOSE: manages the diary widget which returns a date and time.
+ *  PARENT: detail.controller
+ *  COMPONENT: Manages custom component <diary>
+ */
+
 (function(){
   'use strict';
 
@@ -27,14 +33,11 @@ angular
 
     // UI props
     vm.added = false;
-    // vm.diaryBtnLabel = 'Add to Diary';
     vm.diaryBtnLabel = () => vm.added ? 'Added' : 'Add to Diary';
-    
     vm.diarySpinner = false;
     vm.error = '';
 
     vm.emitDatetime = () => {
-      console.log('emit dt');
       vm.error = '';
       const dt = datetimeSvc.injectCurrentDate(vm.datetime);
       vm.diarySpinner = true;
@@ -42,16 +45,13 @@ angular
     }
 
     $scope.$on('eventAdded', () => {
-      console.log('added');
       vm.added = true;
       vm.diarySpinner = false;
     }); 
 
     $scope.$on('eventNotAdded', () => {
       vm.error = 'Sorry. Event could not be added';
-    })
-
+    });
   }
 
- 
-}())
+}());

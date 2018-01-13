@@ -1,8 +1,8 @@
 /**
- * This controller displays information about a single search result.
- * This page is routed from the search page and make API calls to getDetails on init.
- * The result is cached. This cache will load unless the page is routed to from the search page (where the cache is cleared)
- * This page renders a child component - <diary> - for adding events, if the user is logged in.
+ * PURPOSE: This controller displays information about a single search result.
+ * ORIGIN: This page is routed from the search page and make API calls to getDetails on init.
+ * CACHE: The result is cached. This cache will load unless the page is routed to from the search page (where the cache is cleared)
+ * CHILD: This page renders a child component - <diary> - for adding events if the user is logged in.
  */
 
 (function(){
@@ -19,8 +19,8 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
   var vm = this;
 
   // data
-  vm.placeid = $routeParams.placeid || null;
-  vm.photoref = $routeParams.photoref || null;
+  vm.placeid = $routeParams.placeid;
+  vm.photoref = $routeParams.photoref;
   vm.result;
   vm.photoUrl;
   vm.user = localStorageSvc.getUser();
@@ -58,18 +58,16 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
     if (vm.placeid) {
       getDetails();
 
-      // make API call for photo if only ref is available
+      // make API call for photo only if ref is available
       if (vm.photoref) {
         getPhoto();
       }
     } else {
       vm.message = 'Sorry, details not available';
     }
-    
   }
 
   $scope.$on('addToDiary', (event, datetime) => {
-    console.log('add to diary event');
     addLocationToDiary(datetime);
   });
 
@@ -78,13 +76,12 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
       .getDetails(vm.placeid)
       .then(result => {
         vm.result = helperSvc.formatHours(helperSvc.formatTags(result)[0]);
-        // vm.starRating = helperSvc.createStarRating(vm.result.rating);
-        
+
         // cache result 
         localStorageSvc.cache('result', vm.result);
       })
-      .catch(err => {
-        errorSvc.logError('detail.controller.getDetails', err);
+      .catch(() => {
+        vm.message = 'information not found';
       })
       .finally(() => vm.showSpinner = false);
   }
@@ -97,11 +94,10 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
 
         // save to cache
         localStorageSvc.cache('photoUrl', photoUrl);
-
       })
       .catch(err => {
         errorSvc.logError('detail.controller.getPhoto', err);
-      })
+      });
   }
 
   function addLocationToDiary(datetime) {

@@ -14,18 +14,15 @@ function localStorageService() {
 
   // generic methods
   function cache(identifier, data) {
-    console.log(`Saving to cache with id ${identifier}`);
     localStorage.setItem(identifier, JSON.stringify(data));
   }
 
   function getFromCache(identifier) {
-    console.log(`Retrieving from cache with id ${identifier}`);
     const cache = localStorage.getItem(identifier);
     return JSON.parse(cache);
   } 
 
   function clearCache(identifier) {
-    console.log(`Clearing cache with id ${identifier}`);
     localStorage.setItem(identifier, null);
   }
 

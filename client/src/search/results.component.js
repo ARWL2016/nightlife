@@ -9,7 +9,7 @@
 (function(){
   'use strict'; 
 
-angular
+  angular
   .module('app')
   .component('searchResults', {
     templateUrl: 'search/results.html', 
@@ -21,7 +21,7 @@ angular
     }
   }); 
 
-  SearchResultsController.$inject = ['helperService', '$location'];
+SearchResultsController.$inject = ['helperService', '$location'];
 
   function SearchResultsController(helperSvc, $location) {
     const vm = this; 
@@ -37,7 +37,6 @@ angular
     }
 
     vm.routeToDetailPage = (placeid, photoref) => {
-      console.log({ placeid, photoref });
       $location.path(`/detail/${placeid}/${photoref}`); 
     }
   }

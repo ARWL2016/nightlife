@@ -1,25 +1,23 @@
+<!-- DIARY WIDGET -->
 <div class="diary-widget">
-  
   <form>
-
     <select name="date" ng-model="vm.datetime.date"> 
       <option value="today" selected>Today</option> 
       <option value="{{date}}" ng-repeat="date in vm.dates()" >{{date}}</option>
     </select>
-
     <select name="hour" ng-model="vm.datetime.hour"> 
       <option value="1.00" selected>1.00</option> 
       <option value="{{hour}}" ng-repeat="hour in vm.hours()" >{{hour}}</option>
     </select>
-
     <select name="hour" ng-model="vm.datetime.amPm"> 
       <option value="PM" selected>PM</option> 
       <option value="AM" >AM</option> 
     </select>
-
     <button ng-click="vm.emitDatetime()" ng-disabled="vm.added">{{ vm.diaryBtnLabel() | uppercase }}</button>
   </form>
 </div>
+
+<!-- LOADER -->
 <div ng-show="vm.diarySpinner" class="spinner-dots diary-spinner">
   <div class="bounce1"></div>
   <div class="bounce2"></div>

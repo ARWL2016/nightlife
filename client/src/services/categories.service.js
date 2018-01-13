@@ -1,4 +1,7 @@
 /**
+ * PURPOSE: populate the category input on the search page and validate user entries
+ * API: only these categories are valid inputs for the Google textsearch API
+ * 
  * @function matchCategorys 
  * @param category query from user search input 
  * @return the categories array filtered by the search term 
@@ -27,11 +30,10 @@ function categoryService() {
   }
 
   function isCategoryValid(categoryQuery) {
-  
     return categories.indexOf(categoryQuery.toLowerCase()) > -1; 
   }
 
-  return {matchCategories, isCategoryValid};
+  return { matchCategories, isCategoryValid };
 };
 
 }());

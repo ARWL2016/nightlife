@@ -1,18 +1,17 @@
-    <!-- diary events  -->
-    <div class="events-wrapper">
-      <h1>Diary Events</h1>
-   
-      <p ng-if="vm.displayName && vm.events.length < 1">You haven't added any events yet!</p>
-      <p ng-if="!vm.displayName">not logged in.</p>
-      <table class="events-table">
-        <tr ng-repeat="event in vm.events">
-          <td><b>{{event.place_name}}</b></td>
-          <td>{{event.date}} {{event.hour}} {{event.amPm}}</td>
-          <td ng-click="vm.deleteEvent(event)">
-            <i class="fa fa-trash" aria-hidden="true" title="remove event"></i>
-          </td>
-        </tr>
-      </table>
-    </div>
+  <!-- diary events  -->
+  <div class="events-wrapper">
+    <h1>Diary Events</h1>
+    <p ng-if="vm.displayName && vm.events.length < 1">You haven't added any events yet!</p>
+    <p ng-if="!vm.displayName">not logged in.</p>
+    <table class="events-table">
+      <tr ng-repeat="event in vm.events">
+        <td><b>{{event.place_name}}</b></td>
+        <td>{{event.date}} {{event.hour}} {{event.amPm}}</td>
+        <td ng-click="vm.deleteEvent(event)">
+          <i class="fa fa-trash" aria-hidden="true" title="remove event"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
 
 

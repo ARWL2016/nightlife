@@ -4,8 +4,6 @@
   margin: 0 auto;
   padding: 10px;
   max-width: 700px;
-  /* border: 1px solid blue; */
-  /* border: 1px solid #aaa; */
 }
 
 .detail-basic-info {
@@ -25,7 +23,6 @@
 .detail-image-wrapper {
   padding: 10px;
   flex-grow: 1;
-
 }
 
 
@@ -37,7 +34,6 @@
 }
 
 .detail-page-content p {
-  /* border: 1px solid red; */
   margin: 8px 0;
 }
 
@@ -45,16 +41,25 @@ i:not(.detail-star) {
   color: #888;
 }
 
+
 /* SPINNER */ 
+
 div.detail-page-spinner {
   margin-top: 100px;
+}
+
+
+/* ERROR MESSAGE */
+
+.detail-page-error {
+  margin: 0 auto;
+  padding: 10px;
 }
 
 
 /* LOCATION CARD */
 
 .detail-header {
-  /* border: 1px dotted yellow; */
   margin: 0px;
 }
 
@@ -100,12 +105,12 @@ div.detail-page-spinner {
   font-size: 0.9em;
 }
 
+
 /* OPENING HOURS  */
 
 .detail-opening-hours {
   padding: 10px;
   min-width: 200px;
-  /* border: 1px solid #aaa; */
 }
 
 .detail-opening-hours > h3 {
@@ -133,11 +138,13 @@ tr:nth-child(odd) {
   width: 60px;
 }
 
+
 /* IMAGE */
 
 .detail-image {
   width: 100%;
 }
+
 
 /* MEDIA QUERIES */ 
 
@@ -145,6 +152,4 @@ tr:nth-child(odd) {
   .detail-secondary-info {
     flex-direction: column;
   }
-
-  
 }

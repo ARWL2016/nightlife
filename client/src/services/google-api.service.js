@@ -1,17 +1,20 @@
 /**
  * This service returns a set of methods which query the restful API
  * on the back end (located at server/api). 
- * Currently the getDetails method will call both the getDetails 
- * AND the getPhoto method on the back end in parallel.
- * Therefore the getPhoto method here is not used.
  * 
  * @function textSearch 
- * @params query (required) - an address or location 
- * @params type (optional) - type of place, eg restaurant, hospital, bank
+ * @param query (required) - an address or location 
+ * @param type (optional) - type of place, eg restaurant, hospital, bank
+ * 
+ * @function getDetails - gets detailed information about single location
+ * @param placeid returned from textSearch 
+ * 
+ * @function getPhoto - gets single photo reference for one location 
+ * @param - photoref returned from textSearch
  */
 
 (function(){
-'use strict';
+  'use strict';
 
 angular
   .module('app')
@@ -25,14 +28,15 @@ function googleApiService($http, localStorageSvc, errorSvc) {
     const url = `/api/data/location?address=${location}`
     return $http.get(url)
       .then(resp => {
-        // console.log({resp});
         return resp.data.results;
       })
-      .catch(e => console.log(e));
+      .catch(err => {
+        errorSvc.logError('google-api-service.getLocation', 'location search error');
+        return err;
+      });
   }
 
   function textSearch({category, query, coords}) {
-
     return $http.get(`/api/data/info?q=${query}&type=${category}&location=${coords}`)
       .then(res => {
         if (res.status === 200) {
@@ -47,10 +51,9 @@ function googleApiService($http, localStorageSvc, errorSvc) {
       });
   }
 
-  function getDetails(placeid, photoref) {
+  function getDetails(placeid) {
     return $http.get(`/api/data/details?placeid=${placeid}`)
       .then(resp => {
-          console.log({resp});
           return resp.data.result;
       })
       .catch(err => {
@@ -58,19 +61,17 @@ function googleApiService($http, localStorageSvc, errorSvc) {
       })
   }
 
-  // not currently in use
   function getPhoto(photoref) {
     return $http.get(`/api/data/photo?photoref=${photoref}`)
       .then(resp => {
-        console.log({resp});
         return resp.data;
-      }).catch(err => {
+      })
+      .catch(err => {
         errorSvc.logError('google-api.service.getPhoto', err);
       });
   }
 
   return { textSearch, getDetails, getPhoto, getLocation };
-
 };
 
 }());

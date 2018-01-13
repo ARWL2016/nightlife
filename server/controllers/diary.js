@@ -65,7 +65,6 @@ function getEventsByUser(req, res) {
 function deleteEvent(req, res) {
   const event = req.body;
   const {displayName, place_id, date, hour, amPm} = req.body;
-  console.log({event});
 
   User.findOneAndUpdate({displayName}, {$pull: {events: {place_id, date, hour, amPm} }})
       .then(() => {
@@ -76,7 +75,6 @@ function deleteEvent(req, res) {
       })
       .catch(e => {
         if (e) {
-          console.log(e);
           res.sendStatus(500);
         }
       }); 
