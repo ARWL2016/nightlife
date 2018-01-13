@@ -28,13 +28,24 @@ function diaryService($http, helperSvc, localStorageSvc) {
 
   function getEvents() {
     const user = localStorageSvc.getUser();
-    const { displayName, token } = user;
-    const url = `api/diary/events/user?name=${displayName}&token=${token}`;
-    return $http.get(url)
-      .then(resp => {
-        console.log(resp);
-        return resp.data; 
-      });
+
+    if (helperSvc.objectIsEmpty([user])) {
+      return Promise.reject('user not logged in');
+      
+    } else {
+      const { displayName, token } = user;
+      const url = `api/diary/events/user?name=${displayName}&token=${token}`;
+      return $http.get(url)
+        .then(resp => {
+          console.log(resp);
+          return resp.data; 
+        })
+        .catch(err => {
+          errorSvc.logError('diary.service.getEvents', 'events could not be fetched');
+          return err;
+        })
+    }
+    
   }
 
   function deleteEvent(event) {

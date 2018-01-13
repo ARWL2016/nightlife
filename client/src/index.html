@@ -22,12 +22,28 @@
     <nav class="nav-content">
       <ul class="nav-menu">
         <li class="nav-brand">Pathfinder</li>
-        <li><a href="#!/search">Search</a></li>
-        <li><a href="#!/profile">Profile</a></li>
-        <!-- convenience route for dev -->
-        <li><a href="#!/detail">det</a></li>
-        <li ng-show="!main.loggedIn"><a href="#!/login">Login</a></li>
-        <li ng-show="main.loggedIn"><a href="/auth/logout/" ng-click="main.logout()">Logout</a></li>
+        <li class="nav-brand-icon"><i class="fa fa-globe" aria-hidden="true"></i></li>
+
+        <li class="nav-menu-item"><a href="#!/search">Search</a></li>
+        <li class="nav-icon">
+          <a href="#!/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+        </li>
+        <!-- <li><a href="#!/detail">det</a></li> -->
+
+        <li class="nav-menu-item"><a href="#!/profile">Profile</a></li>
+        <li class="nav-icon">
+          <a href="#!/profile"><i class="fa fa-user" aria-hidden="true"></i></a>
+        </li>
+
+        <li ng-show="!main.loggedIn" class="nav-menu-item"><a href="#!/login">Login</a></li>
+        <li ng-show="!main.loggedIn" class="nav-icon">
+          <a href="#!/login"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+        </li>
+
+        <li ng-show="main.loggedIn" class="nav-menu-item"><a href="/auth/logout/" ng-click="main.logout()">Logout</a></li>
+        <li ng-show="main.loggedIn" class="nav-icon">
+          <a href="/auth/logout/" ng-click="main.logout()"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        </li>
       </ul>
  
       <a href="#!/profile" class="nav-location">{{main.location.formatted_address}}</a>

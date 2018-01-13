@@ -1,12 +1,7 @@
 ### Pathfinder App 
 
-Goal1: 
-- decouple detail from photoref
-
-Goal2: 
-- review add to diary function 
-- make sure it adds and removes events correctly 
-- avoid duplicates
+Goal
+- add responsive design
 
 
 
