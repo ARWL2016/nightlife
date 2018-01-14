@@ -18,7 +18,7 @@ function datetimeHelperService() {
   function getNextWeek() {
     const nextWeek = [];
     
-    for (let i = 1; i < 7; i++) {
+    for (var i = 1; i < 7; i++) {
       const currentDate = new Date();
       currentDate.setDate(currentDate.getDate() + i);
 
@@ -42,8 +42,8 @@ function datetimeHelperService() {
 
   // get list of 1.00 - 12.00 
   function getHours() {
-    const hours = [];
-    for (let i = 2; i < 13; i++) {
+    var hours = [];
+    for (var i = 2; i < 13; i++) {
       hours.push(i + ':00');
     }
     return hours;

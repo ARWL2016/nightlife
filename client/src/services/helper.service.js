@@ -81,7 +81,7 @@ function helperService() {
     const decimal = (num - integer).toFixed(1);
     const result = {integer: [], decimal: []};
     
-    for (let i = 0; i < integer; i++) {
+    for (var i = 0; i < integer; i++) {
       result.integer.push(i);
     }
     if (decimal > 0.2) {

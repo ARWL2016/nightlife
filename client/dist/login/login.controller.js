@@ -1,7 +1,1 @@
-'use strict';
-
-(function () {
-  'use strict';
-
-  angular.module('app').controller('LoginController', function LoginController() {});
-})();
+'use strict';(function(){'use strict';angular.module('app').controller('LoginController',function(){})})();
