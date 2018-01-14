@@ -18,13 +18,13 @@
     </p>
     <p class="detail-tags">{{vm.result.types}}</p>
     <p ng-show="vm.result.vicinity" class="detail-vicinity"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;{{ vm.result.vicinity }}
-      <a class="detail-map-link" href="{{vm.result.url}}" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;View on Map</a>
+      <a class="detail-map-link" href="{{vm.result.url}}" target="_blank" rel="noopener noreferrer"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;View on Map</a>
     </p>
     <p ng-show="vm.result.formatted_phone_number" class="detail-phone-number">
       <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{vm.result.formatted_phone_number}}
     </p>
     <p ng-show="vm.result.website" class="detail-website-link"><i class="fa fa-external-link" aria-hidden="true"></i>
-      <a href="{{vm.result.website}}" target="_blank">&nbsp;{{ vm.parsedWebsiteUrl() }}</a>
+      <a href="{{vm.result.website}}" target="_blank" rel="noopener noreferrer">&nbsp;{{ vm.parsedWebsiteUrl() }}</a>
     </p>
   </section>
 

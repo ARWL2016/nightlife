@@ -4,6 +4,9 @@ if (process.env.NODE_ENV === 'development') {
 
 const express = require('express');
 const passport = require('passport');
+const helmet = require('helmet'); 
+const compression = require('compression');
+const ms = require('ms');
 
 const fs = require('fs');
 const path = require('path');
@@ -21,9 +24,12 @@ const app = express();
 const port = process.env.PORT || 3000; 
 const appDirectory = path.join(__dirname, 'client/dist');
 const libDirectory = path.join(__dirname, 'client/bower_components');
+const staticOptions = {maxAge: ms('1y')};
 
-app.use(express.static(appDirectory));
-app.use(express.static(libDirectory));
+app.use(compression());
+app.use(helmet());
+app.use(express.static(appDirectory, staticOptions));
+app.use(express.static(libDirectory, staticOptions));
 
 // app.use(cookieParser());
 // parse request body and add to req.body
