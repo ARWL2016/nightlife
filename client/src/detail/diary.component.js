@@ -28,8 +28,8 @@ angular
     }
 
     // populate inputs
-    vm.hours = datetimeSvc.getHours;
-    vm.dates = datetimeSvc.getNextWeek;
+    vm.hours = datetimeSvc.getHours();
+    vm.dates = datetimeSvc.getNextWeek();
 
     // UI props
     vm.added = false;

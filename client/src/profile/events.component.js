@@ -31,8 +31,9 @@ function EventsController(diarySvc, errorSvc, localStorageSvc) {
     const user = localStorageSvc.getUser();
     if (user && user.displayName) {
       vm.displayName = user.displayName; 
+      getEvents();
     }
-    getEvents();
+    
   }
 
   function getEvents() {

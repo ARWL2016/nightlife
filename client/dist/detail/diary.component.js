@@ -1,1 +1,62 @@
-'use strict';(function(){'use strict';function a(a,b){var c=this;c.datetime={hour:'1.00',amPm:'PM',date:'today'},c.hours=a.getHours,c.dates=a.getNextWeek,c.added=!1,c.clicked=!1,c.diaryBtnLabel=function(){return c.added?'Added':'Add to Diary'},c.diarySpinner=!1,c.error='',c.emitDatetime=function(){if(!c.clicked){c.clicked=!0,c.error='';var d=a.injectCurrentDate(c.datetime);c.diarySpinner=!0,b.$emit('addToDiary',d)}},b.$on('eventAdded',function(){c.added=!0,c.diarySpinner=!1}),b.$on('eventNotAdded',function(){c.error='Sorry. Event could not be added'})}angular.module('app').component('diary',{templateUrl:'detail/diary.html',controllerAs:'vm',controller:a}),a.$inject=['datetimeHelperService','$scope']})();
+'use strict';
+
+/**
+ *  PURPOSE: manages the diary widget which returns a date and time.
+ *  PARENT: detail.controller
+ *  COMPONENT: Manages custom component <diary>
+ */
+
+(function () {
+  'use strict';
+
+  angular.module('app').component('diary', {
+    templateUrl: 'detail/diary.html',
+    controllerAs: 'vm',
+    controller: DiaryController
+  });
+
+  DiaryController.$inject = ['datetimeHelperService', '$scope'];
+
+  function DiaryController(datetimeSvc, $scope) {
+    var vm = this;
+
+    // model
+    vm.datetime = {
+      hour: '1.00',
+      amPm: 'PM',
+      date: 'today'
+
+      // populate inputs
+    };vm.hours = datetimeSvc.getHours();
+    vm.dates = datetimeSvc.getNextWeek();
+
+    // UI props
+    vm.added = false;
+    vm.clicked = false;
+    vm.diaryBtnLabel = function () {
+      return vm.added ? 'Added' : 'Add to Diary';
+    };
+    vm.diarySpinner = false;
+    vm.error = '';
+
+    vm.emitDatetime = function () {
+      if (!vm.clicked) {
+        // disable multiple clicks
+        vm.clicked = true;
+        vm.error = '';
+        var dt = datetimeSvc.injectCurrentDate(vm.datetime);
+        vm.diarySpinner = true;
+        $scope.$emit('addToDiary', dt);
+      }
+    };
+
+    $scope.$on('eventAdded', function () {
+      vm.added = true;
+      vm.diarySpinner = false;
+    });
+
+    $scope.$on('eventNotAdded', function () {
+      vm.error = 'Sorry. Event could not be added';
+    });
+  }
+})();
