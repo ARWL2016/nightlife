@@ -10,7 +10,7 @@ const {logger} =  require('../config/logger');
 mongoose.Promise = global.Promise;
 
 // create database connection with mongoose
-const mlabURI = process.env.MLAB_URI
+const mlabURI = process.env.MONGODB_URI
 mongoose.connect(mlabURI); 
 
 mongoose.connection.on('connected', () => {
