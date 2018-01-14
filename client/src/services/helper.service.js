@@ -116,12 +116,24 @@ function helperService() {
 
   function objectIsEmpty(objArray) {
     let empty = false;
+    if (!objArray.length) {
+      empty = true;
+      return empty;
+    }
     objArray.forEach(obj => {
       if (Object.entries(obj).length === 0) {
         empty = true;
       }
     });
     return empty;
+  }
+
+  function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
   }
 
   // Thanks to Lewdev: https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string 
@@ -149,7 +161,8 @@ function helperService() {
     sortAZ, 
     filterGeocodeResult,
     editResult, 
-    objectIsEmpty, 
+    objectIsEmpty,
+    isEmpty, 
     getDomainFromUrl
   };
 

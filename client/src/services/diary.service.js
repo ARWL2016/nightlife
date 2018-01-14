@@ -14,8 +14,6 @@ diaryService.$inject = ['$http', 'helperService', 'localStorageService', 'errorS
 
 function diaryService($http, helperSvc, localStorageSvc, errorSvc) {
 
-  
-
   function addToDiary(user, location, datetime) {
     if (helperSvc.objectIsEmpty([user, location, datetime])) {
       return Promise.reject('Could not add to diary. Data incomplete.');
@@ -31,8 +29,7 @@ function diaryService($http, helperSvc, localStorageSvc, errorSvc) {
 
   function getEvents() {
     const user = localStorageSvc.getUser();
-
-    if (helperSvc.objectIsEmpty([user])) {
+    if (helperSvc.isEmpty(user)) {
       return Promise.reject('user not logged in');
       
     } else {

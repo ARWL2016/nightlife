@@ -38,6 +38,8 @@ function configPassport(passport) {
 
   passport.use(new GoogleStrategy(google, registerUserWithProvider('googleId')));
   passport.use(new FacebookStrategy(fb, registerUserWithProvider('facebookId')));
+  console.log({fb});
+  console.log({google});
 }
 
 function registerUserWithProvider(idProperty) {

@@ -20,7 +20,6 @@ function MainController(localStorageSvc, errorSvc, $rootScope) {
   vm.logout = logout;
   
   (function init() {
-    errorSvc.logError('main.controller', 'test');
     vm.location = localStorageSvc.getFromCache('location');
     vm.user = localStorageSvc.getUser(); 
     if (vm.user && vm.user.displayName) {

@@ -79,7 +79,8 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
         localStorageSvc.cache('result', vm.result);
       })
       .catch(() => {
-        vm.message = 'information not found';
+        // vm.message = 'information not found';
+        errorSvc.logError('detail.controller.getDetails', 'api call error');
       })
       .finally(() => vm.showSpinner = false);
   }

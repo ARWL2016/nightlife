@@ -1,6 +1,11 @@
 ### Pathfinder App 
 
+https://arwl-pathfinder.herokuapp.com/#!/search 
+
 Pathfinder is a web app which allows users to search for information on restaurants, shops, hospitals and many other kinds of location using various google APIs. Users can save a favorite location. Users can also log in using a Facebook or Google account and add a location and time to their diary. 
+
+https://arwl-pathfinder.herokuapp.com/auth/facebook/callback
+https://arwl-pathfinder.herokuapp.com/auth/google/callback
 
 #### Tech 
 - angular 1.5.0 
@@ -26,6 +31,7 @@ Pathfinder is a web app which allows users to search for information on restaura
 
 #### Resources 
 - http://www.passportjs.org/packages/
+- https://developers.facebook.com/ 
 - https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md 
 - https://mlab.com/home 
 - http://tobiasahlin.com/spinkit/ - css loaders / spinners

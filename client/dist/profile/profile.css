@@ -71,8 +71,12 @@
   background-color: rgb(93, 212, 248);
 }
 
-.location-form-button > i{
+.location-form-button > i {
   color: white;
+}
+
+button.location-form-button:hover {
+  cursor: pointer;
 }
 
 .location-search-result-wrapper {
