@@ -14,7 +14,7 @@
     ]
   },
   "scripts": {
-    "postinstall": "bower install",
+    "bower": "bower install",
     "start": "node server.js",
     "server": "SET \"NODE_ENV=development\" && nodemon server.js",
     "dev": "concurrently \"npm run server\" \"npm run build:watch\" ",
