@@ -1,0 +1,151 @@
+.profile-page-content {
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 30px;
+}
+
+.profile-page-content p {
+  font-size: 1.1em; 
+  margin: 10px 0 20px 0;
+  line-height: 1.4em;
+}
+
+
+/* PROFILE PAGE TABLE */
+
+.profile-table tr {
+  background-color: white;
+  height: 30px;
+}
+
+.profile-table-icon-cell > i.fa {
+  font-size: 1.2em;
+  width: 40px;
+  text-align: center;
+  margin: 0; 
+  padding: 0;
+}
+
+.profile-table-icon-cell > i.fa-check-square {
+  color: green;
+}
+
+.profile-table-icon-cell > i.fa-times-circle {
+  color: red;
+}
+
+.profile-table-icon-cell > i.fa-map-marker {
+  color: blue;
+}
+
+.profile-table-heading-cell {
+  max-width: 120px;
+  padding-right: 20px;
+}
+
+
+/* SEARCH FORM */
+
+.location-search-form {
+  margin-top: 27px;
+  padding: 10px;
+  height: 54px; 
+  background-color: #2e2e2e;
+  max-width: 300px;
+}
+
+.location-form-input {
+  height: 36px; 
+  width: 80%;
+  border-radius: 5px 0 0 5px;
+  border: 0;
+  padding: 10px;
+}
+
+.location-form-button {
+  width: 19%;
+  margin: 0 0 0 -5px; 
+  border: 0; 
+  height: 36px; 
+  border-radius: 0 5px 5px 0;
+  background-color: rgb(93, 212, 248);
+}
+
+.location-form-button > i{
+  color: white;
+}
+
+.location-search-result-wrapper {
+  border: 1px solid #ddd;
+}
+
+.location-search-result {
+  cursor: pointer; 
+  padding: 10px; 
+  margin: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.location-search-result:last-child {
+  border: 0;
+}
+
+.location-search-result i {
+  color: green; 
+  padding: 0 10px;
+}
+
+
+/* EVENTS */
+.events-wrapper {
+  margin-top: 50px;
+}
+
+.events-table {
+  width: 100%;
+}
+
+.events-table tr {
+  width: 100%;
+}
+
+.events-table td:nth-child(1) {
+  width: 40%;
+}
+
+.events-table td:nth-child(2) {
+  width: 50%;
+}
+
+.events-table td:nth-child(3) {
+  width: 10%;
+  text-align: center;
+}
+
+.events-table tr:nth-child(odd) {
+  background-color: rgb(93, 212, 248);
+}
+
+.events-table td {
+  padding: 15px;
+}
+
+.events-table td:nth-child(3):hover {
+  cursor: pointer;
+}
+
+.events-table i.fa-trash {
+  color: black;
+}
+
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 370px) {
+  div.profile-page-content {
+    padding: 20px; 
+    margin-top: 10px;
+  }
+}
+
+

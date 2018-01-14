@@ -1,0 +1,102 @@
+@import './search/search.css';
+@import './search/results.css';
+@import './detail/detail.css';
+@import './detail/diary.css';
+@import './profile/profile.css'; 
+@import './login/login.css';
+@import './spinner.css';
+@import './spinner-dots.css';
+
+* {
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 0.5px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+/* styling for ng-cloak */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/* NAVIGATION STYLES */
+
+.nav-wrapper {
+  width: 100%; 
+  background-color: #222222;
+}
+
+.nav-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.nav-menu {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  display: inline-block;
+}
+
+.nav-menu > li {
+  display: inline;
+  margin: 0 15px;
+  color: white;
+  font-size: 0.9em;
+}
+
+li.nav-brand {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+li.nav-icon, 
+li.nav-brand-icon {
+  display: none;
+}
+
+li.nav-icon:hover {
+  cursor: pointer;
+}
+
+li.nav-icon i, 
+li.nav-brand-icon i {
+  color: white;
+  font-size: 1.2em;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-location {
+  line-height: 37px;
+  color: white;
+  float: right;
+  padding: 0 10px;
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 550px) {
+  li.nav-icon {
+    display: inline-block
+  }
+
+  li.nav-menu-item {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  li.nav-brand-icon {
+    display: inline-block;
+  }
+
+  li.nav-menu-item, 
+  li.nav-brand {
+    display: none;
+  }
+}

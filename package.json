@@ -5,6 +5,9 @@
   "description": "Nightlife Coordination App for Free Code Camp",
   "repository": "",
   "license": "MIT",
+  "engines": {
+    "node": "8.9.3"
+  },
   "babel": {
     "presets": [
       "es2015"
@@ -16,6 +19,7 @@
     "server": "SET \"NODE_ENV=development\" && nodemon server.js",
     "dev": "concurrently \"npm run server\" \"npm run build:watch\" ",
     "build": "babel client/src --out-dir client/dist --copy-files",
+    "build:prod": "babel client/src --out-dir client/dist --presets minify --copy-files",
     "build:watch": "babel client/src --out-dir client/dist --copy-files -w",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",

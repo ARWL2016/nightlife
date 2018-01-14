@@ -33,15 +33,21 @@ angular
 
     // UI props
     vm.added = false;
+    vm.clicked = false;
     vm.diaryBtnLabel = () => vm.added ? 'Added' : 'Add to Diary';
     vm.diarySpinner = false;
     vm.error = '';
 
     vm.emitDatetime = () => {
-      vm.error = '';
-      const dt = datetimeSvc.injectCurrentDate(vm.datetime);
-      vm.diarySpinner = true;
-      $scope.$emit('addToDiary', dt);
+      if (!vm.clicked) {
+        // disable multiple clicks
+        vm.clicked = true;
+        vm.error = '';
+        const dt = datetimeSvc.injectCurrentDate(vm.datetime);
+        vm.diarySpinner = true;
+        $scope.$emit('addToDiary', dt);
+      }
+      
     }
 
     $scope.$on('eventAdded', () => {

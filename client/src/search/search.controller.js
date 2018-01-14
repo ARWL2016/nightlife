@@ -86,6 +86,9 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
   }
 
   function submitQuery() {
+    if (!vm.location) {
+      return vm.message = 'Please select a location.'
+    }
     if (!categorySvc.isCategoryValid(vm.search.category)) {
       return vm.message = 'Invalid category. Please choose one from the list.'
     }

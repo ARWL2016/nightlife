@@ -26,11 +26,7 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
   vm.user = localStorageSvc.getUser();
 
   // computed values
-  vm.starRating = () => {
-    if (vm.result) {
-      return helperSvc.createStarRating(vm.result.rating);
-    }
-  }
+  vm.starRating = { integer: [], decimal: [] };
   vm.parsedWebsiteUrl = () => {
     if (vm.result && vm.result.website) {
       return helperSvc.getDomainFromUrl(vm.result.website);
@@ -76,7 +72,9 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
       .getDetails(vm.placeid)
       .then(result => {
         vm.result = helperSvc.formatHours(helperSvc.formatTags(result)[0]);
-
+        if (vm.result.rating) {
+          vm.starRating = helperSvc.createStarRating(vm.result.rating);
+        }
         // cache result 
         localStorageSvc.cache('result', vm.result);
       })

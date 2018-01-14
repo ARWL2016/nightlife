@@ -15,10 +15,14 @@ Pathfinder is a web app which allows users to search for information on restaura
 - logging: winston 
 - hosting: heroku, mlab
 
-#### Run the app 
+#### Run the app in dev mode
 - `npm run build:watch` - compile the front end source code in watch mode using babel 
 - `npm run server` - run the express server in watch mode
 - `npm run dev` - run the previous two commands concurrently 
+
+#### Production build
+- `npm run build:prod` - run babel build with minification 
+- `npm run start`
 
 #### Resources 
 - http://www.passportjs.org/packages/
@@ -27,8 +31,10 @@ Pathfinder is a web app which allows users to search for information on restaura
 - http://tobiasahlin.com/spinkit/ - css loaders / spinners
 
 #### Notes 
+- to load in IE or Edge, use: `http://127.0.0.1:3000`
 - css files are kept next to controllers for convenience but are global - use namespacing to apply style rules locally
 - fb OAuth does not return a consistent id, so currently using displayName for identifying users
+- tested with: Chrome, Opera, Edge, IE11
 
 #### Todos
 - local storage set item should be wrapped in try / catch if data may exceed limit - check

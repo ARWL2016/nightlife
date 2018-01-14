@@ -6,5 +6,3 @@ tmp
 .idea
 .env
 google.json
-client/dist/
-client/bower_components
