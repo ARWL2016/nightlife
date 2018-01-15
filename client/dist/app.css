@@ -135,6 +135,11 @@ li.nav-brand-icon i {
   text-decoration: none;
 }
 
+.twitter-login-link {
+  background-color: #1DA1F2;
+  text-decoration: none;
+}
+
 
 /********************************
     SPINNER / LOADING WIDGETS

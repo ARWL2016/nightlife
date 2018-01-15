@@ -13,6 +13,10 @@ module.exports = {
     clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET, 
     callbackURL: process.env.GOOGLE_CALLBACK_URL, 
     profileFields: ["id", "displayName"]
+  }, 
+  twitter: {
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callbackURL: process.env.TWITTER_CALLBACK_URL
   }
-}; 
-
+}

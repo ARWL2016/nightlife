@@ -17,9 +17,10 @@
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
 
 const { User } = require('../db');
-const { fb, google } = require('./index');
+const { fb, google, twitter } = require('./index');
 
 function configPassport(passport) {
   passport.serializeUser((user, done) => {
@@ -38,8 +39,8 @@ function configPassport(passport) {
 
   passport.use(new GoogleStrategy(google, registerUserWithProvider('googleId')));
   passport.use(new FacebookStrategy(fb, registerUserWithProvider('facebookId')));
-  console.log({fb});
-  console.log({google});
+  passport.use(new TwitterStrategy(twitter, registerUserWithProvider('twitterId')));
+  console.log({twitter});
 }
 
 function registerUserWithProvider(idProperty) {

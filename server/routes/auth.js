@@ -16,6 +16,17 @@ module.exports = (app, passport) => {
       const {displayName, token} = req.user;
       res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
     });
+
+    // twitter 
+    app.get('/auth/twitter',
+      passport.authenticate('twitter'));
+
+    app.get('/auth/twitter/callback', 
+      passport.authenticate('twitter', { failureRedirect: '/#!/login' }),
+      function(req, res) {
+        const {displayName, token} = req.user;
+        res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
+      });
     
 
   // facebook 
