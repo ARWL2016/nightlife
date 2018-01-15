@@ -27,7 +27,7 @@ const libDirectory = path.join(__dirname, 'client/bower_components');
 const staticOptions = {maxAge: ms('1y')};
 
 app.use(compression());
-// app.use(helmet());
+app.use(helmet());
 app.use(express.static(appDirectory, staticOptions));
 app.use(express.static(libDirectory, staticOptions));
 
@@ -39,7 +39,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET, 
   resave: true, 
   saveUninitialized: true,
-  secure: false, 
+  secure: true, 
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
