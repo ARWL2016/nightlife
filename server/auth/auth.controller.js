@@ -26,14 +26,17 @@ function configPassport(passport) {
   passport.serializeUser((user, done) => {
     console.log('SERIALIZE');
     console.log({user});
-    done(null, user);
+    // the user._id is saved in the session
+    done(null, user._id);
   }); 
 
   passport.deserializeUser((id, done) => {
+    console.log('DESERIALIZE');
     console.log({id});
+    // now use the _id from the session (req.session.passport.user) to find the user
     User.findById(id)
       .then(user => {
-        console.log('DESERIALIZE');
+        
         console.log({user});
         done(null, user);
       })
@@ -48,18 +51,20 @@ function configPassport(passport) {
   // console.log({twitter});
 }
 
+
+
 function registerTwitterUser(token, tokenSecret, profile, done) {
   console.log('VERIFY CALLBACK');
-console.log({profile});
-  process.nextTick(function() {
-    User.findOne({twitterId: profile.id})
+  console.log({profile});
+
+    User.findOne({oauthid: profile.id})
       .then(user => {
         console.log({user});
         if (user) {
           return done(null, user);
         } else {
           const newUser = new User({
-            twitterId: profile.id, 
+            oauthid: profile.id, 
             displayName: profile.displayName, 
             token: token
           }); 
@@ -67,18 +72,23 @@ console.log({profile});
         }
       })
       .then(createdUser => {
+        console.log({createdUser});
         done(null, createdUser);
       })  
-      .catch(e => done(e));
-  })
+      .catch(e => {
+        console.log(e);
+      });
+  
 }
 
 function registerGoogleUser(accessToken, refreshToken, profile, done) {
-
+  console.log('VERIFY CALLBACK');
+  console.log({profile});
   process.nextTick(function() {
-    User.findOne({displayName: profile.displayName})
+    User.findOne({googleId: profile.id})
       .then(user => {
         if (user) {
+          console.log({user});
           return done(null, user);
         } else {
           const newUser = new User({
@@ -86,6 +96,7 @@ function registerGoogleUser(accessToken, refreshToken, profile, done) {
             displayName: profile.displayName, 
             token: accessToken
           }); 
+          console.log({newUser});
           return newUser.save();
         }
       })

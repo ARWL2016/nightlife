@@ -20,6 +20,8 @@ module.exports = (app, passport) => {
     // successRedirect
     function(req, res) {
       const {displayName, token} = req.user;
+      console.log('SUCCESS REDIRECT');
+      console.log(req.session.passport.user);
       res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
     }
   );
@@ -31,6 +33,7 @@ module.exports = (app, passport) => {
     app.get('/auth/twitter/callback', 
       passport.authenticate('twitter', { failureRedirect: '/#!/login' }),
       function(req, res) {
+        console.log(req.user);
         const {displayName, token} = req.user;
         res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
       });

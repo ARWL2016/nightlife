@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const EventSchema = require('./event.schema');
 
 const UserSchema = new mongoose.Schema({
-  facebookId: {
-    type: String
+  oauthid: {
+    type: Number
   },  
   googleId: {
     type: String
