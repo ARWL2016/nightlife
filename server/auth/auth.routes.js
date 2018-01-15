@@ -6,16 +6,23 @@
 
 module.exports = (app, passport) => {
 
+  function successRedirect(req, res) {
+    const {displayName, token} = req.user;
+    res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
+  }
+
   // google
   app.get('/auth/google', 
     passport.authenticate('google', { scope: ['profile'] }));
 
   app.get('/auth/google/callback', 
     passport.authenticate('google'),
+    // successRedirect
     function(req, res) {
       const {displayName, token} = req.user;
       res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
-    });
+    }
+  );
 
     // twitter 
     app.get('/auth/twitter',

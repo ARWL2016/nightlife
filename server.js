@@ -18,7 +18,7 @@ const MongoStore = require('connect-mongo')(session);
 
 const { logger } = require('./server/config/logger');
 const { mongoose } = require('./server/db');
-require('./server/config/auth').configPassport(passport);
+require('./server/auth/auth.controller').configPassport(passport);
 
 const app = express();
 const port = process.env.PORT || 3000; 
@@ -27,18 +27,19 @@ const libDirectory = path.join(__dirname, 'client/bower_components');
 const staticOptions = {maxAge: ms('1y')};
 
 app.use(compression());
-app.use(helmet());
+// app.use(helmet());
 app.use(express.static(appDirectory, staticOptions));
 app.use(express.static(libDirectory, staticOptions));
 
-// app.use(cookieParser());
+app.use(cookieParser());
 // parse request body and add to req.body
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(session({
   secret: process.env.SESSION_SECRET, 
   resave: true, 
-  saveUninitialized: true, 
+  saveUninitialized: true,
+  secure: false, 
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
@@ -46,7 +47,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // import routes
-require('./server/routes/auth')(app, passport);
+require('./server/auth/auth.routes')(app, passport);
 require('./server/routes/data')(app);
 require('./server/routes/diary')(app);
 require('./server/routes/error')(app);
