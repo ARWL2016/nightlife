@@ -37,8 +37,8 @@
   app.run(['localStorageService', 'errorService', function(localStorageSvc, errorSvc) {
     // fetch environment from server
     errorSvc.getEnv()
-      .then(() => {
-        console.log(`Pathfinder app running in ${errorSvc.clientEnv} mode`);
+      .then(env => {
+        console.log(`Pathfinder app running in ${env} mode`);
       });
 
     // clear cache

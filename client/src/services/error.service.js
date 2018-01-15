@@ -21,6 +21,7 @@ function errorService($http) {
       return $http.get('/api/config/env')
         .then(resp => {
           clientEnv = resp.data;
+          return clientEnv;
         })
         .catch(err => {
           logError(`could not get application mode - defaulted to ${clientEnv}`, 'error.service');

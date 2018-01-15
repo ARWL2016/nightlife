@@ -23,8 +23,8 @@
     "build:watch": "babel client/src --out-dir client/dist --copy-files -w",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",
-    "kill": "taskkill /f /im node.exe", 
-    "deploy": "git push heroku master", 
+    "kill": "taskkill /f /im node.exe",
+    "deploy": "git push heroku master",
     "postdeploy": "heroku open"
   },
   "dependencies": {
