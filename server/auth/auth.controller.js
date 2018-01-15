@@ -9,18 +9,18 @@
  * which can then be used to get the whole user object from the database. 
  * 
  * {@link https://console.developers.google.com/apis/credentials?project=nightlife-1509443022907 | Google Dev Console} 
- * {@link https://developers.facebook.com/apps/142230009738845/dashboard/ | Facebook Dev Console} 
  * Configure Google Sign in 
  * 
  * NB Profile.id returned from FB varies - do not use for db find 
  */
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
+const GithubStrategy = require('passport-github').Strategy;
+const { logger } = require('../config/logger');
 
 const { User } = require('../db');
-const { fb, google, twitter } = require('./auth.config');
+const { google, twitter, github } = require('./auth.config');
 
 function configPassport(passport) {
   passport.serializeUser((user, done) => {
@@ -31,13 +31,12 @@ function configPassport(passport) {
   }); 
 
   passport.deserializeUser((id, done) => {
-    console.log('DESERIALIZE');
-    console.log({id});
+    // console.log('DESERIALIZE');
+    // console.log({id});
     // now use the _id from the session (req.session.passport.user) to find the user
     User.findById(id)
       .then(user => {
-        
-        console.log({user});
+        // console.log({user});
         done(null, user);
       })
       .catch(err => {
@@ -45,21 +44,18 @@ function configPassport(passport) {
       })
   }); 
 
-  passport.use(new GoogleStrategy(google, registerGoogleUser));
-  // passport.use(new FacebookStrategy(fb, registerUserWithProvider('facebookId')));
-  passport.use(new TwitterStrategy(twitter, registerTwitterUser));
-  // console.log({twitter});
+  passport.use(new GoogleStrategy(google, verifyCallback));
+  passport.use(new TwitterStrategy(twitter, verifyCallback));
+  passport.use(new GithubStrategy(github, verifyCallback));
 }
 
-
-
-function registerTwitterUser(token, tokenSecret, profile, done) {
-  console.log('VERIFY CALLBACK');
-  console.log({profile});
+function verifyCallback(token, tokenSecret, profile, done) {
+  // console.log('VERIFY CALLBACK');
+  // console.log({profile});
 
     User.findOne({oauthid: profile.id})
       .then(user => {
-        console.log({user});
+        // console.log({user});
         if (user) {
           return done(null, user);
         } else {
@@ -72,37 +68,36 @@ function registerTwitterUser(token, tokenSecret, profile, done) {
         }
       })
       .then(createdUser => {
-        console.log({createdUser});
+        // console.log({createdUser});
         done(null, createdUser);
       })  
       .catch(e => {
-        console.log(e);
+        logger.log(e);
       });
-  
 }
 
-function registerGoogleUser(accessToken, refreshToken, profile, done) {
-  console.log('VERIFY CALLBACK');
-  console.log({profile});
-  process.nextTick(function() {
-    User.findOne({googleId: profile.id})
-      .then(user => {
-        if (user) {
-          console.log({user});
-          return done(null, user);
-        } else {
-          const newUser = new User({
-            googleId: profile.id, 
-            displayName: profile.displayName, 
-            token: accessToken
-          }); 
-          console.log({newUser});
-          return newUser.save();
-        }
-      })
-      .then(createdUser => done(null, createdUser))
-      .catch(e => done(e));
-  })
-}
+// function registerGoogleUser(accessToken, refreshToken, profile, done) {
+//   console.log('VERIFY CALLBACK');
+//   console.log({profile});
+//   process.nextTick(function() {
+//     User.findOne({googleId: profile.id})
+//       .then(user => {
+//         if (user) {
+//           console.log({user});
+//           return done(null, user);
+//         } else {
+//           const newUser = new User({
+//             googleId: profile.id, 
+//             displayName: profile.displayName, 
+//             token: accessToken
+//           }); 
+//           console.log({newUser});
+//           return newUser.save();
+//         }
+//       })
+//       .then(createdUser => done(null, createdUser))
+//       .catch(e => done(e));
+//   })
+// }
 
 module.exports = { configPassport };

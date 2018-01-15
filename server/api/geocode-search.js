@@ -16,11 +16,8 @@ function getLocation(req, res) {
 
   const url = buildUrl(baseUrl, '' ,params);
 
-  console.log({url});
-
   rp(url)
     .then(resp => {
-      console.log(JSON.parse(resp));
       res.send(resp);
     })
     .catch(e => res.send(e));

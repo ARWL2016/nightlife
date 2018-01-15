@@ -21,16 +21,12 @@ const params = {
 }
 
 function textSearch(req, res) {
-  console.log(req.query);
   params.query = req.query.q; // required parameter
   params.type = req.query.type || ''; // optional parameter
   params.location = req.query.location; 
   params.radius = 10000;
-
-  console.log({params});
   
   const url = buildUrl(baseUrl, path, params);
-  console.log(url);
 
   rp(url)   
     .then(result => {  

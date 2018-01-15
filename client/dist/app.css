@@ -140,6 +140,11 @@ li.nav-brand-icon i {
   text-decoration: none;
 }
 
+.github-login-link {
+  background-color: black;
+  text-decoration: none;
+}
+
 
 /********************************
     SPINNER / LOADING WIDGETS

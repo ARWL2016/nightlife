@@ -5,12 +5,6 @@ const UserSchema = new mongoose.Schema({
   oauthid: {
     type: Number
   },  
-  googleId: {
-    type: String
-  },
-  twitterId: {
-    type: String
-  },
   displayName: {
     type: String
   }, 
