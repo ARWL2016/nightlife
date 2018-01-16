@@ -1,6 +1,6 @@
 ### Pathfinder App 
 
-https://arwl-pathfinder.herokuapp.com
+https://pathfinder-2017.herokuapp.com
 
 Pathfinder is a web app which allows users to search for information on restaurants, shops, hospitals and many other kinds of location using google APIs. Users can save a favorite location. Users can also log in using a Google, Twitter or Github account and add a location and time to their diary. 
 
