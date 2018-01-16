@@ -48,6 +48,7 @@ Pathfinder is a web app which allows users to search for information on restaura
 - css files are kept next to controllers for convenience but are global - use namespacing to apply style rules locally
 - tested with: Chrome, Opera, Edge, IE11
 - for testing Twitter oauth locally, use 127.0.0.1 in env and address bar - Twitter app management will not accept localhost
+- login with google in dev mode after deploy (Twitter and Github does not accept multiple refs)
 
 #### Todos
 - local storage set item should be wrapped in try / catch if data can exceed limit - check

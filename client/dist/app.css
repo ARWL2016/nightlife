@@ -40,6 +40,7 @@
   margin: 0 15px;
   color: white;
   font-size: 0.9em;
+  padding: 2px 0;
 }
 
 li.nav-brand {
@@ -71,8 +72,16 @@ li.nav-brand-icon i {
   line-height: 37px;
   color: white;
   float: right;
-  padding: 0 10px;
+  padding: 2px 10px;
   font-size: 0.9em;
+}
+
+li.active {
+  border-bottom: 2px solid rgb(93, 212, 248);
+}
+
+li.activeIcon i {
+  color: rgb(93, 212, 248);
 }
 
 @media screen and (max-width: 550px) {

@@ -14,7 +14,9 @@ function localStorageService() {
 
   // generic methods
   function cache(identifier, data) {
-    localStorage.setItem(identifier, JSON.stringify(data));
+    if (typeof data !== 'undefined') {
+      localStorage.setItem(identifier, JSON.stringify(data));
+    }
   }
 
   function getFromCache(identifier) {

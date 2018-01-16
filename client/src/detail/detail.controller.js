@@ -18,9 +18,7 @@ DetailController.$inject =
 function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, helperSvc, localStorageSvc, $scope, $rootScope, errorSvc ) {
   var vm = this;
 
-  // data
-  vm.placeid = $routeParams.placeid;
-  vm.photoref = $routeParams.photoref;
+  // data model
   vm.result;
   vm.photoUrl;
   vm.user = localStorageSvc.getUser();
@@ -38,6 +36,9 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
   vm.showSpinner = false;
 
   function initialize() {
+    const placeid = $routeParams.placeid;
+    const photoref = $routeParams.photoref;
+
     vm.showSpinner = true;
     const cachedResult = localStorageSvc.getFromCache('result');
     const cachedPhotoUrl = localStorageSvc.getFromCache('photoUrl');
@@ -51,12 +52,12 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
     } 
 
     // else make API calls
-    if (vm.placeid) {
-      getDetails();
+    if (placeid) {
+      getDetails(placeid);
 
       // make API call for photo only if ref is available
-      if (vm.photoref) {
-        getPhoto();
+      if (photoref) {
+        getPhoto(photoref);
       }
     } else {
       vm.message = 'Sorry, details not available';
@@ -67,9 +68,9 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
     addLocationToDiary(datetime);
   });
 
-  function getDetails() {
+  function getDetails(placeid) {
     googleApiSvc
-      .getDetails(vm.placeid)
+      .getDetails(placeid)
       .then(result => {
         vm.result = helperSvc.formatHours(helperSvc.formatTags(result)[0]);
         if (vm.result.rating) {
@@ -85,14 +86,14 @@ function DetailController ($routeParams, datetimeSvc, diarySvc, googleApiSvc, he
       .finally(() => vm.showSpinner = false);
   }
 
-  function getPhoto() {
+  function getPhoto(photoref) {
     googleApiSvc
-      .getPhoto(vm.photoref)
+      .getPhoto(photoref)
       .then(photoUrl => {
-        vm.photoUrl = photoUrl;
-
-        // save to cache
-        localStorageSvc.cache('photoUrl', photoUrl);
+        if (photoUrl) {
+          vm.photoUrl = photoUrl;
+          localStorageSvc.cache('photoUrl', photoUrl);
+        }   
       })
       .catch(err => {
         errorSvc.logError('detail.controller.getPhoto', err);

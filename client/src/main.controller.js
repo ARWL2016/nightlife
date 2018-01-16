@@ -6,15 +6,20 @@ angular
   .module('app')
   .controller('MainController', MainController);
 
-MainController.$inject = ['localStorageService', 'errorService', '$rootScope'];
+MainController.$inject = ['localStorageService', 'errorService', '$rootScope', '$location'];
 
-function MainController(localStorageSvc, errorSvc, $rootScope) {
+function MainController(localStorageSvc, errorSvc, $rootScope, $location) {
   const vm = this;
 
   // model
   vm.location;
   vm.loggedIn = false;
   vm.user;
+  console.log($location.path());
+  // UI properties 
+  vm.isActive = function(tab) {
+    return $location.path().indexOf(tab) > -1;
+  }
 
   // public methods
   vm.logout = logout;

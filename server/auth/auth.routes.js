@@ -8,7 +8,6 @@ module.exports = (app, passport) => {
 
   function successRedirect(req, res) {
     const {displayName, token} = req.user;
-    // console.log(req.user);
     res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
   }
 
@@ -19,12 +18,6 @@ module.exports = (app, passport) => {
   app.get('/auth/google/callback', 
     passport.authenticate('google'),
     successRedirect
-    // function(req, res) {
-    //   const {displayName, token} = req.user;
-    //   console.log('SUCCESS REDIRECT');
-    //   console.log(req.session.passport.user);
-    //   res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
-    // }
   );
 
     // twitter 
@@ -43,19 +36,6 @@ module.exports = (app, passport) => {
       passport.authenticate('github', { failureRedirect: '/#!/login' }),
       successRedirect);
     
-
-  // facebook 
-  // app.get('/auth/facebook',
-  //   passport.authenticate('facebook'));
-
-  // app.get('/auth/facebook/callback',
-  // // TODO: need an error redirect here
-  //   passport.authenticate('facebook'),
-  //   function(req, res) {
-  //     const {displayName, token} = req.user;
-  //     res.redirect(`/#!/profile/?name=${displayName}&token=${token}`);
-  //   });
-
   app.get('/auth/logout', function(req, res){
     req.logout();
     res.redirect('/#!/profile');

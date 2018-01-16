@@ -19,7 +19,7 @@
     "server": "SET \"NODE_ENV=development\" && nodemon server.js",
     "dev": "concurrently \"npm run server\" \"npm run build:watch\" ",
     "build": "babel client/src --out-dir client/dist --copy-files",
-    "minify": "babel --presets minify client/src --out-dir client/dist --copy-files -w",
+    "build:prod": "babel --presets minify client/src --out-dir client/dist --copy-files -w",
     "build:watch": "babel client/src --out-dir client/dist --copy-files -w",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",

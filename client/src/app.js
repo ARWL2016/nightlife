@@ -14,22 +14,22 @@
       .when('/login', {
         templateUrl: 'login/login.html',
         controller: 'LoginController', 
-        controllerAs: 'vm'
+        controllerAs: 'vm', 
       })
       .when('/search', {
         templateUrl: 'search/search.html',  
         controller: 'SearchController', 
-        controllerAs: 'vm'
+        controllerAs: 'vm', 
       })
       .when('/profile', {
         templateUrl: 'profile/profile.html', 
         controller: 'ProfileController', 
-        controllerAs: 'vm'
+        controllerAs: 'vm', 
       })
       .when('/detail/:placeid/:photoref?', {
         templateUrl: 'detail/detail.html',  
         controller: 'DetailController', 
-        controllerAs: 'vm'
+        controllerAs: 'vm', 
       })
       .otherwise({redirectTo: '/search'});
   }]);

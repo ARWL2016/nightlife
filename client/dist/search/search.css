@@ -185,7 +185,7 @@ div.dropdown-holder > input {
 /* SPINNER */
 
 div.spinner.search-page-spinner {
-  margin-top: 0;
+  margin-top: 20px;
   margin-bottom: 0;
 }
 
@@ -234,6 +234,10 @@ div.spinner.search-page-spinner {
   h1.search-heading {
     padding-top: 10px;
     margin-top: 0;
+  }
+
+  section.search-section-content {
+    min-height: 530px;
   }
 }
 

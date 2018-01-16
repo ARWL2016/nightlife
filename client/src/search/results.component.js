@@ -36,8 +36,13 @@ SearchResultsController.$inject = ['helperService', '$location'];
       vm.results = helperSvc.sortAZ(vm.results);
     }
 
-    vm.routeToDetailPage = (placeid, photoref) => {
-      $location.path(`/detail/${placeid}/${photoref}`); 
+    vm.routeToDetailPage = (result) => {
+      // check for photo references
+      let photoref = '';
+      if (result.photos && result.photos.length > 0) {
+        photoref = result.photos[0].photo_reference;
+      }
+      $location.path(`/detail/${result.place_id}/${photoref}`); 
     }
   }
 }())
