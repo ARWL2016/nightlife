@@ -12,7 +12,8 @@
 
   <!-- SEARCH RESULTS -->
   <section class="results-section-content">  
-    <div 
+    <div ng-show="vm.message" class="error-message">{{ vm.message }}</div>
+    <div ng-show="!vm.message"
       class="result-card"
       ng-repeat="result in vm.results | limitTo:20" 
       ng-click="vm.routeToDetailPage(result)" > 
@@ -21,7 +22,6 @@
         <p class="card-tags">{{ result.types }}</span></p>
         <p ng-show="vm.result.rating" class="card rating">Customer Rating: <b>{{ result.rating }}</b></p>
     </div>
-    <div ng-show="vm.message" class="error-message">{{ vm.message }}</div>
   </section>  
 </div>
 

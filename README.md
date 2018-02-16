@@ -20,6 +20,7 @@ Pathfinder is a web app which allows users to search for information on restaura
 #### Tech notes 
 - uses mixture of angular controller and component styles
 - data served from four Google API services: Text Search, Place Details, Place Photos and Geocode
+- implements custom auto-complete functionality
 - social login uses Google, Twitter and Github OAuth
 - cloud data provider MLab used for development and production
 - responsive CSS design
@@ -34,7 +35,9 @@ Pathfinder is a web app which allows users to search for information on restaura
 
 #### Production build
 - `npm run build:prod` - run babel build with minification 
-- `npm run start`
+- `npm run server` - test the build locally
+- git commit and push
+- `npm run deploy`
 
 #### Resources 
 - http://www.passportjs.org/packages/

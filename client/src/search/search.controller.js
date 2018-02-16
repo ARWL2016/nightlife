@@ -86,8 +86,12 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
   }
 
   function submitQuery() {
+    localStorageSvc.clearCachedResults();
     if (!vm.location) {
       return vm.message = 'Please select a location.'
+    }
+    if (!vm.search.category) {
+      return vm.message = 'Please select a category';
     }
     if (!categorySvc.isCategoryValid(vm.search.category)) {
       return vm.message = 'Invalid category. Please choose one from the list.'
@@ -112,11 +116,6 @@ function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, c
   };
 
   init();
-
 }
 
-
-
 }());
-
-// vm.categoryMatches.length > 0 && 

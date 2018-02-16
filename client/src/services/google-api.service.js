@@ -37,6 +37,10 @@ function googleApiService($http, localStorageSvc, errorSvc) {
   }
 
   function textSearch({category, query, coords}) {
+    if (!query) {
+      query = category;
+    }
+    console.log({category, query});
     return $http.get(`/api/data/info?q=${query}&type=${category}&location=${coords}`)
       .then(res => {
         if (res.status === 200) {
