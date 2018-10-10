@@ -1,8 +1,10 @@
 {
   "strict": "global",
+  "esversion": 6,
   "globals": {
     "angular": false,
-
+    "process": true,
+    "require": true,
     "module": false,
     "inject": false,
 

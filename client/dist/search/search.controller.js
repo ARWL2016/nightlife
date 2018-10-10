@@ -1,1 +1,111 @@
-'use strict';(function(){'use strict';angular.module('app').controller('SearchController',['$location','googleApiService','helperService','localStorageService','categoryService',function(a,b,c,d,e){var f=this;f.location=d.getFromCache('location'),f.search={category:'',query:'',coords:''},f.results,f.showSpinner=!1,f.showDropdown=!1,f.categoryMatches=[],f.message,f.populateAutocomplete=function(){f.message='',f.search.category&&0<f.search.category.length&&(f.showDropdown=!0,f.categoryMatches=e.matchCategories(f.search.category))},f.selectFromAutocomplete=function(a){f.message='',f.search.category=a.target.innerText,f.categoryMatches=[]},f.removeAutocomplete=function(a){'category-dropdown'!==a.target.classname&&(f.showDropdown=!1)},f.submitQuery=function(){return d.clearCachedResults(),f.location?f.search.category?e.isCategoryValid(f.search.category)?void(f.showSpinner=!0,b.textSearch(f.search).then(function(a){a.length?f.results=c.formatTags(a):f.message='Your search returned no results.'}).catch(function(){f.message='Oops! Something went wrong...',errorSvc.logError('search.controller.submitQuery','text search error')}).finally(function(){f.showSpinner=!1})):f.message='Invalid category. Please choose one from the list.':f.message='Please select a category':f.message='Please select a location.'};(function(){var a=d.getCachedResults();a&&(f.results=a.results,f.search.category=a.searchParams.category,f.search.query=a.searchParams.query),f.location&&(f.search.coords=f.location.coords.lat+','+f.location.coords.lng),d.clearCache('result')})()}])})();
+'use strict';
+
+/**
+ * This is the controller for the main search page, which 
+ * displays two search inputs and the results of the user query.
+ * There are functions for autocompleting the category input, submitting 
+ * the query, and sorting the results by rating and A-Z.
+ * 20 results are displayed - this is the max no. returned by the API.
+ * 
+ * @property search.category refers to a category of establishment (restaurant, station etc)
+ * @property search.query - a location query such as a city or street
+ */
+
+(function () {
+  'use strict';
+
+  angular.module('app').controller('SearchController', ['$location', 'googleApiService', 'helperService', 'localStorageService', 'categoryService', SearchController]);
+
+  function SearchController($location, googleApiSvc, helperSvc, localStorageSvc, categorySvc) {
+
+    var vm = this;
+
+    // data props
+    vm.location = localStorageSvc.getFromCache('location');
+    vm.search = {
+      category: '',
+      query: '',
+      coords: ''
+    };
+    vm.results;
+
+    // UI props
+    vm.showSpinner = false;
+    vm.showDropdown = false;
+    vm.categoryMatches = [];
+    vm.message;
+
+    // public methods
+    vm.populateAutocomplete = populateAutocomplete;
+    vm.selectFromAutocomplete = selectFromAutocomplete;
+    vm.removeAutocomplete = removeAutocomplete;
+    vm.submitQuery = submitQuery;
+
+    function init() {
+      // get any cached results
+      var cache = localStorageSvc.getCachedResults();
+      if (cache) {
+        vm.results = cache.results;
+        vm.search.category = cache.searchParams.category;
+        vm.search.query = cache.searchParams.query;
+      }
+
+      // add location to search query object
+      if (vm.location) {
+        vm.search.coords = vm.location.coords.lat + ',' + vm.location.coords.lng;
+      }
+
+      // clear cached result from detail page before user can route there
+      localStorageSvc.clearCache('result');
+    }
+
+    function populateAutocomplete() {
+      vm.message = '';
+      if (vm.search.category && vm.search.category.length > 0) {
+        vm.showDropdown = true;
+        vm.categoryMatches = categorySvc.matchCategories(vm.search.category);
+      }
+    }
+
+    // set category and hide autocomplete
+    function selectFromAutocomplete(e) {
+      vm.message = '';
+      vm.search.category = e.target.innerText;
+      vm.categoryMatches = [];
+    }
+
+    function removeAutocomplete(event) {
+      if (event.target.classname !== 'category-dropdown') {
+        vm.showDropdown = false;
+      }
+    }
+
+    function submitQuery() {
+      localStorageSvc.clearCachedResults();
+      if (!vm.location) {
+        return vm.message = 'Please select a location.';
+      }
+      if (!vm.search.category) {
+        return vm.message = 'Please select a category';
+      }
+      if (!categorySvc.isCategoryValid(vm.search.category)) {
+        return vm.message = 'Invalid category. Please choose one from the list.';
+      }
+      vm.showSpinner = true;
+      googleApiSvc.textSearch(vm.search).then(function (results) {
+        if (results.length) {
+          vm.results = helperSvc.formatTags(results);
+        } else {
+          vm.message = 'Your search returned no results.';
+        }
+      }).catch(function (err) {
+        vm.message = 'Oops! Something went wrong...';
+        errorSvc.logError('search.controller.submitQuery', 'text search error');
+      }).finally(function () {
+        vm.showSpinner = false;
+      });
+    };
+
+    init();
+  }
+})();

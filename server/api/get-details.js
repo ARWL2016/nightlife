@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  *  Place details request (requires ID from textSearch): 
  *  {@link https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&key=YOUR_API_KEY}

@@ -1,1 +1,49 @@
-'use strict';(function(){'use strict';function a(a,b,c,d){var e=this;e.location,e.loggedIn=!1,e.user,console.log(d.path()),e.isActive=function(a){return-1<d.path().indexOf(a)},e.logout=function(){a.clearCache('user'),e.loggedIn=!1},function(){e.location=a.getFromCache('location'),e.user=a.getUser(),e.user&&e.user.displayName&&(e.loggedIn=!0)}(),c.$on('rootScope:changeLocation',function(b,c){e.location=c,a.clearCachedResults()}),c.$on('rootScope:verifyLogin',function(){e.loggedIn=!0})}angular.module('app').controller('MainController',a),a.$inject=['localStorageService','errorService','$rootScope','$location']})();
+'use strict';
+
+(function () {
+
+  'use strict';
+
+  angular.module('app').controller('MainController', MainController);
+
+  MainController.$inject = ['localStorageService', 'errorService', '$rootScope', '$location'];
+
+  function MainController(localStorageSvc, errorSvc, $rootScope, $location) {
+    var vm = this;
+
+    // model
+    vm.location;
+    vm.loggedIn = false;
+    vm.user;
+    console.log($location.path());
+    // UI properties 
+    vm.isActive = function (tab) {
+      return $location.path().indexOf(tab) > -1;
+    };
+
+    // public methods
+    vm.logout = logout;
+
+    (function init() {
+      vm.location = localStorageSvc.getFromCache('location');
+      vm.user = localStorageSvc.getUser();
+      if (vm.user && vm.user.displayName) {
+        vm.loggedIn = true;
+      }
+    })();
+
+    $rootScope.$on('rootScope:changeLocation', function (event, data) {
+      vm.location = data;
+      localStorageSvc.clearCachedResults();
+    });
+
+    $rootScope.$on('rootScope:verifyLogin', function (event, data) {
+      vm.loggedIn = true;
+    });
+
+    function logout() {
+      localStorageSvc.clearCache('user');
+      vm.loggedIn = false;
+    }
+  };
+})();

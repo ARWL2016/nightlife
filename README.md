@@ -54,7 +54,7 @@ Pathfinder is a web app which allows users to search for information on restaura
 - login with google in dev mode after deploy (Twitter and Github does not accept multiple refs)
 
 #### Todos
-- local storage set item should be wrapped in try / catch if data can exceed limit - check
+- local storage set item should be wrapped in try / catch if data can exceed limit
 - improve diary service
 
 
